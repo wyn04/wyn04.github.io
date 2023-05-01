@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>第一篇文章 | yinan的博客</title><meta name="author" content="yinan"><meta name="copyright" content="yinan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 基础架构：一条SQL查询语句是如何执行的？下面是MySQL的基本架构示意图，从中你可以清楚地看到SQL语句在MySQL的各个功能模块中的执行过程。  MySQL可以分为Server层和存储引擎层两部分。  Server层包括连接器、查询缓存、分析器、优化器、执行器等，涵盖MySQL的大多数核心服务功能，以及所有的内置函数（如日期、时间、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一篇文章">
+<meta property="og:url" content="https://yinan.fun/2023/05/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/index.html">
+<meta property="og:site_name" content="yinan的博客">
+<meta property="og:description" content="1. 基础架构：一条SQL查询语句是如何执行的？下面是MySQL的基本架构示意图，从中你可以清楚地看到SQL语句在MySQL的各个功能模块中的执行过程。  MySQL可以分为Server层和存储引擎层两部分。  Server层包括连接器、查询缓存、分析器、优化器、执行器等，涵盖MySQL的大多数核心服务功能，以及所有的内置函数（如日期、时间、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-05-01T13:18:38.000Z">
+<meta property="article:modified_time" content="2023-05-01T13:22:30.498Z">
+<meta property="article:author" content="yinan">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://yinan.fun/2023/05/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '第一篇文章',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-01 21:22:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="yinan的博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="yinan的博客"><span class="site-name">yinan的博客</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">第一篇文章</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-05-01T13:18:38.000Z" title="Created 2023-05-01 21:18:38">2023-05-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-05-01T13:22:30.498Z" title="Updated 2023-05-01 21:22:30">2023-05-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="第一篇文章"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-基础架构：一条SQL查询语句是如何执行的？"><a href="#1-基础架构：一条SQL查询语句是如何执行的？" class="headerlink" title="1. 基础架构：一条SQL查询语句是如何执行的？"></a>1. 基础架构：一条SQL查询语句是如何执行的？</h2><p>下面是<strong>MySQL的基本架构</strong>示意图，从中你可以清楚地看到SQL语句在MySQL的各个功能模块中的执行过程。</p>
+<p><img src="http://qiniu.yinan.fun/IMG_9147.JPG" alt="image-20230308152659467"></p>
+<p>MySQL可以分为<strong>Server层</strong>和<strong>存储引擎层</strong>两部分。</p>
+<ol>
+<li><p>Server层包括连接器、查询缓存、分析器、优化器、执行器等，涵盖MySQL的大多数<strong>核心服务功能</strong>，以及所有的<strong>内置函数</strong>（如日期、时间、数学和加密函数等），所有<strong>跨存储引擎的功能</strong>都在这一层实现，比如存储过程、触发器、视图等。 </p>
+</li>
+<li><p>存储引擎层负责<strong>数据的存储和提取</strong>。其架构模式是插件式的，支持InnoDB、MyISAM、 Memory等多个存储引擎。现在最常用的存储引擎是InnoDB，它从MySQL 5.5.5版本开始成为了默认存储引擎。也就是说，你执行create table建表的时候，如果不指定引擎类型，<strong>默认使用的就是InnoDB</strong>。不过，你也可以通过指定存储引擎的类型来选择别的引擎，比如在<code>create table</code>语句中使用<code>engine=memory</code>, 来指定使用内存引擎创建表。不同存储引擎的表数据存取方式不同，支持的功能也不同。</p>
+</li>
+</ol>
+<h3 id="1-1-连接器"><a href="#1-1-连接器" class="headerlink" title="1.1 连接器"></a>1.1 连接器</h3><p>连接器负责跟客户端建立连接、获取权限、维持和管理连接。连接命令： </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h$ip -P$port -u$user -p</span><br></pre></td></tr></table></figure>
+
+<p>连接命令中的mysql是<strong>客户端工具</strong>，用来跟服务端建立连接。在完成经典的TCP握手后，连接器 就要开始认证你的身份，这个时候用的就是你输入的用户名和密码。 </p>
+<ul>
+<li><p>如果用户名或密码不对，你就会收到一个**”Access denied for user”的错误**，然后客户端程序结束执行。 </p>
+</li>
+<li><p>如果用户名密码认证通过，连接器会到<strong>权限表里面查出你拥有的权限</strong>。之后，这个连接里面的权限判断逻辑，都将依赖于此时读到的权限。 这就意味着，一个用户成功建立连接后，即使你用管理员账号对这个用户的权限做了修改，也不会影响已经存在连接的权限。修改完成后，只有<strong>再新建的连接才会使用新的权限设置</strong>。</p>
+</li>
+</ul>
+<p>客户端如果太<strong>长时间没动静</strong>，连接器就会<strong>自动将它断开</strong>。这个时间是由参数<code>wait_timeout</code>控制的，默认值是8小时。如果在连接被断开之后，客户端再次发送请求的话，就会收到一个错误提醒： <code>Lost connection to MySQL server during query</code>。这时候如果你要继续，就需要重连，然后再执行请求了。</p>
+<ul>
+<li><strong>长连接</strong>是指连接成功后，如果客户端<strong>持续有请求</strong>，则一直使用<strong>同一个连接</strong>。</li>
+<li><strong>短连接</strong>则是指每次执行完很少的<strong>几次查询就断开连接</strong>，下次查询再重新建立一个。</li>
+</ul>
+<p><strong>建立连接的过程通常是比较复杂</strong>的，所以建议在使用中要尽量减少建立连接的动作，也就是<strong>尽量使用长连接</strong>。</p>
+<p>但是全部使用长连接后，MySQL占用内存涨得特别快，这是因为MySQL在执行过程中<strong>临时使用的内存是管理在连接对象里面的</strong>。这些资源会在<strong>连接断开的时候才释放</strong>。所以如果长连接累积下来，可能导致内存占用太大，被系统强行杀掉（OOM），从现象看就是MySQL异常重启了。 </p>
+<ol>
+<li><p><strong>定期断开长连接</strong>。使用一段时间，或者程序里面判断<strong>执行过一个占用内存的大查询后</strong>，断开连接，之后要查询再重连。 </p>
+</li>
+<li><p>如果你用的是MySQL 5.7或更新版本，可以在每次执行一个比较大的操作后，通过执行<code>mysql_reset_connection</code>来<strong>重新初始化连接资源</strong>。这个过程<strong>不需要重连</strong>和重新做权限验证，但是会<strong>将连接恢复到刚刚创建完时的状态</strong>。</p>
+</li>
+</ol>
+<h3 id="1-2-查询缓存"><a href="#1-2-查询缓存" class="headerlink" title="1.2 查询缓存"></a>1.2 查询缓存</h3><p>MySQL拿到一个查询请求后，会先到查询缓存看看，之前是不是执行过这条语句。<strong>之前执行过的语句及其结果</strong>可能会以<strong>key-value对</strong>的形式，被直接缓存在内存中。<strong>key是查询的语句，value是查询的结果。</strong>如果你的查询能够直接在这个缓存中找到key，那么这个value就会被直接返回给客户端。</p>
+<p>如果语句不在查询缓存中，就会继续后面的执行阶段。执行完成后，执行结果会被存入查询缓存中。你可以看到，如果查询命中缓存，MySQL不需要执行后面的复杂操作，就可以直接返回结果，这个<strong>效率会很高</strong>。 </p>
+<p>但是大多数情况下<strong>建议不要使用查询缓存</strong>：查询缓存的<strong>失效非常频繁</strong>，只要有对一个<strong>表的更新</strong>，这个表上所有的<strong>查询缓存都会被清空</strong>。对于<strong>更新压力大的数据库</strong>来说，查询缓存的命中率会非常低。除非你的业务就是有一张<strong>静态表</strong>，很长时间才会更新一次。比如，一个系统配置表，那这张表上的查询才适合使用查询缓存。</p>
+<p>在MySQL也提供了这种“按需使用”的方式。你可以将参数<code>query_cache_type</code>设置成 <code>DEMAND</code>，这样对于<strong>默认的SQL语句都不使用查询缓存</strong>。而对于你<strong>确定要使用查询缓存的语 句</strong>，可以用<code>SQL_CACHE</code>显式指定，像下面这个语句一样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select SQL_CACHE * from T where ID=10；</span><br></pre></td></tr></table></figure>
+
+<p>MySQL 8.0版本直接将查询缓存的整块功能删掉了，也就是说8.0开始彻底没有这个功能了。 </p>
+<h3 id="1-3-分析器"><a href="#1-3-分析器" class="headerlink" title="1.3 分析器"></a>1.3 分析器</h3><p>首先，MySQL需要<strong>知道你要做什么</strong>，因此 需要对SQL语句做解析。 </p>
+<ul>
+<li><p>分析器先会做<strong>“词法分析”</strong>。你输入的是由多个字符串和空格组成的一条SQL语句，MySQL需要识别出里面的<strong>字符串分别是什么</strong>，代表什么。MySQL从你输入的”select”这个关键字识别出来，这是一个查询语句。它也要把字符串“T”识别 成“表名T”，把字符串“ID”识别成“列ID”。 </p>
+</li>
+<li><p>做完了这些识别以后，就要做<strong>“语法分析”</strong>。根据词法分析的结果，语法分析器会根据语法规则， 判断你输入的这个SQL语句<strong>是否满足MySQL语法</strong>。 如果你的语句不对，就会收到“You have an error in your SQL syntax”的错误提醒，比如下面这个 语句select少打了开头的字母“s”。</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; elect * from t where ID=1; </span><br><span class="line">ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;elect * from t where ID=1&#x27; at line 1 </span><br></pre></td></tr></table></figure>
+
+<p>一般语法错误会提示第一个出现错误的位置，所以你要关注的是紧接“use near”的内容。</p>
+<h3 id="1-4-优化器"><a href="#1-4-优化器" class="headerlink" title="1.4 优化器"></a>1.4 优化器</h3><p>优化器是在表里面有<strong>多个索引</strong>的时候，决定使用哪个索引；或者在一个语句有<strong>多表关联</strong>（join） 的时候，决定各个表的连接顺序。</p>
+<p>比如你执行下面这样的语句，这个语句是执行两个表的join：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from t1 join t2 using(ID) where t1.c=10 and t2.d=20;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>既可以先从表t1里面取出c&#x3D;10的记录的ID值，再根据ID值关联到表t2，再判断t2里面d的值是否等于20。 </p>
+</li>
+<li><p>也可以先从表t2里面取出d&#x3D;20的记录的ID值，再根据ID值关联到t1，再判断t1里面c的值是否等于10。</p>
+</li>
+</ul>
+<p>这两种执行方法的逻辑结果是一样的，但是执行的效率会有不同，而优化器的作用就是决定选择使用哪一个方案。 </p>
+<h3 id="1-5-执行器"><a href="#1-5-执行器" class="headerlink" title="1.5 执行器"></a>1.5 执行器</h3><p>MySQL通过<strong>分析器</strong>知道了你要<strong>做什么</strong>，通过<strong>优化器</strong>知道了该<strong>怎么做</strong>，于是就进入了执行器阶 段，开始执行语句。</p>
+<p>要先判断一下你对这个表T有没有<strong>执行查询的权限</strong>，如果没有，就会返回没有权限的错误，如下所示。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from T where ID=10; </span><br><span class="line">ERROR 1142 (42000): SELECT command denied to user &#x27;b&#x27;@&#x27;localhost&#x27; for table &#x27;T&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>如果有权限，就打开表继续执行。打开表的时候，执行器就会根据表的引擎定义，去<strong>使用这个引擎提供的接口</strong>。 </p>
+<p>比如我们这个例子中的表T中，ID字段<strong>没有索引</strong>，那么执行器的执行流程是这样的： </p>
+<ol>
+<li><p>调用InnoDB引擎接口取这个表的<strong>第一行</strong>，判断ID值是不是10，如果不是则跳过，如果是则将这行存在结果集中； </p>
+</li>
+<li><p>调用引擎接口取<strong>“下一行”</strong>，重复相同的判断逻辑，直到取到这个表的最后一行。 </p>
+</li>
+<li><p>执行器将上述<strong>遍历</strong>过程中所有满足条件的行组成的记录集作为结果集返回给客户端。</p>
+</li>
+</ol>
+<p>至此，这个语句就执行完成了。 </p>
+<p>对于<strong>有索引</strong>的表，执行的逻辑也差不多。第一次调用的是<strong>“取满足条件的第一行”</strong>这个接口，之后循环取<strong>“满足条件的下一行”</strong>这个接口，这些接口都是引擎中已经定义好的。 </p>
+<p>你会在数据库的慢查询日志中看到一个<code>rows_examined</code>的字段，表示这个语句执行过程中扫描了多少行。这个值就是在执行器每次调用引擎获取数据行的时候累加的。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://yinan.fun">yinan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://yinan.fun/2023/05/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">https://yinan.fun/2023/05/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/04/30/hello-world/" title="Hello World"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Hello World</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">yinan</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%EF%BC%9A%E4%B8%80%E6%9D%A1SQL%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">1. 基础架构：一条SQL查询语句是如何执行的？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E8%BF%9E%E6%8E%A5%E5%99%A8"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 连接器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%9F%A5%E8%AF%A2%E7%BC%93%E5%AD%98"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 查询缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%88%86%E6%9E%90%E5%99%A8"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 分析器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 优化器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E6%89%A7%E8%A1%8C%E5%99%A8"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 执行器</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" title="第一篇文章">第一篇文章</a><time datetime="2023-05-01T13:18:38.000Z" title="Created 2023-05-01 21:18:38">2023-05-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/30/hello-world/" title="Hello World">Hello World</a><time datetime="2023-04-30T09:30:31.587Z" title="Created 2023-04-30 17:30:31">2023-04-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By yinan</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
