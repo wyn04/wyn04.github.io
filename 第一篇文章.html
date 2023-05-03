@@ -16,24 +16,23 @@
   <meta name="author" content="yinan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="2. 日志系统：一条SQL更新语句是如何执行的？与查询流程不一样的是，更新流程还涉及两个重要的日志模块：redo log（重做日志）和 binlog（归档日志）。 2.1 redo log如果每一次的更新操作都需要写进磁盘，然后磁盘也要找到对应的那条记录，然后再更新，整个过程IO成本、查找成本都很高。 WAL的全称是Write-Ahead Logging，它的关键点就是先写日志，再写磁盘。 当有一">
+    <meta name="description" content="1. 基础架构：一条SQL查询语句是如何执行的？下面是MySQL的基本架构示意图，从中你可以清楚地看到SQL语句在MySQL的各个功能模块中的执行过程。  MySQL可以分为Server层和存储引擎层两部分。  Server层包括连接器、查询缓存、分析器、优化器、执行器等，涵盖MySQL的大多数核心服务功能，以及所有的内置函数（如日期、时间、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第二篇文章">
-<meta property="og:url" content="https://yinan.fun/2023/05/01/%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%96%87%E7%AB%A0/index.html">
+<meta property="og:title" content="第一篇文章">
+<meta property="og:url" content="https://yinan.fun/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0">
 <meta property="og:site_name" content="yinan的博客">
-<meta property="og:description" content="2. 日志系统：一条SQL更新语句是如何执行的？与查询流程不一样的是，更新流程还涉及两个重要的日志模块：redo log（重做日志）和 binlog（归档日志）。 2.1 redo log如果每一次的更新操作都需要写进磁盘，然后磁盘也要找到对应的那条记录，然后再更新，整个过程IO成本、查找成本都很高。 WAL的全称是Write-Ahead Logging，它的关键点就是先写日志，再写磁盘。 当有一">
+<meta property="og:description" content="1. 基础架构：一条SQL查询语句是如何执行的？下面是MySQL的基本架构示意图，从中你可以清楚地看到SQL语句在MySQL的各个功能模块中的执行过程。  MySQL可以分为Server层和存储引擎层两部分。  Server层包括连接器、查询缓存、分析器、优化器、执行器等，涵盖MySQL的大多数核心服务功能，以及所有的内置函数（如日期、时间、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://yinan.fun/Users/wangyinan/%E6%88%91%E7%88%B1%E5%AD%A6%E4%B9%A0/Java/MySQL/assets/image-20230308163217987.png">
-<meta property="og:image" content="https://yinan.fun/Users/wangyinan/Library/Application%20Support/typora-user-images/image-20230308165252385.png">
-<meta property="article:published_time" content="2023-05-01T13:42:27.000Z">
-<meta property="article:modified_time" content="2023-05-01T13:43:06.677Z">
+<meta property="og:image" content="http://qiniu.yinan.fun/IMG_9147.JPG">
+<meta property="article:published_time" content="2023-05-01T13:18:38.000Z">
+<meta property="article:modified_time" content="2023-05-01T13:22:30.498Z">
 <meta property="article:author" content="yinan">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://yinan.fun/Users/wangyinan/%E6%88%91%E7%88%B1%E5%AD%A6%E4%B9%A0/Java/MySQL/assets/image-20230308163217987.png">
+<meta name="twitter:image" content="http://qiniu.yinan.fun/IMG_9147.JPG">
   
   
   
-  <title>第二篇文章 - yinan的博客</title>
+  <title>第一篇文章 - yinan的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="第二篇文章"></span>
+            <span id="subtitle" data-typed-text="第一篇文章"></span>
           
         </div>
 
@@ -215,7 +214,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-05-01 21:42" pubdate>
+        <time datetime="2023-05-01 21:18" pubdate>
           2023年5月1日 晚上
         </time>
       </span>
@@ -227,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          3.5k 字
         
       </span>
     
@@ -238,7 +237,7 @@
         
         
         
-          21 分钟
+          29 分钟
         
       </span>
     
@@ -276,66 +275,88 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">第二篇文章</h1>
+            <h1 style="display: none">第一篇文章</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="2-日志系统：一条SQL更新语句是如何执行的？"><a href="#2-日志系统：一条SQL更新语句是如何执行的？" class="headerlink" title="2. 日志系统：一条SQL更新语句是如何执行的？"></a>2. 日志系统：一条SQL更新语句是如何执行的？</h2><p>与查询流程不一样的是，更新流程还涉及两个重要的日志模块：<strong>redo log（重做日志）和 binlog（归档日志）</strong>。</p>
-<h3 id="2-1-redo-log"><a href="#2-1-redo-log" class="headerlink" title="2.1 redo log"></a>2.1 redo log</h3><p>如果<strong>每一次的更新操作都需要写进磁盘</strong>，然后磁盘也要找到对应的那条记录，然后再更新，整个过程<strong>IO成本、查找成本都很高</strong>。</p>
-<p><strong>WAL</strong>的全称是Write-Ahead Logging，它的关键点就是<strong>先写日志，再写磁盘</strong>。</p>
-<p>当有一条记录需要<strong>更新</strong>的时候，InnoDB引擎就会<strong>先把记录写到redo log</strong>里面，并<strong>更新内存</strong>，这个时候更新就算完成了。同时，InnoDB引擎会在适当的时候，将这个操作记录<strong>更新到磁盘里面</strong>，而这个更新往往是在系统比较<strong>空闲</strong>的时候做。</p>
-<p>InnoDB的redo log是固定大小的，比如可以配置为一组4个文件，每个文件的大小是 1GB，那么总共就可以记录4GB的操作。从头开始写，写到末尾就又回到开头循环写，如下面这个图所示</p>
-<img src="/Users/wangyinan/我爱学习/Java/MySQL/assets/image-20230308163217987.png" srcset="/img/loading.gif" lazyload alt="image-20230308163217987" style="zoom:50%;" />
-
-<p><strong>write pos</strong>是<strong>当前记录的位置</strong>，一边写一边后移，写到第3号文件末尾后就回到0号文件开头。<strong>checkpoint</strong>是<strong>当前要擦除的位置</strong>，也是往后推移并且循环的，擦除记录前要把记录更新到数据文件。</p>
-<p>write pos和checkpoint之间的是redo log上还空着的部分，可以用来记录新的操作。如果write pos追上checkpoint，表示redo log这时候不能再执行新的更新，得停下来先擦掉一些记录，把checkpoint推进一下。</p>
-<p> 有了redo log，InnoDB就可以保证<strong>即使数据库发生异常重启，之前提交的记录都不会丢失</strong>，这个能力称为<strong>crash-safe</strong>。</p>
-<h3 id="2-2-binlog"><a href="#2-2-binlog" class="headerlink" title="2.2 binlog"></a>2.2 binlog</h3><p>redo log是InnoDB引擎特有的日志，而<strong>Server层</strong>也有自己的日志，称为binlog（归档日志）。</p>
-<p>这两种日志有以下三点不同。 </p>
+                <h2 id="1-基础架构：一条SQL查询语句是如何执行的？"><a href="#1-基础架构：一条SQL查询语句是如何执行的？" class="headerlink" title="1. 基础架构：一条SQL查询语句是如何执行的？"></a>1. 基础架构：一条SQL查询语句是如何执行的？</h2><p>下面是<strong>MySQL的基本架构</strong>示意图，从中你可以清楚地看到SQL语句在MySQL的各个功能模块中的执行过程。</p>
+<p><img src="http://qiniu.yinan.fun/IMG_9147.JPG" srcset="/img/loading.gif" lazyload alt="image-20230308152659467"></p>
+<p>MySQL可以分为<strong>Server层</strong>和<strong>存储引擎层</strong>两部分。</p>
 <ol>
-<li><p>redo log是<strong>InnoDB引擎特有</strong>的；binlog是<strong>MySQL的Server层实现</strong>的，所有引擎都可以使用。 </p>
+<li><p>Server层包括连接器、查询缓存、分析器、优化器、执行器等，涵盖MySQL的大多数<strong>核心服务功能</strong>，以及所有的<strong>内置函数</strong>（如日期、时间、数学和加密函数等），所有<strong>跨存储引擎的功能</strong>都在这一层实现，比如存储过程、触发器、视图等。 </p>
 </li>
-<li><p>redo log是<strong>物理日志</strong>，记录的是“在某个数据页上<strong>做了什么修改</strong>”；binlog是<strong>逻辑日志</strong>，记录的是这个<strong>语句的原始逻辑</strong>，比如“给ID&#x3D;2这一行的c字段加1 ”。 </p>
-</li>
-<li><p>redo log是<strong>循环写</strong>的，空间固定会用完；binlog是可以<strong>追加写入</strong>的。“追加写”是指binlog文件写到一定大小后会切换到下一个，并<strong>不会覆盖</strong>以前的日志。</p>
+<li><p>存储引擎层负责<strong>数据的存储和提取</strong>。其架构模式是插件式的，支持InnoDB、MyISAM、 Memory等多个存储引擎。现在最常用的存储引擎是InnoDB，它从MySQL 5.5.5版本开始成为了默认存储引擎。也就是说，你执行create table建表的时候，如果不指定引擎类型，<strong>默认使用的就是InnoDB</strong>。不过，你也可以通过指定存储引擎的类型来选择别的引擎，比如在<code>create table</code>语句中使用<code>engine=memory</code>, 来指定使用内存引擎创建表。不同存储引擎的表数据存取方式不同，支持的功能也不同。</p>
 </li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">mysql&gt; create table T(ID int primary key, c int);<br>mysql&gt; update T set c=c+1 where ID=2;<br></code></pre></td></tr></table></figure>
+<h3 id="1-1-连接器"><a href="#1-1-连接器" class="headerlink" title="1.1 连接器"></a>1.1 连接器</h3><p>连接器负责跟客户端建立连接、获取权限、维持和管理连接。连接命令： </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">mysql -h$ip -P$port -u$user -p<br></code></pre></td></tr></table></figure>
 
-<p>执行器和InnoDB引擎在执行这个简单的update语句时的内部流程。 </p>
-<ol>
-<li><p>执行器先<strong>找引擎取ID&#x3D;2这一行</strong>。ID是主键，引擎直接用树搜索找到这一行。如果ID&#x3D;2这一行所在的数据页本来就在内存中，就直接返回给执行器；否则，需要先从磁盘读入内存，然后再返回。 </p>
-</li>
-<li><p>执行器拿到引擎给的行数据，<strong>把这个值加上1</strong>，比如原来是N，现在就是N+1，得到新的一行数据，再<strong>调用引擎接口写入这行新数据</strong>。 </p>
-</li>
-<li><p><strong>引擎</strong>将这行新数据<strong>更新到内存</strong>中，同时将这个更新操作<strong>记录到redo log</strong>里面，此时redo log处于<strong>prepare状态</strong>。然后告知执行器执行完成了，随时可以提交事务。 </p>
-</li>
-<li><p><strong>执行器</strong>生成这个操作的binlog，并把<strong>binlog写入磁盘</strong>。 </p>
-</li>
-<li><p>执行器调用引擎的提交事务接口，引擎把刚刚写入的redo log改成<strong>提交（commit）状态</strong>，更新完成。</p>
-</li>
-</ol>
-<p>这里我给出这个update语句的执行流程图，图中浅色框表示是在InnoDB内部执行的，深色框表示是在执行器中执行的</p>
-<img src="/Users/wangyinan/Library/Application Support/typora-user-images/image-20230308165252385.png" srcset="/img/loading.gif" lazyload alt="image-20230308165252385" style="zoom: 33%;" />
-
-<p>将redo log的写入拆成了两个步骤：prepare和commit，这就是”两阶段提交”。</p>
-<h3 id="2-3-两阶段提交"><a href="#2-3-两阶段提交" class="headerlink" title="2.3 两阶段提交"></a>2.3 两阶段提交</h3><p>为什么必须有“两阶段提交”呢？这是为了<strong>让两份日志之间的逻辑一致</strong>。</p>
-<p>当需要数据库<strong>恢复到指定的某一秒</strong>时，比如某天下午两点发现中午十二点有一次误删表，需要找回数据，那你可以这么做： </p>
+<p>连接命令中的mysql是<strong>客户端工具</strong>，用来跟服务端建立连接。在完成经典的TCP握手后，连接器 就要开始认证你的身份，这个时候用的就是你输入的用户名和密码。 </p>
 <ul>
-<li><p>首先，找到<strong>最近的一次全量备份</strong>，如果你运气好，可能就是昨天晚上的一个备份，从这个备份恢复到临时库； </p>
+<li><p>如果用户名或密码不对，你就会收到一个**”Access denied for user”的错误**，然后客户端程序结束执行。 </p>
 </li>
-<li><p>然后，从备份的时间点开始，<strong>将备份的binlog依次取出来</strong>，重放到中午误删表之前的那个时刻。</p>
+<li><p>如果用户名密码认证通过，连接器会到<strong>权限表里面查出你拥有的权限</strong>。之后，这个连接里面的权限判断逻辑，都将依赖于此时读到的权限。 这就意味着，一个用户成功建立连接后，即使你用管理员账号对这个用户的权限做了修改，也不会影响已经存在连接的权限。修改完成后，只有<strong>再新建的连接才会使用新的权限设置</strong>。</p>
 </li>
 </ul>
-<p>由于redo log和binlog是两个独立的逻辑，如果不用两阶段提交，要么就是先写完redo log再写binlog，或者采用反过来的顺序。我们看看这两种方式会有什么问题。 </p>
-<p>仍然用前面的update语句来做例子。假设当前ID&#x3D;2的行，字段c的值是0，再假设执行update语句过程中在写完第一个日志后，第二个日志还没有写完期间发生了crash，会出现什么情况呢？ </p>
+<p>客户端如果太<strong>长时间没动静</strong>，连接器就会<strong>自动将它断开</strong>。这个时间是由参数<code>wait_timeout</code>控制的，默认值是8小时。如果在连接被断开之后，客户端再次发送请求的话，就会收到一个错误提醒： <code>Lost connection to MySQL server during query</code>。这时候如果你要继续，就需要重连，然后再执行请求了。</p>
+<ul>
+<li><strong>长连接</strong>是指连接成功后，如果客户端<strong>持续有请求</strong>，则一直使用<strong>同一个连接</strong>。</li>
+<li><strong>短连接</strong>则是指每次执行完很少的<strong>几次查询就断开连接</strong>，下次查询再重新建立一个。</li>
+</ul>
+<p><strong>建立连接的过程通常是比较复杂</strong>的，所以建议在使用中要尽量减少建立连接的动作，也就是<strong>尽量使用长连接</strong>。</p>
+<p>但是全部使用长连接后，MySQL占用内存涨得特别快，这是因为MySQL在执行过程中<strong>临时使用的内存是管理在连接对象里面的</strong>。这些资源会在<strong>连接断开的时候才释放</strong>。所以如果长连接累积下来，可能导致内存占用太大，被系统强行杀掉（OOM），从现象看就是MySQL异常重启了。 </p>
 <ol>
-<li><strong>先写先 redo log后写后 binlog</strong>。假设在redo log写完，binlog还没有写完的时候，MySQL进程异常重启。由于我们前面说过的，redo log写完之后，系统即使崩溃，仍然能够把数据恢复回来，所以恢复后这一行c的值是1。 但是由于binlog没写完就crash了，这时候binlog里面就没有记录这个语句。因此，之后备份日志的时候，存起来的binlog里面就没有这条语句。 然后你会发现，如果需要用这个binlog来恢复临时库的话，由于这个语句的binlog丢失，这个临时库就会少了这一次更新，恢复出来的这一行c的值就是0，与原库的值不同。 </li>
-<li><strong>先写先 binlog后写后 redo log</strong>。如果在binlog写完之后crash，由于redo log还没写，崩溃恢复以后这个事务无效，所以这一行c的值是0。但是binlog里面已经记录了“把c从0改成1”这个日志。所以，在之后用binlog来恢复的时候就多了一个事务出来，恢复出来的这一行c的值就是 1，与原库的值不同。</li>
+<li><p><strong>定期断开长连接</strong>。使用一段时间，或者程序里面判断<strong>执行过一个占用内存的大查询后</strong>，断开连接，之后要查询再重连。 </p>
+</li>
+<li><p>如果你用的是MySQL 5.7或更新版本，可以在每次执行一个比较大的操作后，通过执行<code>mysql_reset_connection</code>来<strong>重新初始化连接资源</strong>。这个过程<strong>不需要重连</strong>和重新做权限验证，但是会<strong>将连接恢复到刚刚创建完时的状态</strong>。</p>
+</li>
 </ol>
-<p>可以看到，如果不使用“两阶段提交”，那么数据库的状态就有可能和用它的日志恢复出来的库的状态不一致。</p>
-<p>简单说，redo log和binlog都可以用于表示事务的提交状态，而两阶段提交就是<strong>让这两个状态保持逻辑上的一致</strong>。 </p>
+<h3 id="1-2-查询缓存"><a href="#1-2-查询缓存" class="headerlink" title="1.2 查询缓存"></a>1.2 查询缓存</h3><p>MySQL拿到一个查询请求后，会先到查询缓存看看，之前是不是执行过这条语句。<strong>之前执行过的语句及其结果</strong>可能会以<strong>key-value对</strong>的形式，被直接缓存在内存中。<strong>key是查询的语句，value是查询的结果。</strong>如果你的查询能够直接在这个缓存中找到key，那么这个value就会被直接返回给客户端。</p>
+<p>如果语句不在查询缓存中，就会继续后面的执行阶段。执行完成后，执行结果会被存入查询缓存中。你可以看到，如果查询命中缓存，MySQL不需要执行后面的复杂操作，就可以直接返回结果，这个<strong>效率会很高</strong>。 </p>
+<p>但是大多数情况下<strong>建议不要使用查询缓存</strong>：查询缓存的<strong>失效非常频繁</strong>，只要有对一个<strong>表的更新</strong>，这个表上所有的<strong>查询缓存都会被清空</strong>。对于<strong>更新压力大的数据库</strong>来说，查询缓存的命中率会非常低。除非你的业务就是有一张<strong>静态表</strong>，很长时间才会更新一次。比如，一个系统配置表，那这张表上的查询才适合使用查询缓存。</p>
+<p>在MySQL也提供了这种“按需使用”的方式。你可以将参数<code>query_cache_type</code>设置成 <code>DEMAND</code>，这样对于<strong>默认的SQL语句都不使用查询缓存</strong>。而对于你<strong>确定要使用查询缓存的语 句</strong>，可以用<code>SQL_CACHE</code>显式指定，像下面这个语句一样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">mysql&gt; select SQL_CACHE * from T where ID=10；<br></code></pre></td></tr></table></figure>
+
+<p>MySQL 8.0版本直接将查询缓存的整块功能删掉了，也就是说8.0开始彻底没有这个功能了。 </p>
+<h3 id="1-3-分析器"><a href="#1-3-分析器" class="headerlink" title="1.3 分析器"></a>1.3 分析器</h3><p>首先，MySQL需要<strong>知道你要做什么</strong>，因此 需要对SQL语句做解析。 </p>
+<ul>
+<li><p>分析器先会做<strong>“词法分析”</strong>。你输入的是由多个字符串和空格组成的一条SQL语句，MySQL需要识别出里面的<strong>字符串分别是什么</strong>，代表什么。MySQL从你输入的”select”这个关键字识别出来，这是一个查询语句。它也要把字符串“T”识别 成“表名T”，把字符串“ID”识别成“列ID”。 </p>
+</li>
+<li><p>做完了这些识别以后，就要做<strong>“语法分析”</strong>。根据词法分析的结果，语法分析器会根据语法规则， 判断你输入的这个SQL语句<strong>是否满足MySQL语法</strong>。 如果你的语句不对，就会收到“You have an error in your SQL syntax”的错误提醒，比如下面这个 语句select少打了开头的字母“s”。</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">mysql&gt; elect * from t where ID=1; <br>ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;elect * from t where ID=1&#x27; at line 1 <br></code></pre></td></tr></table></figure>
+
+<p>一般语法错误会提示第一个出现错误的位置，所以你要关注的是紧接“use near”的内容。</p>
+<h3 id="1-4-优化器"><a href="#1-4-优化器" class="headerlink" title="1.4 优化器"></a>1.4 优化器</h3><p>优化器是在表里面有<strong>多个索引</strong>的时候，决定使用哪个索引；或者在一个语句有<strong>多表关联</strong>（join） 的时候，决定各个表的连接顺序。</p>
+<p>比如你执行下面这样的语句，这个语句是执行两个表的join：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">mysql&gt; select * from t1 join t2 using(ID) where t1.c=10 and t2.d=20;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>既可以先从表t1里面取出c&#x3D;10的记录的ID值，再根据ID值关联到表t2，再判断t2里面d的值是否等于20。 </p>
+</li>
+<li><p>也可以先从表t2里面取出d&#x3D;20的记录的ID值，再根据ID值关联到t1，再判断t1里面c的值是否等于10。</p>
+</li>
+</ul>
+<p>这两种执行方法的逻辑结果是一样的，但是执行的效率会有不同，而优化器的作用就是决定选择使用哪一个方案。 </p>
+<h3 id="1-5-执行器"><a href="#1-5-执行器" class="headerlink" title="1.5 执行器"></a>1.5 执行器</h3><p>MySQL通过<strong>分析器</strong>知道了你要<strong>做什么</strong>，通过<strong>优化器</strong>知道了该<strong>怎么做</strong>，于是就进入了执行器阶 段，开始执行语句。</p>
+<p>要先判断一下你对这个表T有没有<strong>执行查询的权限</strong>，如果没有，就会返回没有权限的错误，如下所示。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">mysql&gt; select * from T where ID=10; <br>ERROR 1142 (42000): SELECT command denied to user &#x27;b&#x27;@&#x27;localhost&#x27; for table &#x27;T&#x27;<br></code></pre></td></tr></table></figure>
+
+<p>如果有权限，就打开表继续执行。打开表的时候，执行器就会根据表的引擎定义，去<strong>使用这个引擎提供的接口</strong>。 </p>
+<p>比如我们这个例子中的表T中，ID字段<strong>没有索引</strong>，那么执行器的执行流程是这样的： </p>
+<ol>
+<li><p>调用InnoDB引擎接口取这个表的<strong>第一行</strong>，判断ID值是不是10，如果不是则跳过，如果是则将这行存在结果集中； </p>
+</li>
+<li><p>调用引擎接口取<strong>“下一行”</strong>，重复相同的判断逻辑，直到取到这个表的最后一行。 </p>
+</li>
+<li><p>执行器将上述<strong>遍历</strong>过程中所有满足条件的行组成的记录集作为结果集返回给客户端。</p>
+</li>
+</ol>
+<p>至此，这个语句就执行完成了。 </p>
+<p>对于<strong>有索引</strong>的表，执行的逻辑也差不多。第一次调用的是<strong>“取满足条件的第一行”</strong>这个接口，之后循环取<strong>“满足条件的下一行”</strong>这个接口，这些接口都是引擎中已经定义好的。 </p>
+<p>你会在数据库的慢查询日志中看到一个<code>rows_examined</code>的字段，表示这个语句执行过程中扫描了多少行。这个值就是在执行器每次调用引擎获取数据行的时候累加的。</p>
 
                 
               </div>
@@ -353,8 +374,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>第二篇文章</div>
-      <div>https://yinan.fun/2023/05/01/第二篇文章/</div>
+      <div>第一篇文章</div>
+      <div>https://yinan.fun/第一篇文章</div>
     </div>
     <div class="license-meta">
       
@@ -398,9 +419,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/05/02/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" title="Docker常用命令大全">
+                      <a href="/%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%96%87%E7%AB%A0" title="第二篇文章">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Docker常用命令大全</span>
+                        <span class="hidden-mobile">第二篇文章</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -408,8 +429,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/05/01/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" title="第一篇文章">
-                        <span class="hidden-mobile">第一篇文章</span>
+                      <a href="/hello-world" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
