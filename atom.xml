@@ -6,7 +6,7 @@
   <link href="https://yinan.fun/atom.xml" rel="self"/>
   
   <link href="https://yinan.fun/"/>
-  <updated>2023-05-04T01:23:04.591Z</updated>
+  <updated>2023-05-22T08:44:59.687Z</updated>
   <id>https://yinan.fun/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PyInstaller python 打包工具使用</title>
+    <link href="https://yinan.fun/PyInstaller-python-%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8"/>
+    <id>https://yinan.fun/PyInstaller-python-%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8</id>
+    <published>2023-05-22T08:43:42.000Z</published>
+    <updated>2023-05-22T08:44:59.687Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="PyInstaller-python-打包工具使用"><a href="#PyInstaller-python-打包工具使用" class="headerlink" title="PyInstaller python 打包工具使用"></a>PyInstaller python 打包工具使用</h1><h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><table><thead><tr><th>参数名</th><th>描述</th><th>说明</th></tr></thead><tbody><tr><td>-D</td><td>生成one-folder的程序（默认）</td><td>生成结果是一个目录，各种第三方依赖、资源和exe同时存储在该目录</td></tr><tr><td>-F</td><td>生成one-file的程序</td><td>生成结果是一个exe文件，所有的第三方依赖、资源和代码均被打包进该exe内</td></tr><tr><td>–add-data</td><td>打包额外资源</td><td>用法：pyinstaller main.py –add-data&#x3D;src;dest。windows以;分割，macOS&#x2F;linux以:分割</td></tr><tr><td>-c</td><td>显示命令行窗口</td><td>与-w相反，默认含有此参数</td></tr><tr><td>-w</td><td>不显示命令行窗口</td><td>编写GUI程序时使用此参数有用。</td></tr><tr><td>-i</td><td>为main.exe指定图标</td><td>用法：pyinstaller -i beauty.ico main.py</td></tr></tbody></table><p>具体参数看：<a href="https://blog.csdn.net/weixin_39000819/article/details/80942423">https://blog.csdn.net/weixin_39000819/article/details/80942423</a></p><h2 id="打包图片等资源"><a href="#打包图片等资源" class="headerlink" title="打包图片等资源"></a>打包图片等资源</h2><p>即使使用了<code>–add-data</code>参数也大概率还是会出现图片文件没有找到的情况。</p><p>因为当app运行的时候，会先<strong>把资源解压到一个系统的临时目录</strong>，包括打包进去的 img文件等。但是，此时的代码并不能直接通过 “img&#x2F;texture.png” 这样的相对路径来得到文件,应该是因为本身程序就不在这里，所以自然引用不到。</p><p>这时需要用到 sys 的一个半私有的属性 <code>sys._MEIPASS</code>，根据官方的说明，它是 pyinstaller 运行时创建的<strong>临时目录的绝对路径</strong>。需要在程序运行时判断当前是不是有这个属性，如果有的话，使用生成临时目录下图片的绝对路径，如果没有的话，那就直接返回当前程序的绝对路径：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_resource_path</span>(<span class="hljs-params">relative_path</span>):<br>    <span class="hljs-comment"># 资源路径拼接当前运行时临时目录路径</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">hasattr</span>(sys, <span class="hljs-string">&#x27;_MEIPASS&#x27;</span>):<br>        <span class="hljs-keyword">return</span> os.path.join(sys._MEIPASS, relative_path)<br>    <span class="hljs-keyword">return</span> os.path.join(os.path.abspath(<span class="hljs-string">&quot;.&quot;</span>), relative_path)<br></code></pre></td></tr></table></figure><p>每次用到图片资源地址的时候都调用<code>get_resource_path</code></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">texture_filename = get_resource_path(<span class="hljs-string">&quot;img/texture.png&quot;</span>)<br>texture = cv2.imread(texture_filename)<br></code></pre></td></tr></table></figure><p>之后就可以使用下面的命令（windows要将<code>:</code>改成<code>;</code>）</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">pyinstaller --add-data img:img -wF img2sketch.py</span><br></code></pre></td></tr></table></figure><p>在<code>disk</code>目录下生成可执行文件</p><p><img src="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/image-20230522162328233.png" alt="image-20230522162328233"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;PyInstaller-python-打包工具使用&quot;&gt;&lt;a href=&quot;#PyInstaller-python-打包工具使用&quot; class=&quot;headerlink&quot; title=&quot;PyInstaller python 打包工具使用&quot;&gt;&lt;/a&gt;PyInstaller</summary>
+      
+    
+    
+    
+    
+    <category term="编程" scheme="https://yinan.fun/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+    <category term="Python" scheme="https://yinan.fun/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker常用命令大全</title>
