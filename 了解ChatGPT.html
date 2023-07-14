@@ -17,23 +17,25 @@
   <meta name="author" content="yinan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="爱楼-表情包网站需求分析 用户根据名字和标签搜索表情包 用户上传表情包 管理员管理表情包  技术栈前端 框架：Vue 3 组件库：Ant Design Vue 请求：Axios 路由：Vue Router 文件下载：FileSaver  后端 Java 8 开发框架：SpringBoot 2.x 数据访问：MyBatis + MyBatis Plus 缓存：Redis 项目管理：Maven 接口文">
+    <meta name="description" content="了解ChatGPT1. ChatGPT的功能如果我们向ChatGPT询问ChatGPT的功能： ChatGPT具有以下功能：  回答问题：ChatGPT可以回答各种问题，包括常见知识、事实、定义、历史事件等。 提供解释：ChatGPT可以解释复杂的概念、原理、术语等，并帮助你更好地理解。 提供建议：ChatGPT可以提供关于各种主题的建议，例如旅行目的地、电影推荐、食谱等。 进行对话：ChatGP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="爱楼表情包网站">
-<meta property="og:url" content="https://yinan.fun/%E7%88%B1%E6%A5%BC%E8%A1%A8%E6%83%85%E5%8C%85%E7%BD%91%E7%AB%99">
+<meta property="og:title" content="了解ChatGPT">
+<meta property="og:url" content="https://yinan.fun/%E4%BA%86%E8%A7%A3ChatGPT">
 <meta property="og:site_name" content="yinan的博客">
-<meta property="og:description" content="爱楼-表情包网站需求分析 用户根据名字和标签搜索表情包 用户上传表情包 管理员管理表情包  技术栈前端 框架：Vue 3 组件库：Ant Design Vue 请求：Axios 路由：Vue Router 文件下载：FileSaver  后端 Java 8 开发框架：SpringBoot 2.x 数据访问：MyBatis + MyBatis Plus 缓存：Redis 项目管理：Maven 接口文">
+<meta property="og:description" content="了解ChatGPT1. ChatGPT的功能如果我们向ChatGPT询问ChatGPT的功能： ChatGPT具有以下功能：  回答问题：ChatGPT可以回答各种问题，包括常见知识、事实、定义、历史事件等。 提供解释：ChatGPT可以解释复杂的概念、原理、术语等，并帮助你更好地理解。 提供建议：ChatGPT可以提供关于各种主题的建议，例如旅行目的地、电影推荐、食谱等。 进行对话：ChatGP">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-06-03T02:21:41.000Z">
-<meta property="article:modified_time" content="2023-07-13T09:40:14.758Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/ChatGPT_Diagram.svg">
+<meta property="article:published_time" content="2023-07-11T02:21:41.000Z">
+<meta property="article:modified_time" content="2023-07-14T02:19:36.172Z">
 <meta property="article:author" content="yinan">
-<meta property="article:tag" content="JAVA">
-<meta property="article:tag" content="SpringBoot">
+<meta property="article:tag" content="ChatGPT">
+<meta property="article:tag" content="语言模型">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/ChatGPT_Diagram.svg">
   
   
   
-  <title>爱楼表情包网站 - yinan的博客</title>
+  <title>了解ChatGPT - yinan的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +219,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="爱楼表情包网站"></span>
+            <span id="subtitle" data-typed-text="了解ChatGPT"></span>
           
         </div>
 
@@ -228,8 +230,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-06-03 10:21" pubdate>
-          2023年6月3日 上午
+        <time datetime="2023-07-11 10:21" pubdate>
+          2023年7月11日 上午
         </time>
       </span>
     
@@ -240,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          1.7k 字
         
       </span>
     
@@ -251,7 +253,7 @@
         
         
         
-          14 分钟
+          15 分钟
         
       </span>
     
@@ -289,269 +291,36 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">爱楼表情包网站</h1>
+            <h1 style="display: none">了解ChatGPT</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="爱楼-表情包网站"><a href="#爱楼-表情包网站" class="headerlink" title="爱楼-表情包网站"></a>爱楼-表情包网站</h1><h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><ol>
-<li>用户根据名字和标签搜索表情包</li>
-<li>用户上传表情包</li>
-<li>管理员管理表情包</li>
-</ol>
-<h2 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h2><h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><ul>
-<li>框架：Vue 3</li>
-<li>组件库：Ant Design Vue</li>
-<li>请求：Axios</li>
-<li>路由：Vue Router</li>
-<li>文件下载：FileSaver</li>
-</ul>
-<h3 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h3><ul>
-<li>Java 8</li>
-<li>开发框架：SpringBoot 2.x</li>
-<li>数据访问：MyBatis + MyBatis Plus</li>
-<li>缓存：Redis</li>
-<li>项目管理：Maven</li>
-<li>接口文档：Swagger + Knife4j</li>
-</ul>
-<h3 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h3><ul>
-<li>数据库：MySQL</li>
-<li>对象存储：七牛云 COS</li>
-</ul>
-<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><ul>
-<li>前端：Nginx + Docker</li>
-<li>后端：Docker容器</li>
-</ul>
-<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ol>
-<li>使用 Redis 缓存首页高频访问的表情包列表，将接口响应时长从120毫秒缩短至 20毫秒。  </li>
-<li>选用 MyBatis + MyBatis-Plus 进行数据访问层开发，复用大多数通用方法，并且通过继承定制了自己的通用操作模板 ，大幅提升了项目开发效率。  </li>
-<li>为了明确接口的返回，自定义统一的错误码，并封装了全局异常处理器 ，从而规范了异常返回、屏蔽了项目冗余的报错细节。  </li>
-<li>自主编写 Dockerfile，并通过容器部署，提高部署上线效率。  </li>
-<li>使用 Knife4j + Swagger 自动生成后端接口文档，避免了人工编写维护文档的麻烦。  </li>
-<li>前端使用 Vant UI 组件库，并封装了全局通用的 Layout 组件，使主页、搜索页、管理页布局一致、并减少重复代码。</li>
-</ol>
-<h2 id="软件设计"><a href="#软件设计" class="headerlink" title="软件设计"></a>软件设计</h2><h3 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h3><p><strong>数据库名：</strong> ilou</p>
-<table>
-<thead>
-<tr>
-<th align="left">表名</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="#emoji">emoji</a></td>
-<td align="left">表情</td>
-</tr>
-<tr>
-<td align="left"><a href="#tag">tag</a></td>
-<td align="left">标签</td>
-</tr>
-</tbody></table>
-<p><strong>表名：</strong> <a id="tag">emoji</a></p>
-<p><strong>说明：</strong> 表情</p>
-<p><strong>数据列：</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">序号</th>
-<th align="left">名称</th>
-<th align="center">数据类型</th>
-<th align="center">长度</th>
-<th align="center">小数位</th>
-<th align="center">允许空值</th>
-<th align="center">主键</th>
-<th align="center">默认值</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">1</td>
-<td align="left">id</td>
-<td align="center">int</td>
-<td align="center">10</td>
-<td align="center">0</td>
-<td align="center">N</td>
-<td align="center">Y</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td align="left">url</td>
-<td align="center">varchar</td>
-<td align="center">4096</td>
-<td align="center">0</td>
-<td align="center">Y</td>
-<td align="center">N</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">3</td>
-<td align="left">name</td>
-<td align="center">varchar</td>
-<td align="center">512</td>
-<td align="center">0</td>
-<td align="center">Y</td>
-<td align="center">N</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">4</td>
-<td align="left">userId</td>
-<td align="center">int</td>
-<td align="center">10</td>
-<td align="center">0</td>
-<td align="center">Y</td>
-<td align="center">N</td>
-<td align="center">0</td>
-<td align="center">上传用户id</td>
-</tr>
-<tr>
-<td align="center">5</td>
-<td align="left">tags</td>
-<td align="center">varchar</td>
-<td align="center">1024</td>
-<td align="center">0</td>
-<td align="center">Y</td>
-<td align="center">N</td>
-<td align="center"></td>
-<td align="center">标签数组json</td>
-</tr>
-<tr>
-<td align="center">6</td>
-<td align="left">reviewStatus</td>
-<td align="center">int</td>
-<td align="center">10</td>
-<td align="center">0</td>
-<td align="center">N</td>
-<td align="center">N</td>
-<td align="center">0</td>
-<td align="center">0-待审核,1-通过,2-拒绝</td>
-</tr>
-<tr>
-<td align="center">7</td>
-<td align="left">createTime</td>
-<td align="center">datetime</td>
-<td align="center">19</td>
-<td align="center">0</td>
-<td align="center">Y</td>
-<td align="center">N</td>
-<td align="center">CURRENT_TIMESTAMP</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">8</td>
-<td align="left">isDelete</td>
-<td align="center">tinyint</td>
-<td align="center">3</td>
-<td align="center">0</td>
-<td align="center">N</td>
-<td align="center">N</td>
-<td align="center">0</td>
-<td align="center">是否删除0-未删除1-已删除</td>
-</tr>
-<tr>
-<td align="center">9</td>
-<td align="left">updateTime</td>
-<td align="center">datetime</td>
-<td align="center">19</td>
-<td align="center">0</td>
-<td align="center">Y</td>
-<td align="center">N</td>
-<td align="center">CURRENT_TIMESTAMP</td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<p><strong>表名：</strong> <a id="tag">tag</a></p>
-<p><strong>说明：</strong> 标签</p>
-<p><strong>数据列：</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">序号</th>
-<th align="left">名称</th>
-<th align="center">数据类型</th>
-<th align="center">长度</th>
-<th align="center">小数位</th>
-<th align="center">允许空值</th>
-<th align="center">主键</th>
-<th align="center">默认值</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">1</td>
-<td align="left">id</td>
-<td align="center">int</td>
-<td align="center">10</td>
-<td align="center">0</td>
-<td align="center">N</td>
-<td align="center">Y</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td align="left">name</td>
-<td align="center">varchar</td>
-<td align="center">512</td>
-<td align="center">0</td>
-<td align="center">N</td>
-<td align="center">N</td>
-<td align="center"></td>
-<td align="center">标签名</td>
-</tr>
-<tr>
-<td align="center">3</td>
-<td align="left">createTime</td>
-<td align="center">datetime</td>
-<td align="center">19</td>
-<td align="center">0</td>
-<td align="center">Y</td>
-<td align="center">N</td>
-<td align="center">CURRENT_TIMESTAMP</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">4</td>
-<td align="left">isDelete</td>
-<td align="center">tinyint</td>
-<td align="center">3</td>
-<td align="center">0</td>
-<td align="center">N</td>
-<td align="center">N</td>
-<td align="center">0</td>
-<td align="center">是否删除0-未删除1-已删除</td>
-</tr>
-<tr>
-<td align="center">5</td>
-<td align="left">updateTime</td>
-<td align="center">datetime</td>
-<td align="center">19</td>
-<td align="center">0</td>
-<td align="center">Y</td>
-<td align="center">N</td>
-<td align="center">CURRENT_TIMESTAMP</td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<h3 id="后端接口设计"><a href="#后端接口设计" class="headerlink" title="后端接口设计"></a>后端接口设计</h3><p><a href="ilou-api.yinan.fun/api/doc.html">ilou-api.yinan.fun&#x2F;api&#x2F;doc.html</a></p>
-<h3 id="通用返回对象"><a href="#通用返回对象" class="headerlink" title="通用返回对象"></a>通用返回对象</h3><p>给对象补充一些信息，告诉前端这个请求在业务层面上是成功还是失败</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java">SUCCESS(<span class="hljs-number">0</span>, <span class="hljs-string">&quot;ok&quot;</span>),<br>PARAMS_ERROR(<span class="hljs-number">40000</span>, <span class="hljs-string">&quot;请求参数错误&quot;</span>),<br>NOT_LOGIN_ERROR(<span class="hljs-number">40100</span>, <span class="hljs-string">&quot;未登录&quot;</span>),<br>NO_AUTH_ERROR(<span class="hljs-number">40101</span>, <span class="hljs-string">&quot;无权限&quot;</span>),<br>NOT_FOUND_ERROR(<span class="hljs-number">40400</span>, <span class="hljs-string">&quot;请求数据不存在&quot;</span>),<br>FORBIDDEN_ERROR(<span class="hljs-number">40300</span>, <span class="hljs-string">&quot;禁止访问&quot;</span>),<br>SYSTEM_ERROR(<span class="hljs-number">50000</span>, <span class="hljs-string">&quot;系统内部异常&quot;</span>),<br>OPERATION_ERROR(<span class="hljs-number">50001</span>, <span class="hljs-string">&quot;操作失败&quot;</span>),<br>FILE_UPLOAD_ERROR(<span class="hljs-number">50010</span>, <span class="hljs-string">&quot;文件上传错误&quot;</span>);<br></code></pre></td></tr></table></figure>
-
-<h3 id="全局异常处理器"><a href="#全局异常处理器" class="headerlink" title="全局异常处理器"></a>全局异常处理器</h3><ol>
-<li><p>定义业务异常类</p>
+                <h1 id="了解ChatGPT"><a href="#了解ChatGPT" class="headerlink" title="了解ChatGPT"></a>了解ChatGPT</h1><h2 id="1-ChatGPT的功能"><a href="#1-ChatGPT的功能" class="headerlink" title="1. ChatGPT的功能"></a>1. ChatGPT的功能</h2><p>如果我们向ChatGPT询问ChatGPT的功能：</p>
+<p>ChatGPT具有以下功能：</p>
 <ol>
-<li>相对于 java 的异常类，支持更多字段</li>
-<li>自定义构造函数，更灵活 &#x2F; 快捷的设置字段</li>
+<li>回答问题：ChatGPT可以回答各种问题，包括常见知识、事实、定义、历史事件等。</li>
+<li>提供解释：ChatGPT可以解释复杂的概念、原理、术语等，并帮助你更好地理解。</li>
+<li>提供建议：ChatGPT可以提供关于各种主题的建议，例如旅行目的地、电影推荐、食谱等。</li>
+<li>进行对话：ChatGPT可以进行对话，你可以与它交流，分享观点、提问问题或寻求帮助。</li>
+<li>写作辅助：如果你需要写作文章、创作故事或撰写邮件，ChatGPT可以提供灵感、提供写作建议和进行文本生成。</li>
 </ol>
-</li>
-<li><p>编写全局异常处理器（利用 Spring AOP，在调用方法前后进行额外的处理）</p>
-</li>
+<p>请注意，尽管ChatGPT具备广泛的知识和语言理解能力，但它仍然是一个模型，可能会出现错误或提供不准确的答案。在使用时，请谨慎评估和验证信息的准确性。（ChatGPT生成）</p>
+<p>从OpenAI的官网我们可以了解到，ChatGPT以对话的方式进行交互，对话形式使ChatGPT能够回答后续问题、承认错误、质疑不正确的前提并拒绝不适当的请求。</p>
+<p>OpenAI的官网也列出了ChatGPT的缺点，例如有时会回答看似有道理但是是错误或没意义的回答，对提问的方式敏感，模型过于冗长，在用户询问模糊的问题时猜测用户的想法。</p>
+<h2 id="2-ChatGPT的原理"><a href="#2-ChatGPT的原理" class="headerlink" title="2. ChatGPT的原理"></a>2. ChatGPT的原理</h2><p>如果我们向ChatGPT询问ChatGPT的原理：</p>
+<p>ChatGPT的实现是基于深度学习和自监督学习的方法。下面将详细说明ChatGPT的实现过程：</p>
+<ol>
+<li>数据收集：为了预训练ChatGPT，大量的互联网文本数据被收集和准备。这些数据可以包括网页内容、书籍、维基百科、新闻文章等。这些文本数据被用来构建一个庞大的语料库，作为模型的训练数据。</li>
+<li>构建Transformer模型：ChatGPT是基于Transformer模型构建的。Transformer模型是一种使用自注意力机制（self-attention）的序列到序列模型，它能够处理长距离依赖关系并捕捉上下文信息。Transformer模型由多个编码器和解码器层组成，每个层都包含多头注意力机制和前馈神经网络。</li>
+<li>预训练：在预训练阶段，ChatGPT使用大规模的语料库进行训练。模型通过自监督学习的方式进行预训练，即在没有人工标注的情况下进行训练。预训练的目标是预测下一个单词或标记。通过这种方式，模型能够学习到语言的统计规律、语义关系和上下文信息。预训练使用了大量的计算资源和并行计算，通常需要花费数天甚至数周的时间。</li>
+<li>微调：在预训练之后，ChatGPT需要进行微调以适应特定的任务。对于对话式交互，微调阶段通常使用对话数据进行训练。对话数据包括用户的问题和模型的回答。通过在这些对话数据上进行微调，模型能够更好地理解和生成对话，并提供准确的回答。</li>
+<li>模型优化和部署：在微调之后，ChatGPT需要进行模型优化和部署，以提高性能和效率。这包括模型的压缩、加速和优化，以便在实际应用中能够快速响应用户的请求。</li>
 </ol>
-<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p><a target="_blank" rel="noopener" href="https://github.com/wyn04/ilou">https://github.com/wyn04/ilou</a></p>
+<p>需要注意的是，ChatGPT的实现过程非常复杂，并需要大量的计算资源和数据。OpenAI团队在实现ChatGPT时投入了大量的研究和工程工作，以使其具备强大的语言理解和生成能力。（ChatGPT生成）</p>
+<p>OpenAI的官网简要说明了ChatGPT的方法。模型训练使用了Reinforcement Learning from Human Feedback (RLHF)，即以强化学习方式依据人类反馈优化语言模型。开始使用有监督的微调训练初始模型。然后收集comparison data为强化学习训练一个奖励模型（reward model）。最后使用Proximal Policy Optimization强化学习算法微调模型。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/ChatGPT_Diagram.svg" srcset="/img/loading.gif" lazyload alt="Chatgpt Diagram"></p>
+<p>OpenAI的官网说：We trained this model using Reinforcement Learning from Human Feedback (RLHF), using the same methods as <a target="_blank" rel="noopener" href="https://openai.com/blog/instruction-following/">InstructGPT</a>, but with slight differences in the data collection setup. 因此，要了解更多关于ChatGPT也可以阅读instructGPT的论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2203.02155%E3%80%82">https://arxiv.org/abs/2203.02155。</a></p>
 
                 
               </div>
@@ -570,7 +339,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%A1%B9%E7%9B%AE/" class="category-chain-item">项目</a>
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
   
   
 
@@ -585,9 +354,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/JAVA/">#JAVA</a>
+        <a href="/tags/ChatGPT/">#ChatGPT</a>
       
-        <a href="/tags/SpringBoot/">#SpringBoot</a>
+        <a href="/tags/%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/">#语言模型</a>
       
     </div>
   
@@ -599,8 +368,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>爱楼表情包网站</div>
-      <div>https://yinan.fun/爱楼表情包网站</div>
+      <div>了解ChatGPT</div>
+      <div>https://yinan.fun/了解ChatGPT</div>
     </div>
     <div class="license-meta">
       
@@ -612,7 +381,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年6月3日</div>
+          <div>2023年7月11日</div>
         </div>
       
       
@@ -644,9 +413,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/%E4%BA%86%E8%A7%A3ChatGPT" title="了解ChatGPT">
+                      <a href="/Domain-Adversarial-Training-of-Neural-Networks%EF%BC%88DaNN%EF%BC%89%E5%AE%9E%E7%8E%B0" title="Domain-Adversarial Training of Neural Networks（DaNN）实现">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">了解ChatGPT</span>
+                        <span class="hidden-mobile">Domain-Adversarial Training of Neural Networks（DaNN）实现</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -654,8 +423,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/PyInstaller-python-%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8" title="PyInstaller python 打包工具使用">
-                        <span class="hidden-mobile">PyInstaller python 打包工具使用</span>
+                      <a href="/%E7%88%B1%E6%A5%BC%E8%A1%A8%E6%83%85%E5%8C%85%E7%BD%91%E7%AB%99" title="爱楼表情包网站">
+                        <span class="hidden-mobile">爱楼表情包网站</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
