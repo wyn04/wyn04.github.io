@@ -25,7 +25,7 @@
 <meta property="og:description" content="图像质量评价指标 1. PSNR (Peak Signal-to-Noise Ratio) 峰值信噪比 给定一个大小为\(m\times n\)的干净图像和噪声图像，均方误差(MSE) 定义为： \[ MSE&#x3D;\frac{1}{mn}\sum_{i&#x3D;0}^{m-1}\sum_{i&#x3D;0}^{n-1}[I(i,j)-K(i,j)]^2 \] 然后PSNR(dB)  就定义为： \[">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-07-23T06:47:55.000Z">
-<meta property="article:modified_time" content="2023-07-24T02:38:31.866Z">
+<meta property="article:modified_time" content="2023-07-24T02:39:52.003Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="评价指标">
 <meta name="twitter:card" content="summary_large_image">
@@ -361,7 +361,8 @@ SSIM。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">skimage.metrics.structural_similarity(im1, im2, *, win_size=<span class="hljs-literal">None</span>, gradient=<span class="hljs-literal">False</span>, data_range=<span class="hljs-literal">None</span>, <br>                                      channel_axis=<span class="hljs-literal">None</span>, gaussian_weights=<span class="hljs-literal">False</span>, full=<span class="hljs-literal">False</span>, **kwargs)<br></code></pre></td></tr></table></figure>
 <p>https://scikit-image.org/docs/dev/api/skimage.metrics.html#skimage.metrics.structural_similarity</p>
 <ul>
-<li><p>参数： <code>im1</code>, <code>im2</code>:
+<li><p>参数：</p>
+<p><code>im1</code>, <code>im2</code>:
 ndarray。两个图片，任何具有相同形状的维度。</p>
 <p><code>win_size</code>: int or None,
 optional。用来比对的滑动窗口的变长。必须是奇数。如果</p>
@@ -375,7 +376,8 @@ optional。如果为None，图像被假定为灰度图（单通道），否则�
 optional。如果为True，则每个patch的均值和方差由宽度σ
 =1.5的归一化高斯核进行空间加权。 <code>full</code>: bool,
 optional。如果为True，也返回完整的结构相似度图像</p></li>
-<li><p>返回值 <code>mssim</code>: float。图像上的平均结构相似度指数
+<li><p>返回值</p>
+<p><code>mssim</code>: float。图像上的平均结构相似度指数
 <code>grad</code>:
 ndarray。im1和im2之间的结构相似度梯度。这只在梯度设置为True时返回
 <code>S</code>:
