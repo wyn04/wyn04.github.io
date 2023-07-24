@@ -25,7 +25,7 @@
 <meta property="og:description" content="图像质量评价指标 1. PSNR (Peak Signal-to-Noise Ratio) 峰值信噪比 给定一个大小为\(m\times n\)的干净图像和噪声图像，均方误差(MSE) 定义为： \[ MSE&#x3D;\frac{1}{mn}\sum_{i&#x3D;0}^{m-1}\sum_{i&#x3D;0}^{n-1}[I(i,j)-K(i,j)]^2 \] 然后PSNR(dB)  就定义为： \[">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-07-23T06:47:55.000Z">
-<meta property="article:modified_time" content="2023-07-24T02:39:52.003Z">
+<meta property="article:modified_time" content="2023-07-24T02:43:52.034Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="评价指标">
 <meta name="twitter:card" content="summary_large_image">
@@ -328,7 +328,8 @@ ndarray。Ground-truth图像，与im_test形状相同</p>
 <p><code>image_test</code>: ndarray。测试图像</p>
 <p><code>data_range</code>: int,
 optional。输入图像的数据范围(可能值的最小值和最大值之间的距离)。默认情况下，这是根据图像数据类型估计的</p></li>
-<li><p>返回值 <code>psnr</code>: float。PSNR值度量</p></li>
+<li><p>返回值</p>
+<p><code>psnr</code>: float。PSNR值度量</p></li>
 </ul>
 <p>针对超光谱图像，我们需要针对不同波段分别计算
 PSNR，然后取平均值，这个指标称为 MPSNR。</p>
@@ -374,13 +375,14 @@ optional。输入图像的数据范围（最大和最小值之间可能的距离
 optional。如果为None，图像被假定为灰度图（单通道），否则，使用该参数索引轴的数组对应的通道</p>
 <p><code>gaussian_weights</code>: bool,
 optional。如果为True，则每个patch的均值和方差由宽度σ
-=1.5的归一化高斯核进行空间加权。 <code>full</code>: bool,
+=1.5的归一化高斯核进行空间加权。</p>
+<p><code>full</code>: bool,
 optional。如果为True，也返回完整的结构相似度图像</p></li>
 <li><p>返回值</p>
-<p><code>mssim</code>: float。图像上的平均结构相似度指数
-<code>grad</code>:
-ndarray。im1和im2之间的结构相似度梯度。这只在梯度设置为True时返回
-<code>S</code>:
+<p><code>mssim</code>: float。图像上的平均结构相似度指数</p>
+<p><code>grad</code>:
+ndarray。im1和im2之间的结构相似度梯度。这只在梯度设置为True时返回</p>
+<p><code>S</code>:
 ndarray。完整的SSIM映像。这只在full设置为True时返回</p></li>
 </ul>
 <p>针对超光谱图像，我们需要针对不同波段分别计算
