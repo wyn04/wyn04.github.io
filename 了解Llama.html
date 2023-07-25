@@ -17,20 +17,20 @@
   <meta name="author" content="yinan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="了解Llama官网：https:&#x2F;&#x2F;ai.meta.com&#x2F;llama&#x2F; 文章：https:&#x2F;&#x2F;ai.meta.com&#x2F;research&#x2F;publications&#x2F;llama-2-open-foundation-and-fine-tuned-chat-models&#x2F; 介绍This release includes model weights and starting code for pretra">
+    <meta name="description" content="了解Llama 官网：https:&#x2F;&#x2F;ai.meta.com&#x2F;llama&#x2F; 文章：https:&#x2F;&#x2F;ai.meta.com&#x2F;research&#x2F;publications&#x2F;llama-2-open-foundation-and-fine-tuned-chat-models&#x2F; 介绍 This release includes model weights and starting code for">
 <meta property="og:type" content="article">
 <meta property="og:title" content="了解Llama">
 <meta property="og:url" content="https://yinan.fun/%E4%BA%86%E8%A7%A3Llama">
 <meta property="og:site_name" content="yinan的博客">
-<meta property="og:description" content="了解Llama官网：https:&#x2F;&#x2F;ai.meta.com&#x2F;llama&#x2F; 文章：https:&#x2F;&#x2F;ai.meta.com&#x2F;research&#x2F;publications&#x2F;llama-2-open-foundation-and-fine-tuned-chat-models&#x2F; 介绍This release includes model weights and starting code for pretra">
+<meta property="og:description" content="了解Llama 官网：https:&#x2F;&#x2F;ai.meta.com&#x2F;llama&#x2F; 文章：https:&#x2F;&#x2F;ai.meta.com&#x2F;research&#x2F;publications&#x2F;llama-2-open-foundation-and-fine-tuned-chat-models&#x2F; 介绍 This release includes model weights and starting code for">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/llama2.jpg">
+<meta property="og:image" content="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/llama2.jpg">
 <meta property="article:published_time" content="2023-07-23T04:32:17.000Z">
-<meta property="article:modified_time" content="2023-07-23T04:39:22.807Z">
+<meta property="article:modified_time" content="2023-07-25T10:06:24.485Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="语言模型">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/llama2.jpg">
+<meta name="twitter:image" content="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/llama2.jpg">
   
   
   
@@ -240,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.8k 字
+          4k 字
         
       </span>
     
@@ -251,7 +251,7 @@
         
         
         
-          32 分钟
+          34 分钟
         
       </span>
     
@@ -294,66 +294,159 @@
             
               <div class="markdown-body">
                 
-                <h1 id="了解Llama"><a href="#了解Llama" class="headerlink" title="了解Llama"></a>了解Llama</h1><p>官网：<a target="_blank" rel="noopener" href="https://ai.meta.com/llama/">https://ai.meta.com/llama/</a></p>
-<p>文章：<a target="_blank" rel="noopener" href="https://ai.meta.com/research/publications/llama-2-open-foundation-and-fine-tuned-chat-models/">https://ai.meta.com/research/publications/llama-2-open-foundation-and-fine-tuned-chat-models/</a></p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>This release includes model weights and starting code for pretrained and fine-tuned Llama language models — ranging from 7B to 70B parameters(7B, 13B, 70B).</p>
-<p>Llama 2 pretrained models are trained on 2 trillion tokens, and have double the context length than Llama 1. Its fine-tuned models have been trained on over 1 million human annotations.</p>
-<p><strong>Auto-regressive transformers</strong> are <strong>pretrained</strong> on an extensive corpus of self-supervised data, followed by <strong>alignment</strong> with human preferences via techniques such as Reinforcement Learning with Human Feedback (RLHF).   </p>
+                <h1 id="了解llama">了解Llama</h1>
+<p>官网：https://ai.meta.com/llama/</p>
+<p>文章：https://ai.meta.com/research/publications/llama-2-open-foundation-and-fine-tuned-chat-models/</p>
+<h2 id="介绍">介绍</h2>
+<p>This release includes model weights and starting code for pretrained
+and fine-tuned Llama language models — ranging from 7B to 70B
+parameters(7B, 13B, 70B).</p>
+<p>Llama 2 pretrained models are trained on 2 trillion tokens, and have
+double the context length than Llama 1. Its fine-tuned models have been
+trained on over 1 million human annotations.</p>
+<p><strong>Auto-regressive transformers</strong> are
+<strong>pretrained</strong> on an extensive corpus of self-supervised
+data, followed by <strong>alignment</strong> with human preferences via
+techniques such as Reinforcement Learning with Human Feedback
+(RLHF).</p>
 <blockquote>
-<p>Auto-regression is a time series model that <strong>uses observations from previous time steps as input</strong> to a regression equation to predict the value at the next time step</p>
+<p>Auto-regression is a time series model that <strong>uses observations
+from previous time steps as input</strong> to a regression equation to
+predict the value at the next time step</p>
 </blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/image-20230723111842222.png" srcset="/img/loading.gif" lazyload alt="AT VS. NAT"></p>
+<figure>
+<img
+src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/image-20230723111842222.png" srcset="/img/loading.gif" lazyload
+alt="AT VS. NAT" />
+<figcaption aria-hidden="true">AT VS. NAT</figcaption>
+</figure>
 <p>预训练，有监督微调，RLHF</p>
-<p><img src="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/image-20230721150225425.png" srcset="/img/loading.gif" lazyload alt="Training of Llama 2-Chat"></p>
-<p>The training methodology is simple, but high computational requirements.</p>
-<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><h3 id="预训练数据"><a href="#预训练数据" class="headerlink" title="预训练数据"></a>预训练数据</h3><ul>
-<li><p>训练语料库包括来自公开来源的新数据组合，其中不包括来自 Meta 产品或服务的数据。</p>
-</li>
-<li><p>剔除某些已知包含大量个人隐私信息的网站的数据。</p>
-</li>
-<li><p>在 2 万亿个tokem的数据上进行了训练，很好地权衡性能与成本。</p>
-</li>
-<li><p>对最真实的数据源进行上采样，以增加知识和减少错误。</p>
-</li>
+<figure>
+<img
+src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/image-20230721150225425.png" srcset="/img/loading.gif" lazyload
+alt="Training of Llama 2-Chat" />
+<figcaption aria-hidden="true">Training of Llama 2-Chat</figcaption>
+</figure>
+<p>The training methodology is simple, but high computational
+requirements.</p>
+<h2 id="训练">训练</h2>
+<h3 id="预训练数据">预训练数据</h3>
+<ul>
+<li><p>训练语料库包括来自公开来源的新数据组合，其中不包括来自 Meta
+产品或服务的数据。</p></li>
+<li><p>剔除某些已知包含大量个人隐私信息的网站的数据。</p></li>
+<li><p>在 2
+万亿个tokem的数据上进行了训练，很好地权衡性能与成本。</p></li>
+<li><p>对最真实的数据源进行上采样，以增加知识和减少错误。</p></li>
 </ul>
-<h3 id="训练细节"><a href="#训练细节" class="headerlink" title="训练细节"></a>训练细节</h3><p>We adopt most of the <strong>pretraining setting and model architecture from Llama 1</strong>. We use the <strong>standard transformer architecture</strong> (Vaswani et al., 2017), apply pre-normalization using <strong>RMSNorm</strong> (Zhang and Sennrich, 2019), use the <strong>SwiGLU</strong> activation function (Shazeer, 2020), and <strong>rotary positional embeddings</strong> (RoPE, Su et al. 2022). The primary architectural differences from Llama 1 include increased <strong>context length</strong> and <strong>grouped-query attention</strong> (GQA).  </p>
+<h3 id="训练细节">训练细节</h3>
+<p>We adopt most of the <strong>pretraining setting and model
+architecture from Llama 1</strong>. We use the <strong>standard
+transformer architecture</strong> (Vaswani et al., 2017), apply
+pre-normalization using <strong>RMSNorm</strong> (Zhang and Sennrich,
+2019), use the <strong>SwiGLU</strong> activation function (Shazeer,
+2020), and <strong>rotary positional embeddings</strong> (RoPE, Su et
+al. 2022). The primary architectural differences from Llama 1 include
+increased <strong>context length</strong> and <strong>grouped-query
+attention</strong> (GQA).</p>
 <blockquote>
-<p>GQA（Grouped-Query Attention）是分组查询注意力，GQA将查询头分成G组，每个组共享一个Key 和 Value 矩阵。GQA-G是指具有G组的grouped-query attention。其中多个查询头关注相同的键和值头，以减少推理过程中 KV 缓存的大小，并可以显著提高推理吞吐量。GQA-1具有单个组，因此具有单个Key 和 Value，等效于MQA。而GQA-H具有与头数相等的组，等效于MHA。</p>
+<p>GQA（Grouped-Query
+Attention）是分组查询注意力，GQA将查询头分成G组，每个组共享一个Key 和
+Value 矩阵。GQA-G是指具有G组的grouped-query
+attention。其中多个查询头关注相同的键和值头，以减少推理过程中 KV
+缓存的大小，并可以显著提高推理吞吐量。GQA-1具有单个组，因此具有单个Key
+和 Value，等效于MQA。而GQA-H具有与头数相等的组，等效于MHA。</p>
 </blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/image-20230723112453383.png" srcset="/img/loading.gif" lazyload alt="Llama 2 family of models  "></p>
+<figure>
+<img
+src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/image-20230723112453383.png" srcset="/img/loading.gif" lazyload
+alt="Llama 2 family of models" />
+<figcaption aria-hidden="true">Llama 2 family of models</figcaption>
+</figure>
 <ul>
 <li><p>Hyperparameters</p>
-<p>We trained using the <strong>AdamW optimizer</strong> (Loshchilov and Hutter, 2017), with β1 &#x3D; 0.9, β2 &#x3D; 0.95, eps &#x3D; 10-5. We use a <strong>cosine learning rate schedule</strong>, with warmup of 2000 steps, and decay final learning rate down to 10% of the peak learning rate. We use a weight decay of 0.1 and gradient clipping of 1.0.</p>
-</li>
+<p>We trained using the <strong>AdamW optimizer</strong> (Loshchilov and
+Hutter, 2017), with β1 = 0.9, β2 = 0.95, eps = 10-5. We use a
+<strong>cosine learning rate schedule</strong>, with warmup of 2000
+steps, and decay final learning rate down to 10% of the peak learning
+rate. We use a weight decay of 0.1 and gradient clipping of
+1.0.</p></li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/image-20230723115454030.png" srcset="/img/loading.gif" lazyload alt="Training Loss for Llama 2 models"></p>
+<figure>
+<img
+src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/image-20230723115454030.png" srcset="/img/loading.gif" lazyload
+alt="Training Loss for Llama 2 models" />
+<figcaption aria-hidden="true">Training Loss for Llama 2
+models</figcaption>
+</figure>
 <ul>
 <li><p>Tokenizer</p>
-<p>We use the same tokenizer as Llama 1; it employs a <strong>bytepair encoding</strong> (BPE) algorithm (Sennrich et al., 2016) using the implementation from SentencePiece (Kudo and Richardson, 2018). As with Llama 1, we split all numbers into individual digits and use bytes to decompose unknown UTF-8 characters. The total vocabulary size is 32k tokens.  </p>
-</li>
+<p>We use the same tokenizer as Llama 1; it employs a <strong>bytepair
+encoding</strong> (BPE) algorithm (Sennrich et al., 2016) using the
+implementation from SentencePiece (Kudo and Richardson, 2018). As with
+Llama 1, we split all numbers into individual digits and use bytes to
+decompose unknown UTF-8 characters. The total vocabulary size is 32k
+tokens.</p></li>
 <li><p>Llama 2预训练模型评估</p>
 <ul>
 <li>和开源模型对比，Llama 2性能最好。</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/image-20230723120200445.png" srcset="/img/loading.gif" lazyload alt="Overall performance on grouped academic benchmarks compared to open-source base models"></p>
+<figure>
+<img
+src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/image-20230723120200445.png" srcset="/img/loading.gif" lazyload
+alt="Overall performance on grouped academic benchmarks compared to open-source base models" />
+<figcaption aria-hidden="true">Overall performance on grouped academic
+benchmarks compared to open-source base models</figcaption>
+</figure>
 <ul>
 <li>和闭源模型对比，Llama 2有很大的性能差距。</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/image-20230723120239606.png" srcset="/img/loading.gif" lazyload alt="Comparison to closed-source models"></p>
-</li>
+<figure>
+<img
+src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/image-20230723120239606.png" srcset="/img/loading.gif" lazyload
+alt="Comparison to closed-source models" />
+<figcaption aria-hidden="true">Comparison to closed-source
+models</figcaption>
+</figure></li>
 </ul>
-<h2 id="微调"><a href="#微调" class="headerlink" title="微调"></a>微调</h2><h3 id="Supervised-Fine-Tuning-SFT"><a href="#Supervised-Fine-Tuning-SFT" class="headerlink" title="Supervised Fine-Tuning (SFT)"></a>Supervised Fine-Tuning (SFT)</h3><p>For the fine-tuning process, each sample consists of a prompt and an answer. To ensure the model sequence length is properly filled, we <strong>concatenate all the prompts and answers</strong> from the training set. A special token is utilized to separate the prompt and answer segments. We utilize an autoregressive objective and zero-out the loss on tokens from the user prompt, so as a result, we backpropagate only on answer tokens. Finally, we fine-tune the model for 2 epochs.  </p>
-<h3 id="Reinforcement-Learning-with-Human-Feedback-RLHF"><a href="#Reinforcement-Learning-with-Human-Feedback-RLHF" class="headerlink" title="Reinforcement Learning with Human Feedback (RLHF)"></a>Reinforcement Learning with Human Feedback (RLHF)</h3><p>RLHF is a model training procedure that is applied to a fine-tuned language model to <strong>further align model behavior with human preferences and instruction following</strong>. We collect data that represents empirically sampled human preferences, whereby human annotators select which of two model outputs they prefer. This human feedback is subsequently used to <strong>train a reward model</strong>, which learns patterns in the preferences of the human annotators and can then automate preference decisions.  </p>
-<h2 id="使用Llama"><a href="#使用Llama" class="headerlink" title="使用Llama"></a>使用Llama</h2><p><a target="_blank" rel="noopener" href="https://huggingface.co/docs/transformers/main/en/model_doc/llama">https://huggingface.co/docs/transformers/main/en/model_doc/llama</a></p>
-<p><a target="_blank" rel="noopener" href="https://huggingface.co/docs/transformers/main/en/model_doc/llama2">https://huggingface.co/docs/transformers/main/en/model_doc/llama2</a></p>
+<h2 id="微调">微调</h2>
+<h3 id="supervised-fine-tuning-sft">Supervised Fine-Tuning (SFT)</h3>
+<p>For the fine-tuning process, each sample consists of a prompt and an
+answer. To ensure the model sequence length is properly filled, we
+<strong>concatenate all the prompts and answers</strong> from the
+training set. A special token is utilized to separate the prompt and
+answer segments. We utilize an autoregressive objective and zero-out the
+loss on tokens from the user prompt, so as a result, we backpropagate
+only on answer tokens. Finally, we fine-tune the model for 2 epochs.</p>
+<h3 id="reinforcement-learning-with-human-feedback-rlhf">Reinforcement
+Learning with Human Feedback (RLHF)</h3>
+<p>RLHF is a model training procedure that is applied to a fine-tuned
+language model to <strong>further align model behavior with human
+preferences and instruction following</strong>. We collect data that
+represents empirically sampled human preferences, whereby human
+annotators select which of two model outputs they prefer. This human
+feedback is subsequently used to <strong>train a reward model</strong>,
+which learns patterns in the preferences of the human annotators and can
+then automate preference decisions.</p>
+<h2 id="使用llama">使用Llama</h2>
+<p>https://huggingface.co/docs/transformers/main/en/model_doc/llama</p>
+<p>https://huggingface.co/docs/transformers/main/en/model_doc/llama2</p>
 <ul>
-<li>下载模型参数。Weights for the LLaMA models can be obtained from by filling out <a target="_blank" rel="noopener" href="https://docs.google.com/forms/d/e/1FAIpQLSfqNECQnMkycAp2jP4Z9TFX0cGR4uf7b_fBxjY_OjhJILlKGA/viewform?usp=send_form">this form</a></li>
-<li>转换为Hugging Face格式。After downloading the weights, they will need to be converted to the Hugging Face Transformers format using the <a target="_blank" rel="noopener" href="https://github.com/huggingface/transformers/blob/main/src/transformers/models/llama/convert_llama_weights_to_hf.py">conversion script</a>. The script can be called with the following (example) command:</li>
+<li>下载模型参数。Weights for the LLaMA models can be obtained from by
+filling out <a
+target="_blank" rel="noopener" href="https://docs.google.com/forms/d/e/1FAIpQLSfqNECQnMkycAp2jP4Z9TFX0cGR4uf7b_fBxjY_OjhJILlKGA/viewform?usp=send_form">this
+form</a></li>
+<li>转换为Hugging Face格式。After downloading the weights, they will
+need to be converted to the Hugging Face Transformers format using the
+<a
+target="_blank" rel="noopener" href="https://github.com/huggingface/transformers/blob/main/src/transformers/models/llama/convert_llama_weights_to_hf.py">conversion
+script</a>. The script can be called with the following (example)
+command:</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">python src/transformers/models/llama/convert_llama_weights_to_hf.py \<br>    --input_dir /path/to/downloaded/llama/weights --model_size 7B --output_dir /output/path<br></code></pre></td></tr></table></figure>
-
 <ul>
-<li>加载模型和tokenizer。After conversion, the model and tokenizer can be loaded via:</li>
+<li>加载模型和tokenizer。After conversion, the model and tokenizer can
+be loaded via:</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> LlamaForCausalLM, LlamaTokenizer<br><br>tokenizer = LlamaTokenizer.from_pretrained(<span class="hljs-string">&quot;/output/path&quot;</span>)<br>model = LlamaForCausalLM.from_pretrained(<span class="hljs-string">&quot;/output/path&quot;</span>)<br></code></pre></td></tr></table></figure>
 
