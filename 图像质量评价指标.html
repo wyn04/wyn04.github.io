@@ -25,7 +25,7 @@
 <meta property="og:description" content="图像质量评价指标 图像质量评价指标的最常见分类是通过参考图像的可用性，即全参考（full-reference, FR）、减少参考（reduced-reference, RR）和无参考（no-reference, NR）质量度量。FR度量计算失真图像和参考图像之间的相似性，当参考图像的部分信息可用时应用RR度量，而NR度量利用图像统计来评估图像质量，因为参考图像的信息完全不可用。   R">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-07-23T06:47:55.000Z">
-<meta property="article:modified_time" content="2023-07-25T10:07:00.734Z">
+<meta property="article:modified_time" content="2023-07-30T03:34:21.551Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="评价指标">
 <meta name="twitter:card" content="summary_large_image">
@@ -330,7 +330,8 @@ PSNR。</li>
 </ul>
 <p>其中，第二和第三种方法比较常见。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># method 1</span><br>diff = im1 - im2<br>mse = np.mean(np.square(diff))<br>psnr = <span class="hljs-number">10</span> * np.log10(<span class="hljs-number">255</span> * <span class="hljs-number">255</span> / mse)<br><br><span class="hljs-comment"># method 2</span><br><span class="hljs-keyword">from</span> skimage.metrics <span class="hljs-keyword">import</span> structural_similarity <span class="hljs-keyword">as</span> ssim<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-comment">#转为灰度图像</span><br>img1 = Image.<span class="hljs-built_in">open</span>(img1_path).convert(<span class="hljs-string">&#x27;L&#x27;</span>)<br>img2 = Image.<span class="hljs-built_in">open</span>(img2_path).convert(<span class="hljs-string">&#x27;L&#x27;</span>)<br>img2 = img2.resize(img1.size)<br>image_true, image_test = np.array(img1), np.array(img2)<br>psnr = skimage.metrics.peak_signal_noise_ratio(image_true, image_test, *, data_range=<span class="hljs-literal">None</span>)<br></code></pre></td></tr></table></figure>
-<p>https://scikit-image.org/docs/dev/api/skimage.metrics.html#skimage.metrics.peak_signal_noise_ratio</p>
+<p><a
+target="_blank" rel="noopener" href="https://scikit-image.org/docs/dev/api/skimage.metrics.html#skimage.metrics.peak_signal_noise_ratio">https://scikit-image.org/docs/dev/api/skimage.metrics.html#skimage.metrics.peak_signal_noise_ratio</a></p>
 <ul>
 <li><p>参数：</p>
 <p><code>image_true</code>:
@@ -378,7 +379,8 @@ SSIM(x,y)=\frac{(2\mu_x\mu_y+c_1)(2\sigma_x\sigma_y+c_2)}{(\mu_x^2+\mu_y^2+c_1)(
 N\)</span>的窗口，然后不断滑动窗口进行计算，最后取平均值作为全局的
 SSIM。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">skimage.metrics.structural_similarity(im1, im2, *, win_size=<span class="hljs-literal">None</span>, gradient=<span class="hljs-literal">False</span>, data_range=<span class="hljs-literal">None</span>, <br>                                      channel_axis=<span class="hljs-literal">None</span>, gaussian_weights=<span class="hljs-literal">False</span>, full=<span class="hljs-literal">False</span>, **kwargs)<br></code></pre></td></tr></table></figure>
-<p>https://scikit-image.org/docs/dev/api/skimage.metrics.html#skimage.metrics.structural_similarity</p>
+<p><a
+target="_blank" rel="noopener" href="https://scikit-image.org/docs/dev/api/skimage.metrics.html#skimage.metrics.structural_similarity">https://scikit-image.org/docs/dev/api/skimage.metrics.html#skimage.metrics.structural_similarity</a></p>
 <ul>
 <li><p>参数：</p>
 <p><code>im1</code>, <code>im2</code>:
