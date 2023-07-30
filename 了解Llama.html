@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/llama2.jpg">
 <meta property="article:published_time" content="2023-07-23T04:32:17.000Z">
-<meta property="article:modified_time" content="2023-07-25T10:06:24.485Z">
+<meta property="article:modified_time" content="2023-07-30T03:17:19.598Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="语言模型">
 <meta name="twitter:card" content="summary_large_image">
@@ -240,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4k 字
+          7.4k 字
         
       </span>
     
@@ -251,7 +251,7 @@
         
         
         
-          34 分钟
+          62 分钟
         
       </span>
     
@@ -320,7 +320,7 @@ src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/image-20230723111842222.
 alt="AT VS. NAT" />
 <figcaption aria-hidden="true">AT VS. NAT</figcaption>
 </figure>
-<p>预训练，有监督微调，RLHF</p>
+<p>Llama2模型训练包括：预训练，有监督微调，RLHF。</p>
 <figure>
 <img
 src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/image-20230721150225425.png" srcset="/img/loading.gif" lazyload
@@ -345,10 +345,18 @@ architecture from Llama 1</strong>. We use the <strong>standard
 transformer architecture</strong> (Vaswani et al., 2017), apply
 pre-normalization using <strong>RMSNorm</strong> (Zhang and Sennrich,
 2019), use the <strong>SwiGLU</strong> activation function (Shazeer,
-2020), and <strong>rotary positional embeddings</strong> (RoPE, Su et
-al. 2022). The primary architectural differences from Llama 1 include
-increased <strong>context length</strong> and <strong>grouped-query
+2020), and rotary positional embeddings (RoPE, Su et al. 2022). The
+primary architectural differences from Llama 1 include increased
+<strong>context length</strong> and <strong>grouped-query
 attention</strong> (GQA).</p>
+<blockquote>
+<p>LayerNorm是对特征张量按照某一维度或某几个维度进行0均值，1方差的归一化。RMSNorm是对LayerNorm的一个改进，没有做re-center操作（移除了其中的均值项）。RMSNorm
+也是一种标准化方法，但与 LayerNorm
+不同，它不是使用整个样本的均值和方差，而是使用平方根的均值来归一化，这样做可以降低噪声的影响。</p>
+</blockquote>
+<blockquote>
+<p>旋转式位置编码（RoPE）最早是一种能够将相对位置信息依赖集成到self-attention中并提升transformer架构性能的位置编码方式。</p>
+</blockquote>
 <blockquote>
 <p>GQA（Grouped-Query
 Attention）是分组查询注意力，GQA将查询头分成G组，每个组共享一个Key 和
@@ -410,7 +418,20 @@ models</figcaption>
 </figure></li>
 </ul>
 <h2 id="微调">微调</h2>
+<p>Llama 2-Chat
+是数月研究和反复应用对齐（alignment）技术的成果，包括指令调整（instruction
+tuning）和 RLHF，需要大量的计算和注释资源。</p>
 <h3 id="supervised-fine-tuning-sft">Supervised Fine-Tuning (SFT)</h3>
+<ul>
+<li><p>Getting Started</p>
+<p>To bootstrap, we started the SFT stage with <strong>publicly
+available instruction tuning data</strong> (Chung et al., 2022), as
+utilized previously in Touvron et al. (2023).</p></li>
+<li><p>Quality Is All You Need</p>
+<p>By setting aside millions of examples from third-party datasets and
+using <strong>fewer but higher-quality examples</strong> from our own
+vendor-based annotation efforts, our results notably improved.</p></li>
+</ul>
 <p>For the fine-tuning process, each sample consists of a prompt and an
 answer. To ensure the model sequence length is properly filled, we
 <strong>concatenate all the prompts and answers</strong> from the
@@ -428,6 +449,81 @@ annotators select which of two model outputs they prefer. This human
 feedback is subsequently used to <strong>train a reward model</strong>,
 which learns patterns in the preferences of the human annotators and can
 then automate preference decisions.</p>
+<ul>
+<li><h4 id="human-preference-data-collection">Human Preference Data
+Collection</h4>
+<p>Our annotation procedure proceeds as follows. We ask annotators to
+first <strong>write a prompt</strong>, then choose between two sampled
+model responses, based on provided criteria. In order to
+<strong>maximize the diversity</strong>, the two responses to a given
+prompt are sampled from two different model variants, and varying the
+temperature hyper-parameter. In addition to giving participants a forced
+choice, we also ask annotators to <strong>label the degree</strong> to
+which they prefer their chosen response over the alternative: either
+their choice is significantly better, better, slightly better, or
+negligibly better/ unsure.</p>
+<p>For our collection of preference annotations, we focus on
+<strong>helpfulness and safety</strong>.</p>
+<p>Llama 2-Chat improvement also <strong>shifted the model’s data
+distribution</strong>. Since reward model accuracy can quickly degrade
+if not exposed to this new sample distribution, i.e., from
+hyper-specialization (Scialom et al., 2020b), it is important before a
+new Llama 2-Chat tuning iteration to <strong>gather new preference
+data</strong> using the latest Llama 2-Chat iterations. This step helps
+keep the reward model on-distribution and maintain an accurate reward
+for the latest model.</p></li>
+<li><h4 id="reward-modeling">Reward Modeling</h4>
+<p>The reward model takes a model response and its corresponding prompt
+(including contexts from previous turns) as inputs and outputs a scalar
+score to indicate the quality (e.g., helpfulness and safety) of the
+model generation.</p>
+<p>Helpfulness and safety sometimes trade off (Bai et al., 2022a), which
+can make it challenging for a single reward model to perform well on
+both. To address this, we train <strong>two separate reward
+models</strong>, one optimized for helpfulness (referred to as
+Helpfulness RM) and another for safety (Safety RM).</p>
+<p><strong>Training Objectives</strong> <span class="math display">\[
+\mathcal{L}_{ranking}=-log(\sigma(r_{\theta}(x,y_c)-r_{\theta}(x,y_r)-m(r)))
+\]</span> where <span class="math inline">\(r_{\theta}(x,y)\)</span> is
+the scalar score output for prompt <span
+class="math inline">\(x\)</span> and completion <span
+class="math inline">\(y\)</span> with model weights <span
+class="math inline">\(\theta\)</span>. <span
+class="math inline">\(y_c\)</span> is the preferred response that
+annotators choose and <span class="math inline">\(y_r\)</span> is the
+rejected counterpart. Margin <span class="math inline">\(m(r)\)</span>
+is a discrete function of the preference rating. Naturally, we use a
+large margin for pairs with distinct responses, and a smaller one for
+those with similar responses.</p></li>
+<li><h4 id="iterative-fine-tuning">Iterative Fine-Tuning</h4>
+<p>Two main algorithms</p>
+<ul>
+<li><p>Proximal Policy Optimization (PPO) (Schulman et al., 2017), the
+standard in RLHF literature.</p>
+<blockquote>
+<p>近端策略优化（proximal policy
+optimization，PPO），通过重要性采样把同策略换成异策略。</p>
+<p>https://datawhalechina.github.io/easy-rl/#/chapter5/chapter5</p>
+</blockquote></li>
+<li><p>Rejection Sampling fine-tuning. We <strong>sample K
+outputs</strong> from the model and <strong>select the best
+candidate</strong> with our reward. Here, we go one step further, and
+use the selected outputs for a <strong>gradient update</strong>. For
+each prompt, the sample obtaining the highest reward score is considered
+the new <strong>gold standard</strong>. Similar to Scialom et al.
+(2020a), we then fine-tune our model on the new set of ranked samples,
+reinforcing the reward.</p>
+<blockquote>
+<p>挑出分数最高的response作为training target，做supervised fine-tuning
+(SFT)。</p>
+</blockquote>
+<p>We perform rejection <strong>sampling only</strong> with our
+<strong>largest 70B Llama 2-Chat</strong>. All smaller models are
+<strong>fine-tuned on rejection sampled data from the larger
+model</strong>, thus distilling the large-model capabilities into the
+smaller ones.</p></li>
+</ul></li>
+</ul>
 <h2 id="使用llama">使用Llama</h2>
 <p>https://huggingface.co/docs/transformers/main/en/model_doc/llama</p>
 <p>https://huggingface.co/docs/transformers/main/en/model_doc/llama2</p>
