@@ -25,7 +25,7 @@
 <meta property="og:description" content="LR的预测概率值转分数 背景：在互联网金融中，一般用LR模型来预测一个借贷用户的好坏，但是LR模型得到的结果是逾期的概率值，如何仅仅给出预测概率值，人一般很难判断这个概率值代表的用户质量好坏，但是如果能够给出分数就比较理解了。而我们一般要把逾期概率转为分数来供公司进行决策，那么如何将逾期概率转化为用户质量的得分，例如0-100呢？ 评分卡的分数转化 逻辑回归（Logistic Regression">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-08-05T08:01:39.000Z">
-<meta property="article:modified_time" content="2023-08-05T08:20:44.963Z">
+<meta property="article:modified_time" content="2023-08-06T07:26:46.129Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -318,10 +318,11 @@ Score=A+B\times\ln(odds)
 odds），即比率翻番的倍数 <span class="math display">\[
 Score+PDO=A+B\times\ln(2odds)
 \]</span> 通过Score、odds、PDO可求解A和B。 <span class="math display">\[
-B = PDO/ln(2)\\
+B = PDO/ln(2)
+\]</span> <span class="math display">\[
 A = Score-PDO*ln(odds)/ln(2)
-\]</span>
-评分卡不使用概率转换分数，而是用线性部分转换成分数，这样做的好处是，每一个特征<span
+\]</span></p>
+<p>评分卡不使用概率转换分数，而是用线性部分转换成分数，这样做的好处是，每一个特征<span
 class="math inline">\(x\)</span>的分数和就是总分，而如果用概率转分，则单个特征增加s分，总分并不增加s分。
 <span class="math display">\[
 \begin{align}
