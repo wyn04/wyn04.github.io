@@ -25,7 +25,7 @@
 <meta property="og:description" content="概率评分方法 一般来说，评估预测概率准确性的方法被称为评分规则或评分函数。下面将介绍三种评分方法，可用于评估分类预测建模问题的预测概率。 Log Loss Score Log loss, also called “logistic loss,” “logarithmic loss,” or “cross entropy” can be used as a measure for evaluatin">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-08-05T08:03:51.000Z">
-<meta property="article:modified_time" content="2023-08-05T08:24:28.192Z">
+<meta property="article:modified_time" content="2023-08-06T07:31:29.743Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -360,7 +360,9 @@ Rate，TPR）是指分类器正确识别正例的能力，可以理解为所有�
 Rate，FPR）是指在所有实际为负例的样本中，模型错误地预测为正例的样本比例，FPR越接近0越好。</p>
 </blockquote>
 <p><span class="math display">\[
-TPR=\frac{TP}{P}=\frac{TP}{TP+FN}\\
+TPR=\frac{TP}{P}=\frac{TP}{TP+FN}
+\]</span></p>
+<p><span class="math display">\[
 FPR=\frac{FP}{N}=\frac{FP}{FP+TN}
 \]</span></p>
 <figure>
