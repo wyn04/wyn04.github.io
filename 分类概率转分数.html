@@ -17,25 +17,22 @@
   <meta name="author" content="yinan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="电饭煲叉烧 https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1yV4y187H9 准备梅花肉  可以用五花肉替代    一斤二两梅花肉  有点厚，用牙签扎扎孔  腌的时候切几大块，然后用叉子正反插猪肉，这样更能入味    image-20230806110717962  腌制肉  蜂蜜可以用冰糖替代    image-20230806111004086    image-2023">
+    <meta name="description" content="概率转分数 二分类 分数评价好坏，样本是好样本（标签为1）的概率越高，分数越高。  将逾期率概率值直接乘以100就得到分数了，但是LR得到的概率值往往是不均匀的，比如讲概率值排序后，头部和尾部的概率值较少，大部分概率都集中在中间某个区域，这时这种方法就失效了。 \[ Score&#x3D;p\times 100 \] 还有一种方法是将概率值进行排序，找出头部的20%概率值映射到80-100分，尾部的20%概">
 <meta property="og:type" content="article">
-<meta property="og:title" content="电饭煲叉烧">
-<meta property="og:url" content="https://yinan.fun/%E7%94%B5%E9%A5%AD%E7%85%B2%E5%8F%89%E7%83%A7">
+<meta property="og:title" content="分类概率转分数">
+<meta property="og:url" content="https://yinan.fun/%E5%88%86%E7%B1%BB%E6%A6%82%E7%8E%87%E8%BD%AC%E5%88%86%E6%95%B0">
 <meta property="og:site_name" content="yinan的博客">
-<meta property="og:description" content="电饭煲叉烧 https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1yV4y187H9 准备梅花肉  可以用五花肉替代    一斤二两梅花肉  有点厚，用牙签扎扎孔  腌的时候切几大块，然后用叉子正反插猪肉，这样更能入味    image-20230806110717962  腌制肉  蜂蜜可以用冰糖替代    image-20230806111004086    image-2023">
+<meta property="og:description" content="概率转分数 二分类 分数评价好坏，样本是好样本（标签为1）的概率越高，分数越高。  将逾期率概率值直接乘以100就得到分数了，但是LR得到的概率值往往是不均匀的，比如讲概率值排序后，头部和尾部的概率值较少，大部分概率都集中在中间某个区域，这时这种方法就失效了。 \[ Score&#x3D;p\times 100 \] 还有一种方法是将概率值进行排序，找出头部的20%概率值映射到80-100分，尾部的20%概">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/202308061129908.png">
-<meta property="article:published_time" content="2023-08-06T03:29:27.000Z">
-<meta property="article:modified_time" content="2023-08-06T03:31:42.675Z">
+<meta property="article:published_time" content="2023-08-13T05:15:42.000Z">
+<meta property="article:modified_time" content="2023-08-13T05:16:07.395Z">
 <meta property="article:author" content="yinan">
-<meta property="article:tag" content="电饭煲">
-<meta property="article:tag" content="肉">
+<meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/202308061129908.png">
   
   
   
-  <title>电饭煲叉烧 - yinan的博客</title>
+  <title>分类概率转分数 - yinan的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -218,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="电饭煲叉烧"></span>
+            <span id="subtitle" data-typed-text="分类概率转分数"></span>
           
         </div>
 
@@ -229,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-06 11:29" pubdate>
-          2023年8月6日 上午
+        <time datetime="2023-08-13 13:15" pubdate>
+          2023年8月13日 下午
         </time>
       </span>
     
@@ -241,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          507 字
+          2.5k 字
         
       </span>
     
@@ -252,7 +249,7 @@
         
         
         
-          5 分钟
+          21 分钟
         
       </span>
     
@@ -290,111 +287,50 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">电饭煲叉烧</h1>
+            <h1 style="display: none">分类概率转分数</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="电饭煲叉烧">电饭煲叉烧</h1>
+                <h1 id="概率转分数">概率转分数</h1>
+<h2 id="二分类">二分类</h2>
+<p>分数评价好坏，样本是好样本（标签为1）的概率越高，分数越高。</p>
+<ol type="1">
+<li><p>将逾期率概率值直接乘以100就得到分数了，但是LR得到的概率值往往是不均匀的，比如讲概率值排序后，头部和尾部的概率值较少，大部分概率都集中在中间某个区域，这时这种方法就失效了。
+<span class="math display">\[
+Score=p\times 100
+\]</span></p></li>
+<li><p>还有一种方法是将概率值进行排序，找出头部的20%概率值映射到80-100分，尾部的20%概率值映射到0-60分，中间的60%概率值映射到60-80分。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> pandas <span class="hljs-keyword">import</span> DataFrame<br> <br> <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">score_model</span>(<span class="hljs-params">result_train, bins_num=<span class="hljs-number">10</span></span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">        根据输入的样本数据，进行打分模型的训练：</span><br><span class="hljs-string">            输入数据格式：dict 组成list， dict = &#123;score : ml_model_proba&#125;</span><br><span class="hljs-string">            输出数据格式：bin_dict = &#123;i:&#123;&#x27;left&#x27;: , &#x27;right&#x27;: , &#x27;line_train_list&#x27;&#125;&#125;</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    sorted_result_train = <span class="hljs-built_in">sorted</span>(result_train, key=<span class="hljs-keyword">lambda</span> result_train:result_train[<span class="hljs-string">&#x27;score&#x27;</span>], reverse=<span class="hljs-literal">False</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(sorted_result_train))<br>    score_bins = &#123;&#125;<br>    every_len = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">len</span>(sorted_result_train) / bins_num)<br>    <span class="hljs-built_in">print</span>(every_len)<br>    <span class="hljs-comment"># 30分粒度，做分桶，桶内直线拟合</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, bins_num):<br>        left = sorted_result_train[i*every_len][<span class="hljs-string">&#x27;score&#x27;</span>]<br>        right = sorted_result_train[(i+<span class="hljs-number">1</span>)*every_len-<span class="hljs-number">1</span>][<span class="hljs-string">&#x27;score&#x27;</span>]<br>        step = <span class="hljs-number">300</span>/bins_num<br>        score_map = [<span class="hljs-number">800</span>-i*step, <span class="hljs-number">800</span>-(i+<span class="hljs-number">1</span>)*step]<br>        <span class="hljs-keyword">if</span> i == bins_num-<span class="hljs-number">1</span>:<br>            right = sorted_result_train[-<span class="hljs-number">1</span>][<span class="hljs-string">&#x27;score&#x27;</span>]<br>        line_train = np.polyfit([left, right], score_map, <span class="hljs-number">1</span>)<br>        line_train_list = line_train.tolist()<br>        bins = <span class="hljs-built_in">dict</span>()<br>        bins[<span class="hljs-string">&#x27;left&#x27;</span>] = left<br>        bins[<span class="hljs-string">&#x27;right&#x27;</span>] = right<br>        bins[<span class="hljs-string">&#x27;line_train_list&#x27;</span>] = line_train_list<br>        score_bins[i] = bins<br>    <span class="hljs-keyword">return</span> score_bins<br> <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">predict_score</span>(<span class="hljs-params">score_bins, result_proab</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">       打分模型：根据输入的result_proab, 按照score_bins进行打分；score_bins就是打分model</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    proab = result_proab<br>    score = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> k,v <span class="hljs-keyword">in</span> score_bins.items():<br>        <span class="hljs-keyword">if</span> proab &gt;= v[<span class="hljs-string">&#x27;left&#x27;</span>] <span class="hljs-keyword">and</span> proab &lt; v[<span class="hljs-string">&#x27;right&#x27;</span>]:<br>            score = v[<span class="hljs-string">&#x27;line_train_list&#x27;</span>][<span class="hljs-number">0</span>] * proab + v[<span class="hljs-string">&#x27;line_train_list&#x27;</span>][<span class="hljs-number">1</span>]<br>            <span class="hljs-keyword">break</span><br>    <span class="hljs-keyword">return</span> score<br> <br> <br>scores = np.random.random(<span class="hljs-number">20</span>)<br>ids = <span class="hljs-built_in">range</span>(<span class="hljs-number">20</span>)<br>df = DataFrame([ids,scores]).T<br>df.columns = [<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-string">&quot;score&quot;</span>]<br>dic = df.to_dict(orient=<span class="hljs-string">&quot;records&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;dic:&quot;</span>,dic)<br><span class="hljs-comment">#训练打分模型（将逾期的概率映射为500-800之间的分数，分数越高，用户越好）</span><br>score_bins = score_model(dic)<br><span class="hljs-built_in">print</span>(score_bins)<br><span class="hljs-comment">#输入pred概率值，输出分数</span><br>result_proab = <span class="hljs-number">0.083882018</span><br>score = predict_score(score_bins, result_proab)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;score:&quot;</span>, score)<br></code></pre></td></tr></table></figure></li>
+<li><p>评分表</p>
+<p>评分卡预测分数时不需要计算概率，而是直接用线性部分转换成分数，每一个特征x的分数和就是总分。
+<span class="math display">\[
+\begin{align}
+Score&amp;=A+B\times\ln(odds) \\
+&amp;=A+B\times(\omega_0+\omega_1x_1+\cdots+\omega_nx_x)\\
+&amp;=(A+B\omega_0)+B\omega_1x_1+\cdots+B\omega_nx_x
+\end{align}
+\]</span> <a
+href="https://yinan.fun/lr%E7%9A%84%E9%A2%84%E6%B5%8B%E6%A6%82%E7%8E%87%E5%80%BC%E8%BD%AC%E5%88%86%E6%95%B0">评分表原理</a></p>
 <p><a
-target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yV4y187H9">https://www.bilibili.com/video/BV1yV4y187H9</a></p>
-<h3 id="准备梅花肉">准备梅花肉</h3>
+href="https://yinan.fun/%E8%AF%84%E5%88%86%E5%8D%A1%E6%A8%A1%E5%9E%8B">评分表建模</a></p></li>
+</ol>
+<h2 id="多分类">多分类</h2>
+<p>多分类无法直接根据样本标签确定样本的好坏，需要定义每个标签的好坏程度。</p>
+<ol type="1">
+<li><p>确定每个类别i分数为<span
+class="math inline">\(s_i\)</span>，分数为 <span class="math display">\[
+s=\sum_{i=1}^n p_i\times s_i
+\]</span></p>
 <blockquote>
-<p>可以用五花肉替代</p>
-</blockquote>
-<figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/202308061129526.png" srcset="/img/loading.gif" lazyload
-alt="一斤二两梅花肉" />
-<figcaption aria-hidden="true">一斤二两梅花肉</figcaption>
-</figure>
-<h3 id="有点厚用牙签扎扎孔">有点厚，用牙签扎扎孔</h3>
-<blockquote>
-<p>腌的时候切几大块，然后用叉子正反插猪肉，这样更能入味</p>
-</blockquote>
-<figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/202308061107984.png" srcset="/img/loading.gif" lazyload
-alt="image-20230806110717962" />
-<figcaption aria-hidden="true">image-20230806110717962</figcaption>
-</figure>
-<h3 id="腌制肉">腌制肉</h3>
-<blockquote>
-<p>蜂蜜可以用冰糖替代</p>
-</blockquote>
-<figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/202308061110146.png" srcset="/img/loading.gif" lazyload
-alt="image-20230806111004086" />
-<figcaption aria-hidden="true">image-20230806111004086</figcaption>
-</figure>
-<figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/202308061129621.png" srcset="/img/loading.gif" lazyload
-alt="image-20230806110857406" />
-<figcaption aria-hidden="true">image-20230806110857406</figcaption>
-</figure>
-<h3
-id="套上袋子放冰箱冷藏腌制三个小时以上">套上袋子，放冰箱冷藏腌制三个小时以上</h3>
-<blockquote>
-<p>最好过夜腌制</p>
-</blockquote>
-<figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/202308061129764.png" srcset="/img/loading.gif" lazyload
-alt="image-20230806111136504" />
-<figcaption aria-hidden="true">image-20230806111136504</figcaption>
-</figure>
-<h3
-id="第二天全部倒入电饭煲按煮饭键">第二天全部倒入电饭煲，按煮饭键</h3>
-<blockquote>
-<p>电饭锅就不用加水了，不粘锅也不加水，铁锅要加一些水的。</p>
-<p>普通电饭锅直接煮饭键模式就行了！如果切的厚，煮饭键结束，你看着没熟，可以再煮一会。一般电饭锅煮饭键都是40分钟吧</p>
-</blockquote>
-<figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/202308061129019.png" srcset="/img/loading.gif" lazyload
-alt="image-20230806111235934" />
-<figcaption aria-hidden="true">image-20230806111235934</figcaption>
-</figure>
-<h3 id="时间到放入锅里收汁">时间到放入锅里收汁</h3>
-<figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/202308061129554.png" srcset="/img/loading.gif" lazyload
-alt="image-20230806111421930" />
-<figcaption aria-hidden="true">image-20230806111421930</figcaption>
-</figure>
-<h3 id="不断用勺子往叉烧上淋汁">不断用勺子往叉烧上淋汁</h3>
-<figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/202308061129739.png" srcset="/img/loading.gif" lazyload
-alt="image-20230806111536851" />
-<figcaption aria-hidden="true">image-20230806111536851</figcaption>
-</figure>
-<h3 id="收到浓稠挂汁的状态">收到浓稠挂汁的状态</h3>
-<figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/202308061129948.png" srcset="/img/loading.gif" lazyload
-alt="image-20230806111701219" />
-<figcaption aria-hidden="true">image-20230806111701219</figcaption>
-</figure>
-<h3 id="斜刀切">斜刀切</h3>
-<blockquote>
-<p>尽量薄一点</p>
-</blockquote>
-<figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/202308061129154.png" srcset="/img/loading.gif" lazyload
-alt="image-20230806111848910" />
-<figcaption aria-hidden="true">image-20230806111848910</figcaption>
-</figure>
-<h3 id="装盘">装盘</h3>
-<figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/202308061129908.png" srcset="/img/loading.gif" lazyload
-alt="image-20230806112715143" />
-<figcaption aria-hidden="true">image-20230806112715143</figcaption>
-</figure>
+<p>二分类，<span class="math inline">\(s_0=0, s_1=100\)</span>。</p>
+</blockquote></li>
+<li><p>计算样本为好样本的概率，再转化为分数。</p></li>
+</ol>
+<h2 id="概率评分方法">概率评分方法</h2>
+<p>分数评价预测概率的准确率</p>
+<p><a
+href="https://yinan.fun/%E6%A6%82%E7%8E%87%E8%AF%84%E5%88%86%E6%96%B9%E6%B3%95">概率评分方法</a></p>
 
                 
               </div>
@@ -413,7 +349,7 @@ alt="image-20230806112715143" />
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%90%83%E7%9A%84/" class="category-chain-item">吃的</a>
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
   
   
 
@@ -428,9 +364,7 @@ alt="image-20230806112715143" />
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E7%94%B5%E9%A5%AD%E7%85%B2/">#电饭煲</a>
-      
-        <a href="/tags/%E8%82%89/">#肉</a>
+        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>
       
     </div>
   
@@ -442,8 +376,8 @@ alt="image-20230806112715143" />
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>电饭煲叉烧</div>
-      <div>https://yinan.fun/电饭煲叉烧</div>
+      <div>分类概率转分数</div>
+      <div>https://yinan.fun/分类概率转分数</div>
     </div>
     <div class="license-meta">
       
@@ -455,7 +389,7 @@ alt="image-20230806112715143" />
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月6日</div>
+          <div>2023年8月13日</div>
         </div>
       
       
@@ -487,18 +421,12 @@ alt="image-20230806112715143" />
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/%E8%AF%84%E5%88%86%E5%8D%A1%E6%A8%A1%E5%9E%8B" title="评分卡模型">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">评分卡模型</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/%E6%A6%82%E7%8E%87%E8%AF%84%E5%88%86%E6%96%B9%E6%B3%95" title="概率评分方法">
-                        <span class="hidden-mobile">概率评分方法</span>
+                      <a href="/%E8%AF%84%E5%88%86%E5%8D%A1%E6%A8%A1%E5%9E%8B" title="评分卡模型">
+                        <span class="hidden-mobile">评分卡模型</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

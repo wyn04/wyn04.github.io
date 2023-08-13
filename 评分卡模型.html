@@ -1,0 +1,950 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta name="baidu-site-verification" content="codeva-pajW5JmcAJ" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/icon.jpg">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/icon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="yinan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="评分卡模型 数据导入 使用kaggle上的Give Me Some Credit数据 1df &#x3D; pd.read_csv(&amp;#x27;cs-training.csv&amp;#x27;) 数据预处理 缺失值处理 1print(df.info()) 12345678910111213141516171819&lt;class &amp;#x27;pandas.core.frame.DataFrame&amp;#x27;&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="评分卡模型">
+<meta property="og:url" content="https://yinan.fun/%E8%AF%84%E5%88%86%E5%8D%A1%E6%A8%A1%E5%9E%8B">
+<meta property="og:site_name" content="yinan的博客">
+<meta property="og:description" content="评分卡模型 数据导入 使用kaggle上的Give Me Some Credit数据 1df &#x3D; pd.read_csv(&amp;#x27;cs-training.csv&amp;#x27;) 数据预处理 缺失值处理 1print(df.info()) 12345678910111213141516171819&lt;class &amp;#x27;pandas.core.frame.DataFrame&amp;#x27;&amp;g">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-13T05:13:31.000Z">
+<meta property="article:modified_time" content="2023-08-13T05:14:28.813Z">
+<meta property="article:author" content="yinan">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>评分卡模型 - yinan的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/iconfont_run/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yinan.fun","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="yinan的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yinan&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://run.yinan.fun/">
+                <i class="iconfont icon-paobu"></i>
+                <span>跑步</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner_img.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="评分卡模型"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-13 13:13" pubdate>
+          2023年8月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          50 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">评分卡模型</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="评分卡模型">评分卡模型</h1>
+<h2 id="数据导入">数据导入</h2>
+<p>使用kaggle上的<a
+target="_blank" rel="noopener" href="https://www.kaggle.com/c/GiveMeSomeCredit/data">Give Me Some
+Credit</a>数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">df = pd.read_csv(<span class="hljs-string">&#x27;cs-training.csv&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="数据预处理">数据预处理</h2>
+<h3 id="缺失值处理">缺失值处理</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(df.info())<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash">&lt;class <span class="hljs-string">&#x27;pandas.core.frame.DataFrame&#x27;</span>&gt;<br>RangeIndex: 150000 entries, 0 to 149999<br>Data columns (total 12 columns):<br> <span class="hljs-comment">#   Column      Non-Null Count   Dtype  </span><br>---  ------      --------------   -----  <br> 0   用户ID        150000 non-null  int64  <br> 1   好坏客户        150000 non-null  int64  <br> 2   可用额度比值      150000 non-null  float64<br> 3   年龄          150000 non-null  int64  <br> 4   逾期30-59天笔数  150000 non-null  int64  <br> 5   负债率         150000 non-null  float64<br> 6   月收入         120269 non-null  float64<br> 7   信贷数量        150000 non-null  int64  <br> 8   逾期90天笔数     150000 non-null  int64  <br> 9   固定资产贷款数量    150000 non-null  int64  <br> 10  逾期60-89天笔数  150000 non-null  int64  <br> 11  家属数量        146076 non-null  float64<br>dtypes: float64(4), int64(8)<br>memory usage: 13.7 MB<br></code></pre></td></tr></table></figure>
+<p>月收入缺失比:19.82%，家属数量缺失比:2.62%。</p>
+<p>家属数量对应的缺失比例低于5%，可直接删除；月收入缺失比比较高，不能直接删除，利用填充平均值的方法进行补充。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 缺失值填充</span><br>df = df.fillna(&#123;<span class="hljs-string">&#x27;月收入&#x27;</span>:df[<span class="hljs-string">&#x27;月收入&#x27;</span>].mean()&#125;)<br><span class="hljs-comment"># 缺失值删除</span><br>df.dropna(inplace = <span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="异常值处理">异常值处理</h3>
+<p>用箱形图判断异常值，再过滤异常值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 异常值过滤</span><br>df = df[df[<span class="hljs-string">&quot;固定资产贷款数量&quot;</span>]&lt;<span class="hljs-number">50</span>]<br>df = df[df[<span class="hljs-string">&quot;逾期30-59天笔数&quot;</span>]&lt;<span class="hljs-number">80</span>]<br>df = df[df[<span class="hljs-string">&quot;年龄&quot;</span>]&gt;<span class="hljs-number">0</span>]<br>df = df[df[<span class="hljs-string">&#x27;可用额度比值&#x27;</span>]&lt;=<span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure>
+<h2 id="特征选择">特征选择</h2>
+<p>过滤掉一些对于目标变量影响权重较小的特征变量，这里使用IV值进行特征筛选。</p>
+<h3 id="woe分箱">WOE分箱</h3>
+<p>WOE（Weight of
+Evidence）即证据权重，可以将logistic回归模型转化为标准评分卡格式，WOE是对原始自变量的一种编码形式，要对一个变量进行WOE编码，需要首先把这个变量进行分组处理（也叫离散化、分箱）。WOE=ln(坏样本占比/好样本占比)
+<span class="math display">\[
+WOE_i=\ln(\frac{Bad_{X=X_i}/Bad_{tatol}}{Good_{X=X_i}/Good_{tatol}})
+\]</span> WOE分箱就是将连续变量离散化，
+即切分成不同的区间段，离散化后的变量具有很好的稳定性，比如年龄这个连续变量，如果是连续值的时候21和29就是两个不同的值，对模型的效果可能就不一样，如果离散化成20-30的时候，这两个年龄对模型的效果就是一样，更加稳定。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 分箱</span><br>cut1, bins1 = pd.qcut(df[<span class="hljs-string">&quot;可用额度比值&quot;</span>],<span class="hljs-number">4</span>,labels=<span class="hljs-literal">False</span>, retbins=<span class="hljs-literal">True</span>)<br>cut2, bins2 = pd.qcut(df[<span class="hljs-string">&quot;年龄&quot;</span>],<span class="hljs-number">8</span>,labels=<span class="hljs-literal">False</span>, retbins=<span class="hljs-literal">True</span>)<br>bins3=[-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">13</span>]<br>cut3=pd.cut(df[<span class="hljs-string">&quot;逾期30-59天笔数&quot;</span>],bins3,labels=<span class="hljs-literal">False</span>)<br>cut4=pd.qcut(df[<span class="hljs-string">&quot;负债率&quot;</span>],<span class="hljs-number">3</span>,labels=<span class="hljs-literal">False</span>)<br>cut5=pd.qcut(df[<span class="hljs-string">&quot;月收入&quot;</span>],<span class="hljs-number">4</span>,labels=<span class="hljs-literal">False</span>)<br>cut6=pd.qcut(df[<span class="hljs-string">&quot;信贷数量&quot;</span>],<span class="hljs-number">4</span>,labels=<span class="hljs-literal">False</span>)<br>bins7=[-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>,<span class="hljs-number">5</span>, <span class="hljs-number">20</span>]<br>cut7=pd.cut(df[<span class="hljs-string">&quot;逾期90天笔数&quot;</span>],bins7,labels=<span class="hljs-literal">False</span>)<br>bins8=[-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">33</span>]<br>cut8=pd.cut(df[<span class="hljs-string">&quot;固定资产贷款数量&quot;</span>],bins8,labels=<span class="hljs-literal">False</span>)<br>bins9=[-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">12</span>]<br>cut9=pd.cut(df[<span class="hljs-string">&quot;逾期60-89天笔数&quot;</span>],bins9,labels=<span class="hljs-literal">False</span>)<br>bins10=[-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">21</span>]<br>cut10=pd.cut(df[<span class="hljs-string">&quot;家属数量&quot;</span>],bins10,labels=<span class="hljs-literal">False</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 计算WOE</span><br><span class="hljs-comment"># 整体好坏比（定义标签为1为好客户）</span><br>total_rate = df[<span class="hljs-string">&#x27;好坏客户&#x27;</span>].<span class="hljs-built_in">sum</span>()/(df[<span class="hljs-string">&#x27;好坏客户&#x27;</span>].count()-df[<span class="hljs-string">&#x27;好坏客户&#x27;</span>].<span class="hljs-built_in">sum</span>())<br><br><span class="hljs-comment"># 定义WOE函数</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_woe</span>(<span class="hljs-params">cut</span>):<br>    grouped = df.groupby(cut)[<span class="hljs-string">&#x27;好坏客户&#x27;</span>].value_counts()<br>    <span class="hljs-comment"># 组内好坏比</span><br>    woe = np.log(pd.DataFrame(grouped).unstack().iloc[:,<span class="hljs-number">1</span>]/pd.DataFrame(grouped).unstack().iloc[:,<span class="hljs-number">0</span>]/total_rate)<br>    <span class="hljs-keyword">return</span> woe<br><span class="hljs-comment"># 计算WOE值，如果计算出来的WOE不是单调的就需要重新分箱</span><br>cut1_woe = get_woe(cut1)<br>cut2_woe = get_woe(cut2)<br>cut3_woe = get_woe(cut3)<br>cut4_woe = get_woe(cut4)<br>cut5_woe = get_woe(cut5)<br>cut6_woe = get_woe(cut6)<br>cut7_woe = get_woe(cut7)<br>cut8_woe = get_woe(cut8)<br>cut9_woe = get_woe(cut9)<br>cut10_woe = get_woe(cut10)<br></code></pre></td></tr></table></figure>
+<h3 id="计算iv值">计算IV值</h3>
+<p>IV（Information
+value，IV）信息值，IV值衡量一个变量的信息量，计算公式为SUM（（好样本占比-坏样本占比）*
+迹象权数） <span class="math display">\[
+IV=\sum_{i=1}^{N}(Good_{X=X_i}/Good_{tatol}-Bad_{X=X_i}/Bad_{tatol})\times
+WOE_i
+\]</span></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 计算每个变量的IV值</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_iv_data</span>(<span class="hljs-params">cut,cut_woe</span>):<br>    grouped = df.groupby(cut)[<span class="hljs-string">&#x27;好坏客户&#x27;</span>].value_counts()<br>    cut_iv = ((grouped.unstack().iloc[:,<span class="hljs-number">1</span>]/df[<span class="hljs-string">&#x27;好坏客户&#x27;</span>].<span class="hljs-built_in">sum</span>()- grouped.unstack().iloc[:,<span class="hljs-number">0</span>]/(df[<span class="hljs-string">&#x27;好坏客户&#x27;</span>].count()-df[<span class="hljs-string">&#x27;好坏客户&#x27;</span>].<span class="hljs-built_in">sum</span>()))*cut_woe).<span class="hljs-built_in">sum</span>()<br>    <span class="hljs-keyword">return</span> cut_iv<br><br><br>cut1_iv = get_iv_data(cut1,cut1_woe)<br>cut2_iv = get_iv_data(cut2,cut2_woe)<br>cut3_iv = get_iv_data(cut3,cut3_woe)<br>cut4_iv = get_iv_data(cut4,cut4_woe)<br>cut5_iv = get_iv_data(cut5,cut5_woe)<br>cut6_iv = get_iv_data(cut6,cut6_woe)<br>cut7_iv = get_iv_data(cut7,cut7_woe)<br>cut8_iv = get_iv_data(cut8,cut8_woe)<br>cut9_iv = get_iv_data(cut9,cut9_woe)<br>cut10_iv = get_iv_data(cut10,cut10_woe)<br></code></pre></td></tr></table></figure>
+<figure>
+<img
+src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/202308131313073.png" srcset="/img/loading.gif" lazyload
+alt="image-20230812214550651" />
+<figcaption aria-hidden="true">image-20230812214550651</figcaption>
+</figure>
+<p>可以看到["负债率","月收入","信贷数量","固定资产贷款量","家属数量"]这几个特征的IV值过低，对目标变量的影响较小，将其过滤掉。</p>
+<h3 id="用woe值代替原始数据">用WOE值代替原始数据</h3>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-comment"># 原始分组后的数据集，根据各组标签替代为对应的WOE值</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">replace_data</span>(<span class="hljs-params">cut,cut_woe</span>):<br>   <span class="hljs-comment"># 保存各箱标签</span><br>    a = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> cut.unique():<br>        a.append(i)<br>        a.sort()  <span class="hljs-comment"># 每箱从小到大排序，并计算对应的WOE值</span><br>    <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(a)):<br>        cut.replace(a[m],cut_woe.values[m],inplace = <span class="hljs-literal">True</span>)<br>    <span class="hljs-keyword">return</span> cut<br><span class="hljs-comment"># 进行替换</span><br>df_new = pd.DataFrame()<br>df_new[<span class="hljs-string">&#x27;可用额度比值&#x27;</span>] = replace_data(cut1,cut1_woe)<br>df_new[<span class="hljs-string">&#x27;年龄&#x27;</span>]=replace_data(cut2,cut2_woe)<br>df_new[<span class="hljs-string">&#x27;逾期30-59天笔数&#x27;</span>] = replace_data(cut3,cut3_woe)<br>df_new[<span class="hljs-string">&#x27;逾期90天笔数&#x27;</span>] = replace_data(cut7,cut7_woe)<br>df_new[<span class="hljs-string">&#x27;逾期60-89天笔数&#x27;</span>] = replace_data(cut9,cut9_woe)<br>df_new[<span class="hljs-string">&#x27;好坏客户&#x27;</span>] = df[<span class="hljs-string">&#x27;好坏客户&#x27;</span>]<br></code></pre></td></tr></table></figure>
+<h2 id="模型训练">模型训练</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 模型训练及测试</span><br>x = df_new.iloc[:,<span class="hljs-number">0</span>:-<span class="hljs-number">1</span>]<br>y = df_new.iloc[:,-<span class="hljs-number">1</span>]<br>x_train,x_test,y_train,y_test = train_test_split(x,y,test_size = <span class="hljs-number">0.4</span>,random_state = <span class="hljs-number">0</span>)<br>model = LogisticRegression()<br>clf = model.fit(x_train,y_train)<br><span class="hljs-comment"># 预测标签</span><br>y_pred  = clf.predict(x_test)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;测试集的平均正确率：&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(clf.score(x_test,y_test)))<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">测试集的平均正确率：0.9423646788588662<br></code></pre></td></tr></table></figure>
+<h2 id="计算得分">计算得分</h2>
+<p><span class="math display">\[
+Score&amp;=&amp;A+B\times(\omega_0+\omega_1x_1+\cdots+\omega_nx_x)\\&amp;=&amp;(A+B\omega_0)+B\omega_1x_1+\cdots+B\omega_nx_x
+\]</span></p>
+<p>约定：当odds增加一倍，分数增加20分；当odds = 1,分数为600分。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 系数值</span><br>coe = clf.coef_<br>bias = clf.intercept_<br><span class="hljs-comment"># score = offset+factor*log(odds)</span><br>factor = <span class="hljs-number">20</span> / np.log(<span class="hljs-number">2</span>)<br>offset = <span class="hljs-number">600</span><br><br><span class="hljs-comment"># 定义变量分数计算函数</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_score</span>(<span class="hljs-params">coe,woe,factor</span>):<br>    scores = []<br>    <span class="hljs-keyword">for</span> w <span class="hljs-keyword">in</span> woe:<br>        score=<span class="hljs-built_in">round</span>(coe*w*factor,<span class="hljs-number">0</span>)<br>        scores.append(score)<br>    <span class="hljs-keyword">return</span> scores<br><br><span class="hljs-comment"># 计算每个变量得分</span><br>x1 = get_score(coe[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>],cut1_woe,factor)<br>x2 = get_score(coe[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>],cut2_woe,factor)<br>x3 = get_score(coe[<span class="hljs-number">0</span>][<span class="hljs-number">2</span>],cut3_woe,factor)<br>x7 = get_score(coe[<span class="hljs-number">0</span>][<span class="hljs-number">3</span>],cut7_woe,factor)<br>x9 = get_score(coe[<span class="hljs-number">0</span>][<span class="hljs-number">4</span>],cut9_woe,factor)<br>base_score = offset + factor * bias;<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">基础分数:[521.32931339]<br>可用额度比值对应分箱:[0., 0.02953715 0.1480833, 0.52137127, 1.]<br>可用额度比值对应的分数:[-22.0, -21.0, -5.0, 19.0]<br>年龄对应分箱:[ 21.  35.  41.  47.  52.  57.  63.  70. 107.]<br>年龄对应的分数:[8.0, 5.0, 4.0, 3.0, -0.0, -6.0, -13.0, -16.0]<br>逾期30-59天笔数对应的分数:[-8.0, 14.0, 27.0, 37.0, 42.0]<br>逾期90天笔数对应的分数:[-6.0, 34.0, 48.0, 57.0, 57.0]<br>逾期60-89天笔数对应的分数:[-3.0, 24.0, 35.0, 39.0]<br></code></pre></td></tr></table></figure>
+<h2 id="获得评分卡">获得评分卡</h2>
+<table>
+<thead>
+<tr class="header">
+<th>变量</th>
+<th>分箱类别</th>
+<th>分数</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>基础分数</td>
+<td>-</td>
+<td>521.32931339</td>
+</tr>
+<tr class="even">
+<td>可用额度</td>
+<td>0 - 0.02953715</td>
+<td>-22.0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>0.02953715 - 0.1480833</td>
+<td>-21.0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>0.1480833 - 0.52137127</td>
+<td>-5.0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>0.52137127 - 1</td>
+<td>19.0</td>
+</tr>
+<tr class="even">
+<td>年龄</td>
+<td>21 - 35</td>
+<td>8.0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>35 - 41</td>
+<td>5.0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>41 - 47</td>
+<td>4.0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>47 - 52</td>
+<td>3.0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>52 - 57</td>
+<td>-0.0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>57 - 63</td>
+<td>-6.0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>63 - 70</td>
+<td>-13.0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>70 - 107</td>
+<td>-16.0</td>
+</tr>
+<tr class="even">
+<td>逾期30-59天笔数</td>
+<td>-1 - 0</td>
+<td>-8.0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>0 - 1</td>
+<td>14.0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>1 - 3</td>
+<td>27.0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>3 - 5</td>
+<td>37.0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>5 - 13</td>
+<td>42.0</td>
+</tr>
+<tr class="odd">
+<td>逾期60-89天笔数</td>
+<td>-1 - 0</td>
+<td>-3.0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>0 - 1</td>
+<td>24.0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>1 - 3</td>
+<td>35.0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>3 - 12</td>
+<td>39.0</td>
+</tr>
+<tr class="odd">
+<td>逾期90天笔数</td>
+<td>-1 - 0</td>
+<td>-6.0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>0 - 1</td>
+<td>34.0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>1 - 3</td>
+<td>48.0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>3 - 5</td>
+<td>57.0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>5 - 20</td>
+<td>57.0</td>
+</tr>
+</tbody>
+</table>
+<p>上面得到的是不同特征值对应的分数，评分越高表明该用户越有可能相应目标变量，成为坏用户；特征划分区间是依次递增的，特征区间值与得分是相对应的，年龄越大，坏账的可能性越低；逾期笔数越多，坏账可能性越高，得分越高；最后将所有的变量对应的得分相加，就是每个用户的得分。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>评分卡模型</div>
+      <div>https://yinan.fun/评分卡模型</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>yinan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年8月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E5%88%86%E7%B1%BB%E6%A6%82%E7%8E%87%E8%BD%AC%E5%88%86%E6%95%B0" title="分类概率转分数">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">分类概率转分数</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E7%94%B5%E9%A5%AD%E7%85%B2%E5%8F%89%E7%83%A7" title="电饭煲叉烧">
+                        <span class="hidden-mobile">电饭煲叉烧</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'wyn04/comment-utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
