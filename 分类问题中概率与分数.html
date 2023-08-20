@@ -17,22 +17,22 @@
   <meta name="author" content="yinan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="概率转分数 分类可以分为硬分类和软分类。 硬分类（hard classification）是当我们进行观察并预测它属于哪个类别时。例如，银行可以使用某人的财务历史（观察）来预测他们是否会偿还贷款。医生可以测量肿瘤（观察结果），以预测肿瘤是否是恶性肿瘤，是否需要切除。 相比之下，软分类（soft classification）表示模型对其预测的信心。在发放贷款时，模型可能会做出硬分类，即两个客户都会">
+    <meta name="description" content="分类问题中概率与分数 什么是分数 对于二分类器来说，将其中一个类别称为正类，更高的分数意味着模型更有信心输入（observation）属于正类。 什么是概率 概率可能很难定义。例如，如果我们做一个降雨预测器，它告诉我们今天下雨的几率为20%，我们如何判断它是否正确？在检查预测时，要么会下雨（要么不会下雨）。标准的方法是，如果我们采取看起来与今天相似的日子，那么其中20%的日子应该会下雨，但随后我们">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分类概率转分数">
-<meta property="og:url" content="https://yinan.fun/%E5%88%86%E7%B1%BB%E6%A6%82%E7%8E%87%E8%BD%AC%E5%88%86%E6%95%B0">
+<meta property="og:title" content="分类问题中概率与分数">
+<meta property="og:url" content="https://yinan.fun/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E4%B8%AD%E6%A6%82%E7%8E%87%E4%B8%8E%E5%88%86%E6%95%B0">
 <meta property="og:site_name" content="yinan的博客">
-<meta property="og:description" content="概率转分数 分类可以分为硬分类和软分类。 硬分类（hard classification）是当我们进行观察并预测它属于哪个类别时。例如，银行可以使用某人的财务历史（观察）来预测他们是否会偿还贷款。医生可以测量肿瘤（观察结果），以预测肿瘤是否是恶性肿瘤，是否需要切除。 相比之下，软分类（soft classification）表示模型对其预测的信心。在发放贷款时，模型可能会做出硬分类，即两个客户都会">
+<meta property="og:description" content="分类问题中概率与分数 什么是分数 对于二分类器来说，将其中一个类别称为正类，更高的分数意味着模型更有信心输入（observation）属于正类。 什么是概率 概率可能很难定义。例如，如果我们做一个降雨预测器，它告诉我们今天下雨的几率为20%，我们如何判断它是否正确？在检查预测时，要么会下雨（要么不会下雨）。标准的方法是，如果我们采取看起来与今天相似的日子，那么其中20%的日子应该会下雨，但随后我们">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-08-13T05:15:42.000Z">
-<meta property="article:modified_time" content="2023-08-20T05:21:17.685Z">
+<meta property="article:published_time" content="2023-08-20T05:22:52.000Z">
+<meta property="article:modified_time" content="2023-08-20T05:23:25.038Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>分类概率转分数 - yinan的博客</title>
+  <title>分类问题中概率与分数 - yinan的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="分类概率转分数"></span>
+            <span id="subtitle" data-typed-text="分类问题中概率与分数"></span>
           
         </div>
 
@@ -226,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-13 13:15" pubdate>
-          2023年8月13日 下午
+        <time datetime="2023-08-20 13:22" pubdate>
+          2023年8月20日 下午
         </time>
       </span>
     
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k 字
+          2.8k 字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          26 分钟
+          24 分钟
         
       </span>
     
@@ -287,59 +287,107 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">分类概率转分数</h1>
+            <h1 style="display: none">分类问题中概率与分数</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="概率转分数">概率转分数</h1>
-<p>分类可以分为硬分类和软分类。</p>
-<p><strong>硬分类（hard
-classification）</strong>是当我们进行观察并预测它属于哪个类别时。例如，银行可以使用某人的财务历史（观察）来预测他们是否会偿还贷款。医生可以测量肿瘤（观察结果），以预测肿瘤是否是恶性肿瘤，是否需要切除。</p>
-<p>相比之下，<strong>软分类（soft
-classification）</strong>表示模型对其预测的信心。在发放贷款时，模型可能会做出硬分类，即两个客户都会偿还贷款，但软分类是客户1有80%的机会偿还贷款，而客户2有95%的机会偿还贷款。</p>
-<p>如果我们有一个软分类器，我们可以通过选择一个阈值来制作一个硬分类器：只需将所有软预测高于阈值的观测归类为正类，将软预测低于阈值的观测归类为负类。对于计算概率的scikit-learn分类器，这就是它们在默认阈值为50%的情况下的工作方式。使用概率作为门槛也有助于使模型更容易解释：对于贷款分类器，您只想接受您真正有信心的人（例如，那些偿还贷款的几率高出85%的人）。对于肿瘤病例，您可能会决定让医生检查任何有5%以上恶性几率的肿瘤。</p>
-<p>虽然概率是进行软分类的方便方法，但我们真正需要的只是分数。对于二分类器来说，这是最容易解释的。将其中一个类别称为正类，我们从分数中唯一需要的就是<strong>更高的分数意味着模型更有信心输入（observation）属于正类。</strong></p>
-<p><a
-href="https://yinan.fun/分类问题中概率与分数">分类问题中概率与分数</a></p>
-<h2 id="二分类">二分类</h2>
-<p>分数评价好坏，样本是好样本（标签为1）的概率越高，分数越高。</p>
-<ol type="1">
-<li><p>将逾期率概率值直接乘以100就得到分数了，但是LR得到的概率值往往是不均匀的，比如讲概率值排序后，头部和尾部的概率值较少，大部分概率都集中在中间某个区域，这时这种方法就失效了。
+                <h1 id="分类问题中概率与分数">分类问题中概率与分数</h1>
+<h2 id="什么是分数">什么是分数</h2>
+<p>对于二分类器来说，将其中一个类别称为正类，<strong>更高的分数意味着模型更有信心输入（observation）属于正类。</strong></p>
+<h2 id="什么是概率">什么是概率</h2>
+<p>概率可能很难定义。例如，如果我们做一个降雨预测器，它告诉我们今天下雨的几率为20%，我们如何判断它是否正确？在检查预测时，要么会下雨（要么不会下雨）。标准的方法是，如果我们采取看起来与今天相似的日子，那么其中20%的日子应该会下雨，但随后我们就会争论不同的日子必须有多相似才能被组合在一起。在更极端的情况下，例如预测选举结果，很难看出我们如何“重复”实验来赋予结果以意义。</p>
+<p>在《信号与噪音》中，内特·西尔弗在第4章的天气预报中谈到了这个问题。与其担心是什么让日子彼此相似，不如采取不同的方法。从历史上看，在那些模型预测20%的时间会下雨日子里，实际下雨的时间百分比是多少？如果答案与20%大相径庭，那么模型的概率在实际估计概率方面做得不是很好。</p>
+<p>在实践中，我们假设概率，因为可能只有一天正好有0.2000的降雨概率。如果我们把所有预测在17.5%到22.5%之间，并把它们组合在一个桶里，我们预计实际降雨量在17.5%到22.5%之间。</p>
+<p>这种将预测概率与实际发生次数进行比较的过程称为校准（calibration）。校准曲线根据实际发生率绘制预测概率。</p>
+<h2 id="概率校准曲线">概率校准曲线</h2>
+<p>下雨预测的例子，使用<a
+target="_blank" rel="noopener" href="https://www.kaggle.com/datasets/rtatman/did-it-rain-in-seattle-19482017">Kaggle数据集</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">rain = pd.read_csv(<span class="hljs-string">&#x27;seattleWeather_1948-2017.csv&#x27;</span>).dropna()<br>rain.head()<br></code></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">DATE</th>
+<th style="text-align: right;">PRCP</th>
+<th style="text-align: right;">TMAX</th>
+<th style="text-align: right;">TMIN</th>
+<th>RAIN</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1948-01-01</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">42</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">1948-01-02</td>
+<td style="text-align: right;">0.59</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">36</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">1948-01-03</td>
+<td style="text-align: right;">0.42</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">35</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">1948-01-04</td>
+<td style="text-align: right;">0.31</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">34</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">1948-01-05</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">32</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">from</span> sklearn.calibration <span class="hljs-keyword">import</span> calibration_curve, CalibratedClassifierCV<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><span class="hljs-keyword">from</span> sklearn.naive_bayes <span class="hljs-keyword">import</span> GaussianNB<br><br><span class="hljs-comment"># load the data into a dataframe</span><br>rain = pd.read_csv(<span class="hljs-string">&#x27;seattleWeather_1948-2017.csv&#x27;</span>).dropna()<br>rain.head()<br><br><span class="hljs-comment"># use the temperatures to predict whether or not there was rain that day</span><br>features = rain[[<span class="hljs-string">&#x27;TMIN&#x27;</span>, <span class="hljs-string">&#x27;TMAX&#x27;</span>]]<br>target = rain.RAIN.astype(<span class="hljs-built_in">bool</span>)<br>X_train, X_test, y_train, y_test = train_test_split(features, target, random_state=<span class="hljs-number">42</span>)<br><br><span class="hljs-comment"># use a Naive Bayes Classifier and make hard predictions</span><br>nb_rain = GaussianNB().fit(X_train, y_train)<br>accuracy = nb_rain.score(X_train, y_train)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;The hard predictions were right <span class="hljs-subst">&#123;<span class="hljs-number">100</span>*accuracy:<span class="hljs-number">5.2</span>f&#125;</span>% of the time&#x27;</span>)<br><br><span class="hljs-comment"># use the predict_proba method to get the probability of the positive case</span><br>predictions = nb_rain.predict_proba(X_train)[:, <span class="hljs-number">1</span>]<br><br><span class="hljs-comment"># call calibration_curve to &quot;bin&quot; similar predicted probabilities together, and calculate what percentage of the time</span><br><span class="hljs-comment"># it actually rains in that bin</span><br>binned_true_p, binned_predict_p = calibration_curve(y_train, predictions, n_bins=<span class="hljs-number">10</span>)<br></code></pre></td></tr></table></figure>
+<p>调用<a
+target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.calibration.calibration_curve.html">calibration_curve</a>将相似的预测概率分箱在一起，并计算在该绑定中实际下雨的时间百分比。</p>
+<figure>
+<img
+src="https://jsd.cdn.zzko.cn/gh/wyn04/my-pic-bed/202308201042945.png" srcset="/img/loading.gif" lazyload
+alt="校准曲线" />
+<figcaption aria-hidden="true">校准曲线</figcaption>
+</figure>
+<p>如果我们的分类器输出良好的概率，那么校准曲线上这些点将接近这条红线。校准曲线上的点告诉我们，当我们的分类器声称下雨的概率约为25%时，实际上有33%的时间下雨了。</p>
+<p>在这个例子中，朴素贝叶斯分类器给出了看起来像概率的分数，并且是由<code>predict_proba</code>生成的，但当我们查看校准曲线时，我们发现它们实际上只是分数。</p>
+<h2 id="重新校准和普拉特缩放">重新校准和普拉特缩放</h2>
+<p>当模型的<code>predict_proba</code>方法给出分数而不是概率时，我们可以重新校准分数，使其更接近概率。这个过程被称为普拉特缩放（Platt
+scaling），在Scikit-learn中作为<code>CalibratedClassifierCV</code>实现。</p>
+<p>Platt scaling是一个两参数(two-parameter)优化问题，而优化的目标为：
 <span class="math display">\[
-Score=p\times 100
-\]</span></p></li>
-<li><p>还有一种方法是将概率值进行排序，找出头部的20%概率值映射到80-100分，尾部的20%概率值映射到0-60分，中间的60%概率值映射到60-80分。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> pandas <span class="hljs-keyword">import</span> DataFrame<br> <br> <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">score_model</span>(<span class="hljs-params">result_train, bins_num=<span class="hljs-number">10</span></span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">        根据输入的样本数据，进行打分模型的训练：</span><br><span class="hljs-string">            输入数据格式：dict 组成list， dict = &#123;score : ml_model_proba&#125;</span><br><span class="hljs-string">            输出数据格式：bin_dict = &#123;i:&#123;&#x27;left&#x27;: , &#x27;right&#x27;: , &#x27;line_train_list&#x27;&#125;&#125;</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    sorted_result_train = <span class="hljs-built_in">sorted</span>(result_train, key=<span class="hljs-keyword">lambda</span> result_train:result_train[<span class="hljs-string">&#x27;score&#x27;</span>], reverse=<span class="hljs-literal">False</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(sorted_result_train))<br>    score_bins = &#123;&#125;<br>    every_len = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">len</span>(sorted_result_train) / bins_num)<br>    <span class="hljs-built_in">print</span>(every_len)<br>    <span class="hljs-comment"># 30分粒度，做分桶，桶内直线拟合</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, bins_num):<br>        left = sorted_result_train[i*every_len][<span class="hljs-string">&#x27;score&#x27;</span>]<br>        right = sorted_result_train[(i+<span class="hljs-number">1</span>)*every_len-<span class="hljs-number">1</span>][<span class="hljs-string">&#x27;score&#x27;</span>]<br>        step = <span class="hljs-number">300</span>/bins_num<br>        score_map = [<span class="hljs-number">800</span>-i*step, <span class="hljs-number">800</span>-(i+<span class="hljs-number">1</span>)*step]<br>        <span class="hljs-keyword">if</span> i == bins_num-<span class="hljs-number">1</span>:<br>            right = sorted_result_train[-<span class="hljs-number">1</span>][<span class="hljs-string">&#x27;score&#x27;</span>]<br>        line_train = np.polyfit([left, right], score_map, <span class="hljs-number">1</span>)<br>        line_train_list = line_train.tolist()<br>        bins = <span class="hljs-built_in">dict</span>()<br>        bins[<span class="hljs-string">&#x27;left&#x27;</span>] = left<br>        bins[<span class="hljs-string">&#x27;right&#x27;</span>] = right<br>        bins[<span class="hljs-string">&#x27;line_train_list&#x27;</span>] = line_train_list<br>        score_bins[i] = bins<br>    <span class="hljs-keyword">return</span> score_bins<br> <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">predict_score</span>(<span class="hljs-params">score_bins, result_proab</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">       打分模型：根据输入的result_proab, 按照score_bins进行打分；score_bins就是打分model</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    proab = result_proab<br>    score = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> k,v <span class="hljs-keyword">in</span> score_bins.items():<br>        <span class="hljs-keyword">if</span> proab &gt;= v[<span class="hljs-string">&#x27;left&#x27;</span>] <span class="hljs-keyword">and</span> proab &lt; v[<span class="hljs-string">&#x27;right&#x27;</span>]:<br>            score = v[<span class="hljs-string">&#x27;line_train_list&#x27;</span>][<span class="hljs-number">0</span>] * proab + v[<span class="hljs-string">&#x27;line_train_list&#x27;</span>][<span class="hljs-number">1</span>]<br>            <span class="hljs-keyword">break</span><br>    <span class="hljs-keyword">return</span> score<br> <br> <br>scores = np.random.random(<span class="hljs-number">20</span>)<br>ids = <span class="hljs-built_in">range</span>(<span class="hljs-number">20</span>)<br>df = DataFrame([ids,scores]).T<br>df.columns = [<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-string">&quot;score&quot;</span>]<br>dic = df.to_dict(orient=<span class="hljs-string">&quot;records&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;dic:&quot;</span>,dic)<br><span class="hljs-comment">#训练打分模型（将逾期的概率映射为500-800之间的分数，分数越高，用户越好）</span><br>score_bins = score_model(dic)<br><span class="hljs-built_in">print</span>(score_bins)<br><span class="hljs-comment">#输入pred概率值，输出分数</span><br>result_proab = <span class="hljs-number">0.083882018</span><br>score = predict_score(score_bins, result_proab)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;score:&quot;</span>, score)<br></code></pre></td></tr></table></figure></li>
-<li><p>评分表</p>
-<p>评分卡预测分数时不需要计算概率，而是直接用线性部分转换成分数，每一个特征x的分数和就是总分。
-<span class="math display">\[
-\begin{align}
-Score&amp;=A+B\times\ln(odds) \\
-&amp;=A+B\times(\omega_0+\omega_1x_1+\cdots+\omega_nx_x)\\
-&amp;=(A+B\omega_0)+B\omega_1x_1+\cdots+B\omega_nx_x
-\end{align}
-\]</span> <a
-href="https://yinan.fun/lr%E7%9A%84%E9%A2%84%E6%B5%8B%E6%A6%82%E7%8E%87%E5%80%BC%E8%BD%AC%E5%88%86%E6%95%B0">评分表原理</a></p>
-<p><a
-href="https://yinan.fun/%E8%AF%84%E5%88%86%E5%8D%A1%E6%A8%A1%E5%9E%8B">评分表建模</a></p></li>
-</ol>
-<h2 id="多分类">多分类</h2>
-<p>多分类无法直接根据样本标签确定样本的好坏，需要定义每个标签的好坏程度。</p>
-<ol type="1">
-<li><p>确定每个类别i分数为<span
-class="math inline">\(s_i\)</span>，分数为 <span class="math display">\[
-s=\sum_{i=1}^n p_i\times s_i
+min-\sum_i{t_i{\rm log}(p_i)+(1-t_i){\rm log}(1-p_i)}
+\]</span> 其中 <span class="math display">\[
+t_i=\frac{y_i+1}{2}
 \]</span></p>
-<blockquote>
-<p>二分类，<span class="math inline">\(s_0=0, s_1=100\)</span>。</p>
-</blockquote></li>
-<li><p>计算样本为好样本的概率，再转化为分数。</p></li>
-</ol>
-<h2 id="概率评分方法">概率评分方法</h2>
-<p>分数评价预测概率的准确率</p>
-<p><a
-href="https://yinan.fun/%E6%A6%82%E7%8E%87%E8%AF%84%E5%88%86%E6%96%B9%E6%B3%95">概率评分方法</a></p>
+<p><span class="math display">\[
+p_i = \frac{1}{1+e^{Af(x_i)+B}}
+\]</span></p>
+<p><span
+class="math inline">\(f\)</span>表示一个二分类模型，y的值为-1或+1，A和B就是普拉特缩放要学习的参数。</p>
+<p>在天气示例中，我们可以将普拉特缩放应用于我们的朴素贝叶斯分类器。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">calibrated_nb_rain = CalibratedClassifierCV(nb_rain, cv=<span class="hljs-number">5</span>, method=<span class="hljs-string">&#x27;isotonic&#x27;</span>)<br><span class="hljs-comment"># Note we need to refit!</span><br>calibrated_nb_rain.fit(X_train, y_train);<br><br><span class="hljs-comment"># access the probabilities after recalibration</span><br>calibrated_probs = calibrated_nb_rain.predict_proba(X_test)[:, <span class="hljs-number">1</span>]<br>binned_true_p, binned_predict_p = calibration_curve(y_test, calibrated_probs, n_bins=<span class="hljs-number">10</span>)<br></code></pre></td></tr></table></figure>
+<p><img
+src="https://jsd.cdn.zzko.cn/gh/wyn04/my-pic-bed/202308201323942.png" srcset="/img/loading.gif" lazyload
+alt="image-20230820115155793" />修正后的概率更接近红线。</p>
 
                 
               </div>
@@ -385,8 +433,8 @@ href="https://yinan.fun/%E6%A6%82%E7%8E%87%E8%AF%84%E5%88%86%E6%96%B9%E6%B3%95">
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>分类概率转分数</div>
-      <div>https://yinan.fun/分类概率转分数</div>
+      <div>分类问题中概率与分数</div>
+      <div>https://yinan.fun/分类问题中概率与分数</div>
     </div>
     <div class="license-meta">
       
@@ -398,7 +446,7 @@ href="https://yinan.fun/%E6%A6%82%E7%8E%87%E8%AF%84%E5%88%86%E6%96%B9%E6%B3%95">
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月13日</div>
+          <div>2023年8月20日</div>
         </div>
       
       
@@ -430,18 +478,12 @@ href="https://yinan.fun/%E6%A6%82%E7%8E%87%E8%AF%84%E5%88%86%E6%96%B9%E6%B3%95">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E4%B8%AD%E6%A6%82%E7%8E%87%E4%B8%8E%E5%88%86%E6%95%B0" title="分类问题中概率与分数">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">分类问题中概率与分数</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/%E8%AF%84%E5%88%86%E5%8D%A1%E6%A8%A1%E5%9E%8B" title="评分卡模型">
-                        <span class="hidden-mobile">评分卡模型</span>
+                      <a href="/%E5%88%86%E7%B1%BB%E6%A6%82%E7%8E%87%E8%BD%AC%E5%88%86%E6%95%B0" title="分类概率转分数">
+                        <span class="hidden-mobile">分类概率转分数</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
