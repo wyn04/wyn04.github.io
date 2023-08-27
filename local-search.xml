@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>fastboot安装驱动</title>
+    <link href="/fastboot%E5%AE%89%E8%A3%85%E9%A9%B1%E5%8A%A8.html"/>
+    <url>/fastboot%E5%AE%89%E8%A3%85%E9%A9%B1%E5%8A%A8.html</url>
+    
+    <content type="html"><![CDATA[<h1id="使用fastboot命令出现waiting-for-any-device">使用Fastboot命令出现&lt;waitingfor any device&gt;</h1><h2 id="可能是fastboot驱动未安装">可能是fastboot驱动未安装</h2><ol type="1"><li>打开设备管理器</li><li>找到<code>Android</code>（带黄色感叹号）</li><li>右键--&gt;<code>更新驱动程序</code></li><li>选择<code>浏览我的电脑以查找驱动程序</code></li><li>选择<code>让我从电脑上的可用驱动列表上选择</code></li><li>选择<code>通用串行总线设备</code></li><li>选择<code>WinUSB设备</code>--&gt;<code>ADB设备</code>--&gt;<code>下一步</code>--&gt;<code>是</code></li><li>点击<code>关闭</code></li></ol><p>设备管理器中的Android设备的黄色感叹号消失，驱动安装成功。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>安卓刷机</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>安装刷机</tag>
+      
+      <tag>fastboot</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>分类问题中概率与分数</title>
     <link href="/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E4%B8%AD%E6%A6%82%E7%8E%87%E4%B8%8E%E5%88%86%E6%95%B0.html"/>
     <url>/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E4%B8%AD%E6%A6%82%E7%8E%87%E4%B8%8E%E5%88%86%E6%95%B0.html</url>
