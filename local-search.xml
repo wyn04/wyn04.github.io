@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Proximal Policy Optimization (PPO)</title>
+    <link href="/ppo.html"/>
+    <url>/ppo.html</url>
+    
+    <content type="html"><![CDATA[<h1 id="proximal-policy-optimization-ppo">Proximal Policy Optimization(PPO)</h1><h2 id="policy-gradient">Policy Gradient</h2><p><span class="math display">\[\tau=\left\{s_1, a_1, s_2, a_2, \cdots, s_T, a_T\right\}\]</span></p><p>当参数是<span class="math inline">\(\theta\)</span>的时候某一个trajectory 回合里面发生<spanclass="math inline">\(\tau\)</span>的几率：</p><p><span class="math display">\[\begin{aligned}p_\theta(\tau)&amp; =p\left(s_1\right) p_\theta\left(a_1 \mid s_1\right)p\left(s_2 \mid s_1, a_1\right) p_\theta\left(a_2 \mid s_2\right)p\left(s_3 \mid s_2, a_2\right) \cdots \\&amp; =p\left(s_1\right) \prod_{t=1}^T p_\theta\left(a_t \mid s_t\right)p\left(s_{t+1} \mid s_t, a_t\right) \\&amp;\end{aligned}\]</span> ExpectReward，穷举所有的Trajectory不同回合的Reward乘以不同回合的几率再求和就是期望Reward</p><p><span class="math display">\[\bar{R}_\theta=\sum_\tau R(\tau) p_\theta(\tau)=E_{\tau \simp_\theta(\tau)}[R(\tau)]\]</span> 要求期望Reward最大值采用梯度上升 <span class="math display">\[\begin{aligned}\nabla \bar{R}_\theta&amp;=\sum_\tau R(\tau) \nablap_\theta(\tau)=\sum_\tau R(\tau) p_\theta(\tau) \frac{\nablap_\theta(\tau)}{p_\theta(\tau)}\\&amp;=\sum_\tau R(\tau) p_\theta(\tau) \nabla \log p_\theta(\tau)\end{aligned}\]</span></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>机器学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>fastboot安装驱动</title>
     <link href="/fastboot%E5%AE%89%E8%A3%85%E9%A9%B1%E5%8A%A8.html"/>
     <url>/fastboot%E5%AE%89%E8%A3%85%E9%A9%B1%E5%8A%A8.html</url>

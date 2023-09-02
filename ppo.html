@@ -17,25 +17,22 @@
   <meta name="author" content="yinan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="使用Fastboot命令出现&lt;waiting for any device&gt; 可能是fastboot驱动未安装  打开设备管理器 找到Android（带黄色感叹号） 右键--&gt;更新驱动程序 选择浏览我的电脑以查找驱动程序 选择让我从电脑上的可用驱动列表上选择 选择通用串行总线设备 选择WinUSB设备--&gt;ADB设备--&gt;下一步--&gt;是 点击关闭  设备管理器中">
+    <meta name="description" content="Proximal Policy Optimization (PPO) Policy Gradient \[ \tau&#x3D;\left\{s_1, a_1, s_2, a_2, \cdots, s_T, a_T\right\} \] 当参数是\(\theta\)的时候某一个 trajectory 回合里面发生\(\tau\)的几率： \[ \begin{aligned} p_\theta(\tau)&amp;a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fastboot安装驱动">
-<meta property="og:url" content="https://yinan.fun/fastboot%E5%AE%89%E8%A3%85%E9%A9%B1%E5%8A%A8">
+<meta property="og:title" content="Proximal Policy Optimization (PPO)">
+<meta property="og:url" content="https://yinan.fun/ppo">
 <meta property="og:site_name" content="yinan的博客">
-<meta property="og:description" content="使用Fastboot命令出现&lt;waiting for any device&gt; 可能是fastboot驱动未安装  打开设备管理器 找到Android（带黄色感叹号） 右键--&gt;更新驱动程序 选择浏览我的电脑以查找驱动程序 选择让我从电脑上的可用驱动列表上选择 选择通用串行总线设备 选择WinUSB设备--&gt;ADB设备--&gt;下一步--&gt;是 点击关闭  设备管理器中">
+<meta property="og:description" content="Proximal Policy Optimization (PPO) Policy Gradient \[ \tau&#x3D;\left\{s_1, a_1, s_2, a_2, \cdots, s_T, a_T\right\} \] 当参数是\(\theta\)的时候某一个 trajectory 回合里面发生\(\tau\)的几率： \[ \begin{aligned} p_\theta(\tau)&amp;a">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jsd.cdn.zzko.cn/gh/wyn04/my-pic-bed/202308271012863.jpg">
-<meta property="article:published_time" content="2023-08-27T02:07:56.000Z">
-<meta property="article:modified_time" content="2023-08-27T02:13:09.743Z">
+<meta property="article:published_time" content="2023-09-02T12:20:17.000Z">
+<meta property="article:modified_time" content="2023-09-02T12:20:56.473Z">
 <meta property="article:author" content="yinan">
-<meta property="article:tag" content="安装刷机">
-<meta property="article:tag" content="fastboot">
+<meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://jsd.cdn.zzko.cn/gh/wyn04/my-pic-bed/202308271012863.jpg">
   
   
   
-  <title>fastboot安装驱动 - yinan的博客</title>
+  <title>Proximal Policy Optimization (PPO) - yinan的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -218,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="fastboot安装驱动"></span>
+            <span id="subtitle" data-typed-text="Proximal Policy Optimization (PPO)"></span>
           
         </div>
 
@@ -229,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-27 10:07" pubdate>
-          2023年8月27日 上午
+        <time datetime="2023-09-02 20:20" pubdate>
+          2023年9月2日 晚上
         </time>
       </span>
     
@@ -241,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          211 字
+          843 字
         
       </span>
     
@@ -252,7 +249,7 @@
         
         
         
-          2 分钟
+          8 分钟
         
       </span>
     
@@ -290,26 +287,42 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">fastboot安装驱动</h1>
+            <h1 style="display: none">Proximal Policy Optimization (PPO)</h1>
             
             
               <div class="markdown-body">
                 
-                <h1
-id="使用fastboot命令出现waiting-for-any-device">使用Fastboot命令出现&lt;waiting
-for any device&gt;</h1>
-<h2 id="可能是fastboot驱动未安装">可能是fastboot驱动未安装</h2>
-<ol type="1">
-<li>打开设备管理器</li>
-<li>找到<code>Android</code>（带黄色感叹号）</li>
-<li>右键--&gt;<code>更新驱动程序</code></li>
-<li>选择<code>浏览我的电脑以查找驱动程序</code></li>
-<li>选择<code>让我从电脑上的可用驱动列表上选择</code></li>
-<li>选择<code>通用串行总线设备</code></li>
-<li>选择<code>WinUSB设备</code>--&gt;<code>ADB设备</code>--&gt;<code>下一步</code>--&gt;<code>是</code></li>
-<li>点击<code>关闭</code></li>
-</ol>
-<p>设备管理器中的Android设备的黄色感叹号消失，驱动安装成功。</p>
+                <h1 id="proximal-policy-optimization-ppo">Proximal Policy Optimization
+(PPO)</h1>
+<h2 id="policy-gradient">Policy Gradient</h2>
+<p><span class="math display">\[
+\tau=\left\{s_1, a_1, s_2, a_2, \cdots, s_T, a_T\right\}
+\]</span></p>
+<p>当参数是<span class="math inline">\(\theta\)</span>的时候某一个
+trajectory 回合里面发生<span
+class="math inline">\(\tau\)</span>的几率：</p>
+<p><span class="math display">\[
+\begin{aligned}
+p_\theta(\tau)&amp; =p\left(s_1\right) p_\theta\left(a_1 \mid s_1\right)
+p\left(s_2 \mid s_1, a_1\right) p_\theta\left(a_2 \mid s_2\right)
+p\left(s_3 \mid s_2, a_2\right) \cdots \\
+&amp; =p\left(s_1\right) \prod_{t=1}^T p_\theta\left(a_t \mid s_t\right)
+p\left(s_{t+1} \mid s_t, a_t\right) \\
+&amp;
+\end{aligned}
+\]</span> Expect
+Reward，穷举所有的Trajectory不同回合的Reward乘以不同回合的几率再求和就是期望Reward</p>
+<p><span class="math display">\[
+\bar{R}_\theta=\sum_\tau R(\tau) p_\theta(\tau)=E_{\tau \sim
+p_\theta(\tau)}[R(\tau)]
+\]</span> 要求期望Reward最大值采用梯度上升 <span class="math display">\[
+\begin{aligned}
+\nabla \bar{R}_\theta&amp;=\sum_\tau R(\tau) \nabla
+p_\theta(\tau)=\sum_\tau R(\tau) p_\theta(\tau) \frac{\nabla
+p_\theta(\tau)}{p_\theta(\tau)}\\
+&amp;=\sum_\tau R(\tau) p_\theta(\tau) \nabla \log p_\theta(\tau)
+\end{aligned}
+\]</span></p>
 
                 
               </div>
@@ -328,7 +341,7 @@ for any device&gt;</h1>
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%AE%89%E5%8D%93%E5%88%B7%E6%9C%BA/" class="category-chain-item">安卓刷机</a>
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
   
   
 
@@ -343,9 +356,7 @@ for any device&gt;</h1>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%AE%89%E8%A3%85%E5%88%B7%E6%9C%BA/">#安装刷机</a>
-      
-        <a href="/tags/fastboot/">#fastboot</a>
+        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>
       
     </div>
   
@@ -357,8 +368,8 @@ for any device&gt;</h1>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>fastboot安装驱动</div>
-      <div>https://yinan.fun/fastboot安装驱动</div>
+      <div>Proximal Policy Optimization (PPO)</div>
+      <div>https://yinan.fun/ppo</div>
     </div>
     <div class="license-meta">
       
@@ -370,7 +381,7 @@ for any device&gt;</h1>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月27日</div>
+          <div>2023年9月2日</div>
         </div>
       
       
@@ -402,18 +413,12 @@ for any device&gt;</h1>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/ppo" title="Proximal Policy Optimization (PPO)">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Proximal Policy Optimization (PPO)</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E4%B8%AD%E6%A6%82%E7%8E%87%E4%B8%8E%E5%88%86%E6%95%B0" title="分类问题中概率与分数">
-                        <span class="hidden-mobile">分类问题中概率与分数</span>
+                      <a href="/fastboot%E5%AE%89%E8%A3%85%E9%A9%B1%E5%8A%A8" title="fastboot安装驱动">
+                        <span class="hidden-mobile">fastboot安装驱动</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
