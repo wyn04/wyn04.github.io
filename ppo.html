@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jsd.cdn.zzko.cn/gh/wyn04/my-pic-bed/202309072110938">
 <meta property="article:published_time" content="2023-09-02T12:20:17.000Z">
-<meta property="article:modified_time" content="2023-09-07T13:17:19.230Z">
+<meta property="article:modified_time" content="2023-09-07T13:21:07.667Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="语言模型">
 <meta name="twitter:card" content="summary_large_image">
@@ -240,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5k 字
+          4.9k 字
         
       </span>
     
@@ -361,12 +361,12 @@ policy。off-policy可以拿一批data用好几次。</p>
 <h3 id="importance-sampling">Importance Sampling</h3>
 <p>从分布p中采样x，当p无法积分，那就约等于右边的均值</p>
 <p><span class="math display">\[
-E_{x \nsim p}[f(x)] \approx N \sum_{i=1}^N f\left(x^i\right)
+E_{x \sim p}[f(x)] \approx N \sum_{i=1}^N f\left(x^i\right)
 \]</span>
 假设：无法从p中采样data，只能从q中采样data，那么这个等式无法近似 <span
 class="math display">\[
-E_{x \nsim p}[f(x)]=\int f(x) p(x) d x=\int f(x) \frac{p(x)}{q(x)} q(x)
-d x=E_{x \sim q}\left[f(x)\left[\frac{p(x)}{q(x)}\right]\right.
+E_{x \sim p}[f(x)]=\int f(x) p(x) d x=\int f(x) \frac{p(x)}{q(x)} q(x) d
+x=E_{x \sim q}\left[f(x)\left[\frac{p(x)}{q(x)}\right]\right.
 \]</span> 变成从q 分布中采样data，<span
 class="math inline">\(\displaystyle{\frac{p(x)}{q(x)}}\)</span>相当于修正权重</p>
 <h3 id="issue-of-importance-sampling">Issue of Importance Sampling</h3>
