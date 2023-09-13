@@ -6,7 +6,7 @@
   <link href="https://yinan.fun/atom.xml" rel="self"/>
   
   <link href="https://yinan.fun/"/>
-  <updated>2023-09-08T14:24:56.034Z</updated>
+  <updated>2023-09-13T13:10:31.912Z</updated>
   <id>https://yinan.fun/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>李宏毅-机器学习</title>
+    <link href="https://yinan.fun/%E6%9D%8E%E5%AE%8F%E6%AF%85-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"/>
+    <id>https://yinan.fun/%E6%9D%8E%E5%AE%8F%E6%AF%85-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0</id>
+    <published>2023-09-13T13:09:32.000Z</published>
+    <updated>2023-09-13T13:10:31.912Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="李宏毅-机器学校">李宏毅-机器学校</h1><h2 id="introduction-of-mldl">1. Introduction of ML/DL</h2><h3 id="machine-learning-looking-for-function">Machine Learning ≈Looking for Function</h3><figure><img src="http://qiniu.yinan.fun/202309132109260.png"alt="image-20230912144501532" /><figcaption aria-hidden="true">image-20230912144501532</figcaption></figure><h4 id="different-types-of-functions">Different types of Functions</h4><ul><li><p>Regression: The function outputs a scalar.</p><figure><img src="http://qiniu.yinan.fun/202309132109846.png"alt="image-20230912144609011" /><figcaption aria-hidden="true">image-20230912144609011</figcaption></figure></li><li><p>Classification: Given options (classes), the function outputs thecorrect one.</p><figure><img src="http://qiniu.yinan.fun/202309132109451.png"alt="image-20230912144627227" /><figcaption aria-hidden="true">image-20230912144627227</figcaption></figure></li><li><p>Structured Learning</p><p>create something with structure (image, document)</p></li></ul><h3 id="机器学习步骤">机器学习步骤</h3><h4 id="function-with-unknown-parameters">1. Function with UnknownParameters</h4><p>预测下一天视频点击率</p><figure><img src="http://qiniu.yinan.fun/202309132109297.png"alt="image-20230912144942120" /><figcaption aria-hidden="true">image-20230912144942120</figcaption></figure><p>𝑦 : no. of views on 2/26, 𝑥 ! : no. of views on 2/25</p><p>𝑤 and 𝑏 are unknown parameters (learned from data)</p><h4 id="define-loss-from-training-data">2. Define Loss from TrainingData</h4><ul><li><p>Loss is a function of parameters <spanclass="math inline">\(L(b,\omega)\)</span></p></li><li><p>Loss: how good a set of values is.</p></li></ul><h2 id="diffusion-model">Diffusion Model</h2><h4 id="diffusion-model-是如何运作的">Diffusion Model是如何运作的？</h4><figure><img src="http://qiniu.yinan.fun/202309132109460.png"alt="image-20230913203102138" /><figcaption aria-hidden="true">image-20230913203102138</figcaption></figure><h3 id="denoise-模组内部实际做的事情">Denoise 模组内部实际做的事情</h3><p>产生输入图片的杂序，再将图片减去杂序</p><p>为什么不直接训练一个生成图像的模型？难度更大</p><figure><img src="http://qiniu.yinan.fun/202309132110622.png"alt="image-20230913203221971" /><figcaption aria-hidden="true">image-20230913203221971</figcaption></figure><h3 id="如何训练-noise-predictor">如何训练 Noise Predictor</h3><p><strong>Forward Process (Diffusion Process)</strong></p><figure><img src="http://qiniu.yinan.fun/202309132110105.png"alt="image-20230913204138424" /><figcaption aria-hidden="true">image-20230913204138424</figcaption></figure><figure><img src="http://qiniu.yinan.fun/202309132110089.png"alt="image-20230913204205716" /><figcaption aria-hidden="true">image-20230913204205716</figcaption></figure><h3 id="text-to-image">Text-to-Image</h3><figure><img src="http://qiniu.yinan.fun/202309132109572.png"alt="image-20230913204307016" /><figcaption aria-hidden="true">image-20230913204307016</figcaption></figure><p>把文字作为Denoise模组的输入</p><p><img src="http://qiniu.yinan.fun/202309132109203.png"alt="image-20230913204414565" />Denoise模组内部</p><figure><img src="http://qiniu.yinan.fun/202309132109769.png"alt="image-20230913204519425" /><figcaption aria-hidden="true">image-20230913204519425</figcaption></figure><p>训练</p><figure><img src="http://qiniu.yinan.fun/202309132110149.png"alt="image-20230913204620902" /><figcaption aria-hidden="true">image-20230913204620902</figcaption></figure><h3 id="denoising-diffusion-probabilistic-models">Denoising DiffusionProbabilistic Models</h3><figure><img src="http://qiniu.yinan.fun/202309132109163.png"alt="image-20230913204712028" /><figcaption aria-hidden="true">image-20230913204712028</figcaption></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;李宏毅-机器学校&quot;&gt;李宏毅-机器学校&lt;/h1&gt;
+&lt;h2 id=&quot;introduction-of-mldl&quot;&gt;1. Introduction of ML/DL&lt;/h2&gt;
+&lt;h3 id=&quot;machine-learning-looking-for-function&quot;&gt;M</summary>
+      
+    
+    
+    
+    
+    <category term="学习笔记" scheme="https://yinan.fun/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux命令大全</title>
@@ -558,37 +582,6 @@ src=&quot;https://jsd.cdn.zzko.cn/gh/wyn04/my-pic-be</summary>
     <category term="编程" scheme="https://yinan.fun/tags/%E7%BC%96%E7%A8%8B/"/>
     
     <category term="Docker" scheme="https://yinan.fun/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2. 日志系统：一条SQL更新语句是如何执行的？</title>
-    <link href="https://yinan.fun/2.%20%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%9A%E4%B8%80%E6%9D%A1SQL%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84%EF%BC%9F"/>
-    <id>https://yinan.fun/2.%20%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%9A%E4%B8%80%E6%9D%A1SQL%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84%EF%BC%9F</id>
-    <published>2023-05-01T13:42:27.000Z</published>
-    <updated>2023-07-25T10:02:53.084Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="日志系统一条sql更新语句是如何执行的">2.日志系统：一条SQL更新语句是如何执行的？</h2><p>与查询流程不一样的是，更新流程还涉及两个重要的日志模块：<strong>redolog（重做日志）和 binlog（归档日志）</strong>。</p><h3 id="redo-log">2.1 redo log</h3><p>如果<strong>每一次的更新操作都需要写进磁盘</strong>，然后磁盘也要找到对应的那条记录，然后再更新，整个过程<strong>IO成本、查找成本都很高</strong>。</p><p><strong>WAL</strong>的全称是Write-AheadLogging，它的关键点就是<strong>先写日志，再写磁盘</strong>。</p><p>当有一条记录需要<strong>更新</strong>的时候，InnoDB引擎就会<strong>先把记录写到redolog</strong>里面，并<strong>更新内存</strong>，这个时候更新就算完成了。同时，InnoDB引擎会在适当的时候，将这个操作记录<strong>更新到磁盘里面</strong>，而这个更新往往是在系统比较<strong>空闲</strong>的时候做。</p><p>InnoDB的redolog是固定大小的，比如可以配置为一组4个文件，每个文件的大小是1GB，那么总共就可以记录4GB的操作。从头开始写，写到末尾就又回到开头循环写，如下面这个图所示</p><figure><imgsrc="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/image-20230508202933697.png"alt="image-20230508202933697" /><figcaption aria-hidden="true">image-20230508202933697</figcaption></figure><p><strong>writepos</strong>是<strong>当前记录的位置</strong>，一边写一边后移，写到第3号文件末尾后就回到0号文件开头。<strong>checkpoint</strong>是<strong>当前要擦除的位置</strong>，也是往后推移并且循环的，擦除记录前要把记录更新到数据文件。</p><p>write pos和checkpoint之间的是redolog上还空着的部分，可以用来记录新的操作。如果writepos追上checkpoint，表示redolog这时候不能再执行新的更新，得停下来先擦掉一些记录，把checkpoint推进一下。</p><p>有了redolog，InnoDB就可以保证<strong>即使数据库发生异常重启，之前提交的记录都不会丢失</strong>，这个能力称为<strong>crash-safe</strong>。</p><h3 id="binlog">2.2 binlog</h3><p>redolog是InnoDB引擎特有的日志，而<strong>Server层</strong>也有自己的日志，称为binlog（归档日志）。</p><p>这两种日志有以下三点不同。</p><ol type="1"><li><p>redolog是<strong>InnoDB引擎特有</strong>的；binlog是<strong>MySQL的Server层实现</strong>的，所有引擎都可以使用。</p></li><li><p>redolog是<strong>物理日志</strong>，记录的是“在某个数据页上<strong>做了什么修改</strong>”；binlog是<strong>逻辑日志</strong>，记录的是这个<strong>语句的原始逻辑</strong>，比如“给ID=2这一行的c字段加1”。</p></li><li><p>redolog是<strong>循环写</strong>的，空间固定会用完；binlog是可以<strong>追加写入</strong>的。“追加写”是指binlog文件写到一定大小后会切换到下一个，并<strong>不会覆盖</strong>以前的日志。</p></li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">mysql&gt; create table T(ID int primary key, c int);<br>mysql&gt; update T set c=c+1 where ID=2;<br></code></pre></td></tr></table></figure><p>执行器和InnoDB引擎在执行这个简单的update语句时的内部流程。</p><ol type="1"><li><p>执行器先<strong>找引擎取ID=2这一行</strong>。ID是主键，引擎直接用树搜索找到这一行。如果ID=2这一行所在的数据页本来就在内存中，就直接返回给执行器；否则，需要先从磁盘读入内存，然后再返回。</p></li><li><p>执行器拿到引擎给的行数据，<strong>把这个值加上1</strong>，比如原来是N，现在就是N+1，得到新的一行数据，再<strong>调用引擎接口写入这行新数据</strong>。</p></li><li><p><strong>引擎</strong>将这行新数据<strong>更新到内存</strong>中，同时将这个更新操作<strong>记录到redolog</strong>里面，此时redolog处于<strong>prepare状态</strong>。然后告知执行器执行完成了，随时可以提交事务。</p></li><li><p><strong>执行器</strong>生成这个操作的binlog，并把<strong>binlog写入磁盘</strong>。</p></li><li><p>执行器调用引擎的提交事务接口，引擎把刚刚写入的redolog改成<strong>提交（commit）状态</strong>，更新完成。</p></li></ol><p>这里我给出这个update语句的执行流程图，图中浅色框表示是在InnoDB内部执行的，深色框表示是在执行器中执行的</p><figure><imgsrc="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/image-20230508202945483.png"alt="image-20230508202945483" /><figcaption aria-hidden="true">image-20230508202945483</figcaption></figure><p>将redolog的写入拆成了两个步骤：prepare和commit，这就是"两阶段提交"。</p><h3 id="两阶段提交">2.3 两阶段提交</h3><p>为什么必须有“两阶段提交”呢？这是为了<strong>让两份日志之间的逻辑一致</strong>。</p><p>当需要数据库<strong>恢复到指定的某一秒</strong>时，比如某天下午两点发现中午十二点有一次误删表，需要找回数据，那你可以这么做：</p><ul><li><p>首先，找到<strong>最近的一次全量备份</strong>，如果你运气好，可能就是昨天晚上的一个备份，从这个备份恢复到临时库；</p></li><li><p>然后，从备份的时间点开始，<strong>将备份的binlog依次取出来</strong>，重放到中午误删表之前的那个时刻。</p></li></ul><p>由于redolog和binlog是两个独立的逻辑，如果不用两阶段提交，要么就是先写完redolog再写binlog，或者采用反过来的顺序。我们看看这两种方式会有什么问题。</p><p>仍然用前面的update语句来做例子。假设当前ID=2的行，字段c的值是0，再假设执行update语句过程中在写完第一个日志后，第二个日志还没有写完期间发生了crash，会出现什么情况呢？</p><ol type="1"><li><strong>先写先 redo log后写后 binlog</strong>。假设在redolog写完，binlog还没有写完的时候，MySQL进程异常重启。由于我们前面说过的，redolog写完之后，系统即使崩溃，仍然能够把数据恢复回来，所以恢复后这一行c的值是1。但是由于binlog没写完就crash了，这时候binlog里面就没有记录这个语句。因此，之后备份日志的时候，存起来的binlog里面就没有这条语句。然后你会发现，如果需要用这个binlog来恢复临时库的话，由于这个语句的binlog丢失，这个临时库就会少了这一次更新，恢复出来的这一行c的值就是0，与原库的值不同。</li><li><strong>先写先 binlog后写后 redolog</strong>。如果在binlog写完之后crash，由于redolog还没写，崩溃恢复以后这个事务无效，所以这一行c的值是0。但是binlog里面已经记录了“把c从0改成1”这个日志。所以，在之后用binlog来恢复的时候就多了一个事务出来，恢复出来的这一行c的值就是1，与原库的值不同。</li></ol><p>可以看到，如果不使用“两阶段提交”，那么数据库的状态就有可能和用它的日志恢复出来的库的状态不一致。</p><p>简单说，redolog和binlog都可以用于表示事务的提交状态，而两阶段提交就是<strong>让这两个状态保持逻辑上的一致</strong>。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;日志系统一条sql更新语句是如何执行的&quot;&gt;2.
-日志系统：一条SQL更新语句是如何执行的？&lt;/h2&gt;
-&lt;p&gt;与查询流程不一样的是，更新流程还涉及两个重要的日志模块：&lt;strong&gt;redo
-log（重做日志）和 binlog（归档日志）&lt;/strong&gt;。&lt;</summary>
-      
-    
-    
-    
-    <category term="学习笔记" scheme="https://yinan.fun/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="编程" scheme="https://yinan.fun/tags/%E7%BC%96%E7%A8%8B/"/>
-    
-    <category term="数据库" scheme="https://yinan.fun/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-    <category term="MySQL" scheme="https://yinan.fun/tags/MySQL/"/>
     
   </entry>
   
