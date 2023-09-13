@@ -4,25 +4,6 @@
   
   
   <entry>
-    <title>李宏毅-机器学习</title>
-    <link href="/%E6%9D%8E%E5%AE%8F%E6%AF%85-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html"/>
-    <url>/%E6%9D%8E%E5%AE%8F%E6%AF%85-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html</url>
-    
-    <content type="html"><![CDATA[<h1 id="李宏毅-机器学校">李宏毅-机器学校</h1><h2 id="introduction-of-mldl">1. Introduction of ML/DL</h2><h3 id="machine-learning-looking-for-function">Machine Learning ≈Looking for Function</h3><figure><img src="http://qiniu.yinan.fun/202309132109260.png"alt="image-20230912144501532" /><figcaption aria-hidden="true">image-20230912144501532</figcaption></figure><h4 id="different-types-of-functions">Different types of Functions</h4><ul><li><p>Regression: The function outputs a scalar.</p><figure><img src="http://qiniu.yinan.fun/202309132109846.png"alt="image-20230912144609011" /><figcaption aria-hidden="true">image-20230912144609011</figcaption></figure></li><li><p>Classification: Given options (classes), the function outputs thecorrect one.</p><figure><img src="http://qiniu.yinan.fun/202309132109451.png"alt="image-20230912144627227" /><figcaption aria-hidden="true">image-20230912144627227</figcaption></figure></li><li><p>Structured Learning</p><p>create something with structure (image, document)</p></li></ul><h3 id="机器学习步骤">机器学习步骤</h3><h4 id="function-with-unknown-parameters">1. Function with UnknownParameters</h4><p>预测下一天视频点击率</p><figure><img src="http://qiniu.yinan.fun/202309132109297.png"alt="image-20230912144942120" /><figcaption aria-hidden="true">image-20230912144942120</figcaption></figure><p>𝑦 : no. of views on 2/26, 𝑥 ! : no. of views on 2/25</p><p>𝑤 and 𝑏 are unknown parameters (learned from data)</p><h4 id="define-loss-from-training-data">2. Define Loss from TrainingData</h4><ul><li><p>Loss is a function of parameters <spanclass="math inline">\(L(b,\omega)\)</span></p></li><li><p>Loss: how good a set of values is.</p></li></ul><h2 id="diffusion-model">Diffusion Model</h2><h4 id="diffusion-model-是如何运作的">Diffusion Model是如何运作的？</h4><figure><img src="http://qiniu.yinan.fun/202309132109460.png"alt="image-20230913203102138" /><figcaption aria-hidden="true">image-20230913203102138</figcaption></figure><h3 id="denoise-模组内部实际做的事情">Denoise 模组内部实际做的事情</h3><p>产生输入图片的杂序，再将图片减去杂序</p><p>为什么不直接训练一个生成图像的模型？难度更大</p><figure><img src="http://qiniu.yinan.fun/202309132110622.png"alt="image-20230913203221971" /><figcaption aria-hidden="true">image-20230913203221971</figcaption></figure><h3 id="如何训练-noise-predictor">如何训练 Noise Predictor</h3><p><strong>Forward Process (Diffusion Process)</strong></p><figure><img src="http://qiniu.yinan.fun/202309132110105.png"alt="image-20230913204138424" /><figcaption aria-hidden="true">image-20230913204138424</figcaption></figure><figure><img src="http://qiniu.yinan.fun/202309132110089.png"alt="image-20230913204205716" /><figcaption aria-hidden="true">image-20230913204205716</figcaption></figure><h3 id="text-to-image">Text-to-Image</h3><figure><img src="http://qiniu.yinan.fun/202309132109572.png"alt="image-20230913204307016" /><figcaption aria-hidden="true">image-20230913204307016</figcaption></figure><p>把文字作为Denoise模组的输入</p><p><img src="http://qiniu.yinan.fun/202309132109203.png"alt="image-20230913204414565" />Denoise模组内部</p><figure><img src="http://qiniu.yinan.fun/202309132109769.png"alt="image-20230913204519425" /><figcaption aria-hidden="true">image-20230913204519425</figcaption></figure><p>训练</p><figure><img src="http://qiniu.yinan.fun/202309132110149.png"alt="image-20230913204620902" /><figcaption aria-hidden="true">image-20230913204620902</figcaption></figure><h3 id="denoising-diffusion-probabilistic-models">Denoising DiffusionProbabilistic Models</h3><figure><img src="http://qiniu.yinan.fun/202309132109163.png"alt="image-20230913204712028" /><figcaption aria-hidden="true">image-20230913204712028</figcaption></figure>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>学习笔记</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Linux命令大全</title>
     <link href="/Linux%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8.html"/>
     <url>/Linux%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8.html</url>
