@@ -8,8 +8,8 @@
 <head>
   <meta name="baidu-site-verification" content="codeva-pajW5JmcAJ" />
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/icon.jpg">
-  <link rel="icon" href="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/icon.jpg">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://image.yinan.fun/icon.jpg">
+  <link rel="icon" href="https://image.yinan.fun/icon.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -24,11 +24,13 @@
 <meta property="og:site_name" content="yinan的博客">
 <meta property="og:description" content="评分卡模型 数据导入 使用kaggle上的Give Me Some Credit数据 1df &#x3D; pd.read_csv(&amp;#x27;cs-training.csv&amp;#x27;) 数据预处理 缺失值处理 1print(df.info()) 12345678910111213141516171819&lt;class &amp;#x27;pandas.core.frame.DataFrame&amp;#x27;&amp;g">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.yinan.fun/202308131313073.png">
 <meta property="article:published_time" content="2023-08-13T05:13:31.000Z">
-<meta property="article:modified_time" content="2023-08-15T02:00:32.420Z">
+<meta property="article:modified_time" content="2023-09-14T01:18:38.791Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://image.yinan.fun/202308131313073.png">
   
   
   
@@ -328,8 +330,7 @@ WOE_i
 \]</span></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 计算每个变量的IV值</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_iv_data</span>(<span class="hljs-params">cut,cut_woe</span>):<br>    grouped = df.groupby(cut)[<span class="hljs-string">&#x27;好坏客户&#x27;</span>].value_counts()<br>    cut_iv = ((grouped.unstack().iloc[:,<span class="hljs-number">1</span>]/df[<span class="hljs-string">&#x27;好坏客户&#x27;</span>].<span class="hljs-built_in">sum</span>()- grouped.unstack().iloc[:,<span class="hljs-number">0</span>]/(df[<span class="hljs-string">&#x27;好坏客户&#x27;</span>].count()-df[<span class="hljs-string">&#x27;好坏客户&#x27;</span>].<span class="hljs-built_in">sum</span>()))*cut_woe).<span class="hljs-built_in">sum</span>()<br>    <span class="hljs-keyword">return</span> cut_iv<br><br><br>cut1_iv = get_iv_data(cut1,cut1_woe)<br>cut2_iv = get_iv_data(cut2,cut2_woe)<br>cut3_iv = get_iv_data(cut3,cut3_woe)<br>cut4_iv = get_iv_data(cut4,cut4_woe)<br>cut5_iv = get_iv_data(cut5,cut5_woe)<br>cut6_iv = get_iv_data(cut6,cut6_woe)<br>cut7_iv = get_iv_data(cut7,cut7_woe)<br>cut8_iv = get_iv_data(cut8,cut8_woe)<br>cut9_iv = get_iv_data(cut9,cut9_woe)<br>cut10_iv = get_iv_data(cut10,cut10_woe)<br></code></pre></td></tr></table></figure>
 <figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/202308131313073.png" srcset="/img/loading.gif" lazyload
+<img src="https://image.yinan.fun/202308131313073.png" srcset="/img/loading.gif" lazyload
 alt="image-20230812214550651" />
 <figcaption aria-hidden="true">image-20230812214550651</figcaption>
 </figure>

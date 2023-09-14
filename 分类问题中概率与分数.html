@@ -8,8 +8,8 @@
 <head>
   <meta name="baidu-site-verification" content="codeva-pajW5JmcAJ" />
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/icon.jpg">
-  <link rel="icon" href="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/icon.jpg">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://image.yinan.fun/icon.jpg">
+  <link rel="icon" href="https://image.yinan.fun/icon.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -24,11 +24,14 @@
 <meta property="og:site_name" content="yinan的博客">
 <meta property="og:description" content="分类问题中概率与分数 什么是分数 对于二分类器来说，将其中一个类别称为正类，更高的分数意味着模型更有信心输入（observation）属于正类。 什么是概率 概率可能很难定义。例如，如果我们做一个降雨预测器，它告诉我们今天下雨的几率为20%，我们如何判断它是否正确？在检查预测时，要么会下雨（要么不会下雨）。标准的方法是，如果我们采取看起来与今天相似的日子，那么其中20%的日子应该会下雨，但随后我们">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.yinan.fun/202308201042945.png">
+<meta property="og:image" content="https://image.yinan.fun/202308201323942.png">
 <meta property="article:published_time" content="2023-08-20T05:22:52.000Z">
-<meta property="article:modified_time" content="2023-08-20T05:23:25.038Z">
+<meta property="article:modified_time" content="2023-09-14T01:18:39.298Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://image.yinan.fun/202308201042945.png">
   
   
   
@@ -362,9 +365,7 @@ target="_blank" rel="noopener" href="https://www.kaggle.com/datasets/rtatman/did
 <p>调用<a
 target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.calibration.calibration_curve.html">calibration_curve</a>将相似的预测概率分箱在一起，并计算在该绑定中实际下雨的时间百分比。</p>
 <figure>
-<img
-src="https://jsd.cdn.zzko.cn/gh/wyn04/my-pic-bed/202308201042945.png" srcset="/img/loading.gif" lazyload
-alt="校准曲线" />
+<img src="https://image.yinan.fun/202308201042945.png" srcset="/img/loading.gif" lazyload alt="校准曲线" />
 <figcaption aria-hidden="true">校准曲线</figcaption>
 </figure>
 <p>如果我们的分类器输出良好的概率，那么校准曲线上这些点将接近这条红线。校准曲线上的点告诉我们，当我们的分类器声称下雨的概率约为25%时，实际上有33%的时间下雨了。</p>
@@ -385,8 +386,7 @@ p_i = \frac{1}{1+e^{Af(x_i)+B}}
 class="math inline">\(f\)</span>表示一个二分类模型，y的值为-1或+1，A和B就是普拉特缩放要学习的参数。</p>
 <p>在天气示例中，我们可以将普拉特缩放应用于我们的朴素贝叶斯分类器。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">calibrated_nb_rain = CalibratedClassifierCV(nb_rain, cv=<span class="hljs-number">5</span>, method=<span class="hljs-string">&#x27;isotonic&#x27;</span>)<br><span class="hljs-comment"># Note we need to refit!</span><br>calibrated_nb_rain.fit(X_train, y_train);<br><br><span class="hljs-comment"># access the probabilities after recalibration</span><br>calibrated_probs = calibrated_nb_rain.predict_proba(X_test)[:, <span class="hljs-number">1</span>]<br>binned_true_p, binned_predict_p = calibration_curve(y_test, calibrated_probs, n_bins=<span class="hljs-number">10</span>)<br></code></pre></td></tr></table></figure>
-<p><img
-src="https://jsd.cdn.zzko.cn/gh/wyn04/my-pic-bed/202308201323942.png" srcset="/img/loading.gif" lazyload
+<p><img src="https://image.yinan.fun/202308201323942.png" srcset="/img/loading.gif" lazyload
 alt="image-20230820115155793" />修正后的概率更接近红线。</p>
 
                 

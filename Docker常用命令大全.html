@@ -8,8 +8,8 @@
 <head>
   <meta name="baidu-site-verification" content="codeva-pajW5JmcAJ" />
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/icon.jpg">
-  <link rel="icon" href="https://cdn.jsdelivr.net/gh/wyn04/my-pic-bed/icon.jpg">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://image.yinan.fun/icon.jpg">
+  <link rel="icon" href="https://image.yinan.fun/icon.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -24,14 +24,20 @@
 <meta property="og:site_name" content="yinan的博客">
 <meta property="og:description" content="Docker常用命令大全 1、帮助类启动命令  启动docker： systemctl start docker 停止docker： systemctl stop docker 重启docker： systemctl restart docker 查看docker状态： systemctl status docker 开机启动： systemctl enable docker 查看docker概要">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/7000.png">
+<meta property="og:image" content="https://image.yinan.fun/7000-20230417102853412.png">
+<meta property="og:image" content="https://image.yinan.fun/7000.png">
+<meta property="og:image" content="https://image.yinan.fun/7000-20230417102853439.png">
+<meta property="og:image" content="https://image.yinan.fun/7000-20230417102853482.png">
+<meta property="og:image" content="https://image.yinan.fun/7000-20230417102853467.png">
+<meta property="og:image" content="https://image.yinan.fun/7000-20230417102853397.png">
+<meta property="og:image" content="https://image.yinan.fun/7000-20230417102853593.png">
 <meta property="article:published_time" content="2023-05-02T15:37:59.000Z">
-<meta property="article:modified_time" content="2023-09-13T16:12:43.329Z">
+<meta property="article:modified_time" content="2023-09-14T01:18:42.329Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="编程">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/7000.png">
+<meta name="twitter:image" content="https://image.yinan.fun/7000-20230417102853412.png">
   
   
   
@@ -311,8 +317,7 @@
 <h3 id="列出本地主机上的镜像">1、列出本地主机上的镜像</h3>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker images<br></code></pre></td></tr></table></figure>
 <figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/7000-20230417102853412.png" srcset="/img/loading.gif" lazyload
+<img src="https://image.yinan.fun/7000-20230417102853412.png" srcset="/img/loading.gif" lazyload
 alt="img" />
 <figcaption aria-hidden="true">img</figcaption>
 </figure>
@@ -339,8 +344,7 @@ REPOSITORY:TAG 来定义不同的镜像。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker search [OPTIONS] 镜像名字<br></code></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@docker ~]# docker search mysql<br><br>NAME                             DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED<br><br>mysql                            MySQL is a widely used, open-source relation…   12378     [OK]       <br><br>mariadb                          MariaDB Server is a high performing open sou…   4762      [OK]       <br><br>mysql/mysql-server               Optimized MySQL Server Docker images. Create…   917                  [OK]<br><br>percona                          Percona Server is a fork of the MySQL relati…   572       [OK]       <br><br>phpmyadmin                       phpMyAdmin - A web interface for MySQL and M…   494       [OK]       <br><br>mysql/mysql-cluster              Experimental MySQL Cluster Docker images. Cr…   93                   <br><br>centos/mysql-57-centos7          MySQL 5.7 SQL database server                   92                   <br><br>bitnami/mysql                    Bitnami MySQL Docker Image                      68                   [OK]<br><br>ubuntu/mysql                     MySQL open source fast, stable, multi-thread…   29                   <br><br>circleci/mysql                   MySQL is a widely used, open-source relation…   25                   <br><br>mysql/mysql-router               MySQL Router provides transparent routing be…   23                   <br><br>centos/mysql-56-centos7          MySQL 5.6 SQL database server                   22                   <br><br>google/mysql                     MySQL server for Google Compute Engine          21                   [OK]<br><br>vmware/harbor-db                 Mysql container for Harbor                      10                   <br><br>mysqlboy/docker-mydumper         docker-mydumper containerizes MySQL logical …   3                    <br><br>mysqlboy/mydumper                mydumper for mysql logcial backups              3                    <br><br>bitnami/mysqld-exporter                                                          2                    <br><br>ibmcom/mysql-s390x               Docker image for mysql-s390x                    2                    <br><br>mysql/mysql-operator             MySQL Operator for Kubernetes                   0                    <br><br>ibmcom/tidb-ppc64le              TiDB is a distributed NewSQL database compat…   0                    <br><br>mysqlboy/elasticsearch                                                           0                    <br><br>mysqleatmydata/mysql-eatmydata                                                   0                    <br><br>cimg/mysql                                                                       0                    <br><br>mysql/ndb-operator               MySQL NDB Operator for Kubernetes               0                    <br><br>mirantis/mysql  <br></code></pre></td></tr></table></figure>
 <figure>
-<img src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/7000.png" srcset="/img/loading.gif" lazyload
-alt="img" />
+<img src="https://image.yinan.fun/7000.png" srcset="/img/loading.gif" lazyload alt="img" />
 <figcaption aria-hidden="true">img</figcaption>
 </figure>
 <p>在这里插入图片描述</p>
@@ -376,8 +380,7 @@ id="面试题谈谈docker虚悬镜像是什么">6、面试题：谈谈docker虚�
 <p>仓库名、标签都是<none>的镜像，俗称虚悬镜像dangling image</p>
 </blockquote>
 <figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/7000-20230417102853439.png" srcset="/img/loading.gif" lazyload
+<img src="https://image.yinan.fun/7000-20230417102853439.png" srcset="/img/loading.gif" lazyload
 alt="img" />
 <figcaption aria-hidden="true">img</figcaption>
 </figure>
@@ -387,8 +390,7 @@ alt="img" />
 <p>有镜像才能创建容器</p>
 </blockquote>
 <figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/7000-20230417102853482.png" srcset="/img/loading.gif" lazyload
+<img src="https://image.yinan.fun/7000-20230417102853482.png" srcset="/img/loading.gif" lazyload
 alt="img" />
 <figcaption aria-hidden="true">img</figcaption>
 </figure>
@@ -404,15 +406,13 @@ alt="img" />
 <p>-P: 随机端口映射，大写P</p>
 <p>-p: 指定端口映射，小写p</p>
 <figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/7000-20230417102853467.png" srcset="/img/loading.gif" lazyload
+<img src="https://image.yinan.fun/7000-20230417102853467.png" srcset="/img/loading.gif" lazyload
 alt="img" />
 <figcaption aria-hidden="true">img</figcaption>
 </figure>
 <p>在这里插入图片描述</p>
 <figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/7000-20230417102853397.png" srcset="/img/loading.gif" lazyload
+<img src="https://image.yinan.fun/7000-20230417102853397.png" srcset="/img/loading.gif" lazyload
 alt="img" />
 <figcaption aria-hidden="true">img</figcaption>
 </figure>
@@ -536,8 +536,7 @@ target="_blank" rel="noopener" href="https://cloud.tencent.com/product/crs?from=
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@docker /]# cat centos.tar.gz | docker import - xiaobear/centos:8.8<br><br>sha256:12e7a58fc36a755fa63a82f78364291de7271c3ade90f2f5581cc50bc2416cb2<br><br>[root@docker /]# docker images<br><br>REPOSITORY        TAG       IMAGE ID       CREATED              SIZE<br><br>xiaobear/centos   8.8       12e7a58fc36a   About a minute ago   231MB<br><br>redis             latest    7614ae9453d1   3 months ago         113MB<br><br>hello-world       latest    feb5d9fea6a5   6 months ago         13.3kB<br><br>centos            latest    5d0da3dc9764   6 months ago         231MB<br><br>[root@docker /]# <br></code></pre></td></tr></table></figure>
 <h2 id="常用命令汇总">7、常用命令汇总</h2>
 <figure>
-<img
-src="https://jsdelivr.codeqihan.com/gh/wyn04/my-pic-bed/7000-20230417102853593.png" srcset="/img/loading.gif" lazyload
+<img src="https://image.yinan.fun/7000-20230417102853593.png" srcset="/img/loading.gif" lazyload
 alt="img" />
 <figcaption aria-hidden="true">img</figcaption>
 </figure>
