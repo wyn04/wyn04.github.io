@@ -61,7 +61,7 @@
 <meta property="og:image" content="https://image.yinan.fun/202309152150366.png">
 <meta property="og:image" content="https://image.yinan.fun/202309152150367.png">
 <meta property="article:published_time" content="2023-09-16T07:59:12.000Z">
-<meta property="article:modified_time" content="2023-09-16T08:06:21.323Z">
+<meta property="article:modified_time" content="2023-09-16T08:17:18.034Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="李宏毅">
 <meta property="article:tag" content="生成模型">
@@ -276,7 +276,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6k 字
+          6.1k 字
         
       </span>
     
@@ -444,7 +444,7 @@ g\operatorname*{max}_{\theta}\prod_{i=1}^{m}P_{\theta}\left(x^{i}\right)\
 g\prod_{i=1}^{m}P_{\theta}\left(x^{i}\right)\\
 &amp;=a r g\,\operatorname*{max}_{\theta}\sum_{i=1}^{m}l o g
 P_{\theta}(x^{i})\,\approx a r g\,\operatorname*{max}_{\theta}E_{x-P_{d
-a t a}}[l o g P_{\theta}(x)]
+a t a} }[l o g P_{\theta}(x)]
 \end{align*}
 \]</span> 减去与 <span class="math inline">\(\theta\)</span>
 无关的第二项 <span class="math inline">\(\int_{x}P_{d a t a}(x)l o g
@@ -453,7 +453,7 @@ P_{d a t a}(x)d x\)</span> <span class="math display">\[
 &amp;=a r g\operatorname*{max}_{\theta}\int_{x}P_{d a t a}(x)l o g
 P_{\theta}(x)d x -\int_{x}P_{d a t a}(x)l o g P_{d a t a}(x)d x \\
 &amp;=a r g\operatorname*{max}_{\theta}\int_{x}P_{d a t a}(x)l o
-g{\frac{P_{\theta}(x)}{P_{d a t a}(x)}}d x\ =a r
+g{\frac{P_{\theta}(x)}{P_{d a t a}(x)} }d x\ =a r
 g\operatorname*{min}_{\theta}K L(P_{d a t a}||P_{\theta})
 \end{align*}
 \]</span> Maximum Likelihood = Minimize KL Divergence</p>
@@ -504,28 +504,27 @@ alt="image-20230916153426098" />
 <figcaption aria-hidden="true">image-20230916153426098</figcaption>
 </figure>
 <p>下面的公式中的<span class="math inline">\(q(z|x)\)</span>
-可以是任意的分布，在VAE中是Encoder $$ <span
-class="math display">\[\begin{align}
+可以是任意的分布，在VAE中是Encoder <span class="math display">\[
+\begin{align}
 l o g P_{\theta}(x)&amp;=\int_{z}\,q(z|x)l o g P(x)d z \\
-
-&amp;=\int_{z}q(z|x)l o g\left({\frac{P(z,x)}{P(z|x)}}\right)d z\
-=\int_{z}\,q(z|x)l o
-g\left({\frac{P(z,x)}{q(z|x)}}{\frac{q(z|x)}{P(z|x)}}\right)d z  \\
-
-&amp;
-=\int_{z}q(z|x)l o g\left({\frac{P(z,x)}{q(z|x)}}\right)d
-z+\int_{z}q(z|x)l o g\left({\frac{q(z|x)}{P(z|x)}}\right)d z
-
-
-\end{align}\]</span> <span class="math display">\[
-第二项是$K L\left(q(z|x)||P(z|x)\right) $，始终大于0，因此
-\]</span> _{z},q(z|x)l o g,(),d z =[l o g,()] $$ 可以通过最大化Lower
-bound来使<span class="math inline">\(logP(x)_{\theta}\)</span>最大</p>
+&amp;=\int_{z}q(z|x)l o g\left({\frac{P(z,x)}{P(z|x)} }\right)d z\
+=\int_{z}\,q(z|x)l o g\left({\frac{P(z,x)}{q(z|x)}
+}{\frac{q(z|x)}{P(z|x)} }\right)d z  \\
+&amp;=\int_{z}q(z|x)l o g\left({\frac{P(z,x)}{q(z|x)} }\right)d
+z+\int_{z}q(z|x)l o g\left({\frac{q(z|x)}{P(z|x)} }\right)d z
+\end{align}
+\]</span> 第二项是$K L(q(z|x)||P(z|x)) $，始终大于0，因此 <span
+class="math display">\[
+\geq\int_{z}\,q(z|x)l o g\,\bigg(\frac{P(z,x)}{q(z|x)}\bigg)\,d z\
+=\operatorname*{E_{q(z|x)} }[l o g\,\bigg(\frac{P(x,z)}{q(z|x)}\bigg)]
+\]</span> 可以通过最大化Lower bound来使<span
+class="math inline">\(logP(x)_{\theta}\)</span>最大</p>
 <h3 id="ddpm-compute-p_thetax">DDPM: Compute <span
 class="math inline">\(P_{\theta}(x)\)</span></h3>
 <p><img src="https://image.yinan.fun/202309152150350.png" srcset="/img/loading.gif" lazyload
 alt="image-20230914201415387" /> <span class="math display">\[
-P_{\theta}(x_{0})=\int_{x_{1}:x_{T}}P\left(x_{T}\right)P_{\theta}(x_{T-1}|x_{T})\ldots
+P_{\theta}(x_{0})=\int_{x_{1}:x_{T}
+}P\left(x_{T}\right)P_{\theta}(x_{T-1}|x_{T})\ldots
 P_{\theta}(x_{t-1}|x_{t})\ldots P_{\theta}(x_{0}|x_{1})d x_{1}:x_{T}
 \]</span> 表示对所有可能的<span
 class="math inline">\(x_{1}:x_{T}\)</span>求积分</p>
@@ -549,12 +548,12 @@ alt="image-20230915142737742" />
 <figcaption aria-hidden="true">image-20230915142737742</figcaption>
 </figure>
 <p>推理可得 <span class="math display">\[
-x_t = {\sqrt{1-\beta_{1}}}\ldots{\sqrt{1-\beta_{t}}} \times x_0+
+x_t = {\sqrt{1-\beta_{1} }}\ldots{\sqrt{1-\beta_{t} }} \times x_0+
 \sqrt{1-(1-\beta_{1})\dots(1-\beta_{t})} \times \epsilon
-\]</span> 令<span class="math inline">\(\sqrt{\overline{\alpha}_{t}} =
+\]</span> 令<span class="math inline">\(\sqrt{\overline{\alpha}_{t} } =
 (1-\beta_{1})\dots(1-\beta_{t})\)</span>， <span class="math display">\[
-x_t = \sqrt{\overline{\alpha}_{t}} \times x_0+ \sqrt{1 -
-\overline{\alpha}_{t}} \times \epsilon
+x_t = \sqrt{\overline{\alpha}_{t} } \times x_0+ \sqrt{1 -
+\overline{\alpha}_{t} } \times \epsilon
 \]</span></p>
 <h3 id="ddpm-lower-bound-of-logp_thetax">DDPM: Lower bound of <span
 class="math inline">\(logP_{\theta}(x)\)</span></h3>
@@ -581,10 +580,11 @@ L{\bigl(}q(x_{t-1}|x_{t},x_{0})||P(x_{t-1}|x_{t})\bigr)\right]\)</span></p>
 <p><img src="https://image.yinan.fun/202309152150355.png" srcset="/img/loading.gif" lazyload
 alt="image-20230915145338191" /> <span class="math display">\[
 \begin{align}
-q(x_{t-1}|x_{t},x_{0})&amp;={\frac{q(x_{t-1},x_{t},x_{0})}{q(x_{t},x_{0})}}\\
-&amp;={\frac{q(x_{t}|x_{t-1})q(x_{t-1}|x_{0})q(x_{0})}{q(x_{t}|x_{0})q(x_{0})}}
-\\
-&amp;={\frac{q(x_{t}|x_{t-1})q(x_{t-1}|x_{0})}{q(x_{t}|x_{0})}}
+q(x_{t-1}|x_{t},x_{0})&amp;={\frac{q(x_{t-1},x_{t},x_{0})}{q(x_{t},x_{0})}
+}\\
+&amp;={\frac{q(x_{t}|x_{t-1})q(x_{t-1}|x_{0})q(x_{0})}{q(x_{t}|x_{0})q(x_{0})}
+} \\
+&amp;={\frac{q(x_{t}|x_{t-1})q(x_{t-1}|x_{0})}{q(x_{t}|x_{0})} }
 \end{align}
 \]</span> 再经过数学推理。。。</p>
 <figure>
@@ -601,7 +601,7 @@ alt="image-20230915150530122" />
 </figure>
 <p>所以，第三项就是最小化两个Gaussian分布的KL散度</p>
 <p>计算两个Gaussian分布的KL散度的公式 <span class="math display">\[
-D_{\mathrm{KL}}({\cal N}(x;\mu_{x},\Sigma_{x})\parallel{\cal
+D_{\mathrm{KL} }({\cal N}(x;\mu_{x},\Sigma_{x})\parallel{\cal
 N}(y;\mu_{y},\Sigma_{y}))=\frac{1}{2}\left[\log\frac{\left|\Sigma_{y}\right|}{\left|\Sigma_{x}\right|}-d+\mathrm{tr}(\Sigma_{y}^{-1}\Sigma_{x})+(\mu_{y}-\mu_{x})^{T}\Sigma_{y}^{-1}(\mu_{y}-\mu_{x})\right]
 \]</span></p>
 <ul>
@@ -619,21 +619,26 @@ alt="image-20230915151128438" />
 <p>要最小化两个Gaussian的分布的KL散度，就要让他们的均值更接近</p>
 <p><img src="https://image.yinan.fun/202309152150359.png" srcset="/img/loading.gif" lazyload
 alt="image-20230915152643038" /> <span class="math display">\[
-x_{t}=\sqrt{\bar{\alpha}_{t}}x_{0}+\sqrt{1-\bar{\alpha}_{t}}\varepsilon
+x_{t}=\sqrt{\bar{\alpha}_{t} }x_{0}+\sqrt{1-\bar{\alpha}_{t}
+}\varepsilon
 \]</span></p>
 <p><span class="math display">\[
-x_{t}-\sqrt{1-\bar{\alpha}_{t}}\varepsilon=\sqrt{\bar{\alpha}_{t}}x_{0}
+x_{t}-\sqrt{1-\bar{\alpha}_{t} }\varepsilon=\sqrt{\bar{\alpha}_{t}
+}x_{0}
 \]</span></p>
 <p><span class="math display">\[
-{\frac{x_{t}-{\sqrt{1-{\bar{\alpha}}_{t}}\varepsilon}}{ {\sqrt{
-{\bar{\alpha}}_{t}}}}}=x_{0}
+{\frac{x_{t}-{\sqrt{1-{\bar{\alpha} }_{t} }\varepsilon} }{ {\sqrt{
+{\bar{\alpha} }_{t} }} }}=x_{0}
 \]</span></p>
 <p>将<span
 class="math inline">\(x_0\)</span>代入均值的公式中，再经过数学推理。。。
 <span class="math display">\[
-\frac{\sqrt{\alpha_{t-1}}\beta_{t}\left(\frac{\alpha_{t}-\sqrt{1-\overline{\alpha_{t}}}\varepsilon}{\sqrt{\overline{\alpha_{t}}}}\right)+\sqrt{\alpha_{t}}(1-\overline{\alpha}_{t-1})x_{t}}{1-\overline{\alpha}_{t}}
-\\
-=\frac{1}{\sqrt{\alpha_{t}}}\left(x_{t}-\frac{1-\alpha_{t}}{\sqrt{1-\overline{\alpha}_{t}}}\,\varepsilon\right)
+\frac{\sqrt{\alpha_{t-1}
+}\beta_{t}\left(\frac{\alpha_{t}-\sqrt{1-\overline{\alpha_{t}
+}}\varepsilon}{\sqrt{\overline{\alpha_{t} }} }\right)+\sqrt{\alpha_{t}
+}(1-\overline{\alpha}_{t-1})x_{t} }{1-\overline{\alpha}_{t} } \\
+=\frac{1}{\sqrt{\alpha_{t} }}\left(x_{t}-\frac{1-\alpha_{t}
+}{\sqrt{1-\overline{\alpha}_{t} }}\,\varepsilon\right)
 \]</span></p>
 <p>上式中只有<span
 class="math inline">\(\epsilon\)</span>是未知的，需要网络预测（<span
