@@ -24,15 +24,15 @@
 <meta property="og:site_name" content="yinan的博客">
 <meta property="og:description" content="Diffusion Model Diffusion Model 是如何运作的？ 将噪声输入Denoise Model T 次生成干净的图像，步骤数t（噪声的程度）一同输入Denoise Model   image-20230913203102138  Denoise 模组内部实际做的事情 产生输入图片的杂序，再将图片减去杂序 为什么不直接训练一个生成图像的模型？难度更大   image-20230">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://qiniu.yinan.fun/202309132032147.png">
-<meta property="og:image" content="http://qiniu.yinan.fun/202309132032041.png">
-<meta property="og:image" content="http://qiniu.yinan.fun/202309132041684.png">
-<meta property="og:image" content="http://qiniu.yinan.fun/202309132042829.png">
-<meta property="og:image" content="http://qiniu.yinan.fun/202309132043515.png">
-<meta property="og:image" content="http://qiniu.yinan.fun/202309132045259.png">
-<meta property="og:image" content="http://qiniu.yinan.fun/202309132045497.png">
-<meta property="og:image" content="http://qiniu.yinan.fun/202309132046063.png">
-<meta property="og:image" content="http://qiniu.yinan.fun/202309132047230.png">
+<meta property="og:image" content="https://image.yinan.fun/202309161633319.png">
+<meta property="og:image" content="https://image.yinan.fun/202309161633712.png">
+<meta property="og:image" content="https://image.yinan.fun/202309161633108.png">
+<meta property="og:image" content="https://image.yinan.fun/202309161633844.png">
+<meta property="og:image" content="https://image.yinan.fun/202309161634005.png">
+<meta property="og:image" content="https://image.yinan.fun/202309161634588.png">
+<meta property="og:image" content="https://image.yinan.fun/202309161634450.png">
+<meta property="og:image" content="https://image.yinan.fun/202309161634572.png">
+<meta property="og:image" content="https://image.yinan.fun/202309161634961.png">
 <meta property="og:image" content="https://image.yinan.fun/202309141116049.png">
 <meta property="og:image" content="https://image.yinan.fun/202309141116051.png">
 <meta property="og:image" content="https://image.yinan.fun/202309141116052.png">
@@ -61,12 +61,12 @@
 <meta property="og:image" content="https://image.yinan.fun/202309152150366.png">
 <meta property="og:image" content="https://image.yinan.fun/202309152150367.png">
 <meta property="article:published_time" content="2023-09-16T07:59:12.000Z">
-<meta property="article:modified_time" content="2023-09-16T08:17:18.034Z">
+<meta property="article:modified_time" content="2023-09-16T08:35:54.138Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="李宏毅">
 <meta property="article:tag" content="生成模型">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://qiniu.yinan.fun/202309132032147.png">
+<meta name="twitter:image" content="https://image.yinan.fun/202309161633319.png">
   
   
   
@@ -276,7 +276,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.1k 字
+          6k 字
         
       </span>
     
@@ -336,7 +336,7 @@
 <p>将噪声输入Denoise Model T
 次生成干净的图像，步骤数t（噪声的程度）一同输入Denoise Model</p>
 <figure>
-<img src="http://qiniu.yinan.fun/202309132032147.png" srcset="/img/loading.gif" lazyload
+<img src="https://image.yinan.fun/202309161633319.png" srcset="/img/loading.gif" lazyload
 alt="image-20230913203102138" />
 <figcaption aria-hidden="true">image-20230913203102138</figcaption>
 </figure>
@@ -344,46 +344,46 @@ alt="image-20230913203102138" />
 <p>产生输入图片的杂序，再将图片减去杂序</p>
 <p>为什么不直接训练一个生成图像的模型？难度更大</p>
 <figure>
-<img src="http://qiniu.yinan.fun/202309132032041.png" srcset="/img/loading.gif" lazyload
+<img src="https://image.yinan.fun/202309161633712.png" srcset="/img/loading.gif" lazyload
 alt="image-20230913203221971" />
 <figcaption aria-hidden="true">image-20230913203221971</figcaption>
 </figure>
 <h2 id="如何训练-noise-predictor">如何训练 Noise Predictor</h2>
 <p><strong>Forward Process (Diffusion Process)</strong></p>
 <figure>
-<img src="http://qiniu.yinan.fun/202309132041684.png" srcset="/img/loading.gif" lazyload
+<img src="https://image.yinan.fun/202309161633108.png" srcset="/img/loading.gif" lazyload
 alt="image-20230913204138424" />
 <figcaption aria-hidden="true">image-20230913204138424</figcaption>
 </figure>
 <figure>
-<img src="http://qiniu.yinan.fun/202309132042829.png" srcset="/img/loading.gif" lazyload
+<img src="https://image.yinan.fun/202309161633844.png" srcset="/img/loading.gif" lazyload
 alt="image-20230913204205716" />
 <figcaption aria-hidden="true">image-20230913204205716</figcaption>
 </figure>
 <h3 id="text-to-image">Text-to-Image</h3>
 <figure>
-<img src="http://qiniu.yinan.fun/202309132043515.png" srcset="/img/loading.gif" lazyload
+<img src="https://image.yinan.fun/202309161634005.png" srcset="/img/loading.gif" lazyload
 alt="image-20230913204307016" />
 <figcaption aria-hidden="true">image-20230913204307016</figcaption>
 </figure>
 <p>把文字一同作为Denoise模组的输入</p>
-<p><img src="http://qiniu.yinan.fun/202309132045259.png" srcset="/img/loading.gif" lazyload
+<p><img src="https://image.yinan.fun/202309161634588.png" srcset="/img/loading.gif" lazyload
 alt="image-20230913204414565" />Denoise模组内部</p>
 <figure>
-<img src="http://qiniu.yinan.fun/202309132045497.png" srcset="/img/loading.gif" lazyload
+<img src="https://image.yinan.fun/202309161634450.png" srcset="/img/loading.gif" lazyload
 alt="image-20230913204519425" />
 <figcaption aria-hidden="true">image-20230913204519425</figcaption>
 </figure>
 <p>训练</p>
 <figure>
-<img src="http://qiniu.yinan.fun/202309132046063.png" srcset="/img/loading.gif" lazyload
+<img src="https://image.yinan.fun/202309161634572.png" srcset="/img/loading.gif" lazyload
 alt="image-20230913204620902" />
 <figcaption aria-hidden="true">image-20230913204620902</figcaption>
 </figure>
 <h3 id="denoising-diffusion-probabilistic-models">Denoising Diffusion
 Probabilistic Models</h3>
 <figure>
-<img src="http://qiniu.yinan.fun/202309132047230.png" srcset="/img/loading.gif" lazyload
+<img src="https://image.yinan.fun/202309161634961.png" srcset="/img/loading.gif" lazyload
 alt="image-20230913204712028" />
 <figcaption aria-hidden="true">image-20230913204712028</figcaption>
 </figure>
@@ -494,7 +494,7 @@ class="math inline">\(G(z)\)</span>是Gaussian分布的mean，可得？</p>
 <p>G(z)和x的距离越小，<span
 class="math inline">\(P_{\theta}(x|z)\)</span>就越大</p>
 <p><span class="math display">\[
-P_{\theta}(x|z) \propto e x p(-||G(z)-x||_{2})
+{ {P_{\theta}(x|z)} } \propto\ e x p(-||G(z)-x||_{2})
 \]</span></p>
 <h3 id="vae-lower-bound-of-logp_thetax">VAE: Lower bound of <span
 class="math inline">\(logP_{\theta}(x)\)</span></h3>
@@ -504,21 +504,23 @@ alt="image-20230916153426098" />
 <figcaption aria-hidden="true">image-20230916153426098</figcaption>
 </figure>
 <p>下面的公式中的<span class="math inline">\(q(z|x)\)</span>
-可以是任意的分布，在VAE中是Encoder <span class="math display">\[
-\begin{align}
+可以是任意的分布，在VAE中是Encoder $$ <span
+class="math display">\[\begin{align}
 l o g P_{\theta}(x)&amp;=\int_{z}\,q(z|x)l o g P(x)d z \\
+
 &amp;=\int_{z}q(z|x)l o g\left({\frac{P(z,x)}{P(z|x)} }\right)d z\
 =\int_{z}\,q(z|x)l o g\left({\frac{P(z,x)}{q(z|x)}
 }{\frac{q(z|x)}{P(z|x)} }\right)d z  \\
-&amp;=\int_{z}q(z|x)l o g\left({\frac{P(z,x)}{q(z|x)} }\right)d
+
+&amp;
+=\int_{z}q(z|x)l o g\left({\frac{P(z,x)}{q(z|x)} }\right)d
 z+\int_{z}q(z|x)l o g\left({\frac{q(z|x)}{P(z|x)} }\right)d z
-\end{align}
-\]</span> 第二项是$K L(q(z|x)||P(z|x)) $，始终大于0，因此 <span
-class="math display">\[
-\geq\int_{z}\,q(z|x)l o g\,\bigg(\frac{P(z,x)}{q(z|x)}\bigg)\,d z\
-=\operatorname*{E_{q(z|x)} }[l o g\,\bigg(\frac{P(x,z)}{q(z|x)}\bigg)]
-\]</span> 可以通过最大化Lower bound来使<span
-class="math inline">\(logP(x)_{\theta}\)</span>最大</p>
+
+
+\end{align}\]</span> <span class="math display">\[
+第二项是$K L\left(q(z|x)||P(z|x)\right) $，始终大于0，因此
+\]</span> _{z},q(z|x)l o g,(),d z =[l o g,()] $$ 可以通过最大化Lower
+bound来使<span class="math inline">\(logP(x)_{\theta}\)</span>最大</p>
 <h3 id="ddpm-compute-p_thetax">DDPM: Compute <span
 class="math inline">\(P_{\theta}(x)\)</span></h3>
 <p><img src="https://image.yinan.fun/202309152150350.png" srcset="/img/loading.gif" lazyload
