@@ -6,7 +6,7 @@
   <link href="https://yinan.fun/atom.xml" rel="self"/>
   
   <link href="https://yinan.fun/"/>
-  <updated>2023-09-19T03:20:07.575Z</updated>
+  <updated>2023-09-25T05:07:19.196Z</updated>
   <id>https://yinan.fun/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LLM自动评价方法</title>
+    <link href="https://yinan.fun/LLM%E8%87%AA%E5%8A%A8%E8%AF%84%E4%BB%B7%E6%96%B9%E6%B3%95"/>
+    <id>https://yinan.fun/LLM%E8%87%AA%E5%8A%A8%E8%AF%84%E4%BB%B7%E6%96%B9%E6%B3%95</id>
+    <published>2023-09-25T03:36:20.000Z</published>
+    <updated>2023-09-25T05:07:19.196Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="大语言模型自动评价方法">大语言模型自动评价方法</h1><p>LLM的自动评估是一种常见的，可能也是最受欢迎的评估方法，通常使用标准度量或指标以及评估工具来评估模型的性能，如准确性、BLEU（Papineniet al.，2002）、ROUGE（Lin，2004）、BERTScore（Zhang etal.，2019）等。由于其主观性、自动计算性和简单性，大多数现有的评估工作都采用了这种评估协议。因此，大多数确定性任务，如自然语言理解和数学问题，通常采用这种评估协议。</p><p>与人工评估相比，自动评估不需要密集的人工参与，节省了成本和时间。最近，随着LLM的发展，一些先进的自动评估技术也被设计来帮助评估。林和陈（2023）提出了LLM-EVAL，这是一种使用LLM进行开放域对话的统一多维度自动评估方法。PandaLM（Wangetal.，2023h）可以通过训练LLM来评估不同的模型，从而实现可复现和自动化的语言模型评估。Jain（2023）等人提出了一个自监督的评估框架，通过消除对新数据的费力标注，实现了在现实世界部署环境中评估模型的更有效形式。</p><h2 id="automatic-evaluation">Automatic Evaluation</h2><h3 id="acuracy">1. Acuracy</h3><p><span class="math display">\[准确率（Accuracy） = \frac{Number of correct predictions}{Total numberpf predictions} = \frac{正确预测数}{预测总数}\]</span></p><h3 id="bleu">2. BLEU</h3><blockquote><p>Papineni, K., Roukos, S., Ward, T., and Zhu, W.-J. (2002). Bleu: amethod for automatic evaluation of machine translation. In Proceedingsof the 40th annual meeting of the Association for ComputationalLinguistics, pages 311–318.</p></blockquote><p><span class="math display">\[B L E U=B P\times\exp\left(\sum_{n=1}^{N}W_{n}\times\log P_{n}\right)\]</span></p><p><span class="math display">\[B P=\left\{ {\begin{array}{l l}{1}&amp;{}&amp;{ {}{\mathrm{~l}}c&gt;1r}\\ {\exp(1-l r/l c)}&amp;{}&amp;{ {}{\mathrm{~l} }c\leq lr}\end{array} }\right.\]</span></p><p>神经网络生成的句子是candidate，给定的标准译文是reference。</p><ul><li><p>lc=candidate的长度，lr=最短的reference的长度</p></li><li><p>BP 是惩罚因子，如果译文的长度小于最短的参考译文，则 BP 小于1。避免当机器翻译的长度比较短时，BLEU得分也会比较高，但是这个翻译是会损失很多信息的。</p></li><li><p>BLEU 需要计算译文 1-gram，2-gram，...，N-gram 的精确率，一般 N设置为 4 即可，公式中的 Pn 指 n-gram的精确率。n-gram是连续n个词的组合。</p></li><li><p>BLEU 的 1-gram 精确率表示译文忠于原文的程度，而其他 n-gram表示翻译的流畅程度。</p></li><li><p>Wn 指 n-gram 的权重，一般设为均匀权重，即对于任意 n 都有 Wn =1/N。</p></li></ul><p><span class="math display">\[p_n= \frac{\sum_{c\in candidates}\sum_{n-gram\in c}Count_{clip}(n-gram)}{\sum_{ c^\prime \in candidates} \sum_{n-gram^\prime\inc^\prime}Count(n-gram^\prime)}\]</span></p><p>Count(n-gram')表示n−gram′在candidate中的个数， <spanclass="math display">\[C o u n t_{c l i p}=\mathrm{min}(C o u n t,M a x_{-}R e f_{-}C o u n t)\]</span></p><h3 id="rouge">3. ROUGE</h3><blockquote><p>Lin, C.-Y. (2004). Rouge: A package for automatic evaluation ofsummaries. In Text summarization branches out, pages 74–81.</p></blockquote><ul><li>ROUGE-N: 在 N-gram 上计算召回率</li><li>ROUGE-L: 考虑了机器译文和参考译文之间的最长公共子序列</li><li>ROUGE-W: 改进了ROUGE-L，用加权的方法计算最长公共子序列</li></ul><p><strong>ROUGE-N</strong> 主要统计 N-gram 上的召回率，对于N-gram，可以计算得到 ROUGE-N 分数，计算公式如下：</p><figure><img src="https://image.yinan.fun/202309251305125.png" alt="img" /><figcaption aria-hidden="true">img</figcaption></figure><p>公式的分母是统计在reference中N-gram的个数，而分子是统计reference与candidate共有的 N-gram 个数。</p><p>给定多个参考译文 <strong>Si</strong> <span class="math display">\[R O D G E-N_{multi}=\operatorname*{max}_{i}R O O G E-N(S_{i},C)\]</span> <strong>ROUGE-L</strong> 中的 L 指最长公共子序列 (longestcommon subsequence, LCS)，ROUGE-L计算的时候使用了机器译文<strong>C</strong>和参考译文<strong>S</strong>的最长公共子序列，计算公式如下：<span class="math display">\[R_{L C S}=\frac{L C S(C,S)}{l e n(S)}\]</span></p><p><span class="math display">\[P_{L C S}=\frac{L C S(C,S)}{l e n(C)}\]</span></p><p><span class="math display">\[F_{L C S}=\frac{(1+\beta^{2})R_{L C S}P_{L C S} }{R_{L CS}+\beta^{2}P_{L C S} }\]</span></p><p>公式中的 RLCS 表示召回率，而 PLCS 表示精确率，FLCS 就是 ROUGE-L。一般beta 会设置为很大的数，因此 FLCS 几乎只考虑了 RLCS(即召回率)。<strong>注意这里 beta 大，则 F 会更加关注 R，而不是P，可以看下面的公式。</strong>如果 beta 很大，则 PLCS那一项可以忽略不计。</p><p>ROUGE-W 是 ROUGE-L 的改进版，使用一种加权最长公共子序列方法(WLCS)，给连续翻译正确的更高的分数。</p><p>ROUGE-S 也是对 N-gram 进行统计，但是其采用的 N-gram 允许"跳词(Skip)"，即单词不需要连续出现。</p><h3 id="self-supervised-evaluation-framework">4. self-supervisedevaluation framework</h3><blockquote><p>Jain, N., Saifullah, K., Wen, Y., Kirchenbauer, J., Shu, M., Saha,A., Goldblum, M., Geiping, J., and Goldstein, T. (2023). Bring your owndata! self-supervised evaluation for large language models. arXivpreprint arXiv:2306.13651.</p></blockquote><p>目前的评估使用带有人工策划标签的小型领域特定数据集，这些评估集通常从狭窄而简化的分布中抽样，数据源可能会在不知不觉中泄露到培训集，这可能会导致误导性评估。</p><p>We demonstrate self-supervised evaluation strategies for measuringclosed-book knowledge, toxicity, and long-range context dependence, inaddition to sensitivity to grammatical structure and tokenizationerrors.</p><figure><img src="https://image.yinan.fun/202309251306278.png"alt="image-20230922214003156" /><figcaption aria-hidden="true">image-20230922214003156</figcaption></figure><p>Based on this intervention, we measure the change in thelog-perplexity (log(ppl(x))), between the original and negated sentence.Formally, we define the sensitivity score as the following: <spanclass="math display">\[{\mathrm{SENSITIVIT} }\operatorname{SCORE}={\frac{1}{n}}\sum_{i}^{n}{\mathrm{log} }{\mathrm{(ppl}}(x_{i}^{\prime}))-{\mathrm{log} }{\mathrm{(ppl} }(x_{i})).\]</span></p><p>接下来是第二类方法，称为“间接或分解的启发式方法（indirect ordecomposedheuristics）”。在这种方法中，我们<strong>利用较小的模型（smallermodels）来评估主模型（the mainmodel）生成的答案</strong>，这些较小的模型可以是微调过的模型或原始的分解模型（rawdecompositions）。其核心思想是选取在这些大模型擅长的任务上表现更好的小模型来进行评估。这些较小模型的输出被看作是弱得分（weakscores），然后将它们结合起来为生成的输出提供一个最终的标签或评价。这种间接评估方法能够<strong>更加细致地评估模型的性能</strong>，尤其在判断对散文的喜爱程度等这些任务。</p><h3 id="bertscore">5. BERTScore</h3><blockquote><p>Zhang, T., Kishore, V., Wu, F., Weinberger, K. Q., and Artzi, Y.(2019). Bertscore: Evaluating text generation with bert. arXiv preprintarXiv:1904.09675.</p></blockquote><p>基于N-gram重叠的度量标准只对词汇变化敏感，不能识别句子语义或语法的变化。因此，它们被反复证明与人工评估差距较大。</p><p>于是有人提出使用句子上下文表示(bert全家桶)和人工设计的计算逻辑对句子相似度进行计算。这样的评价指标鲁棒性较好，在缺乏训练数据的情况下也具有较好表现。</p><p>思路是非常简单的：即对两个生成句和参考句（wordpiece进行tokenize）分别用bert提取特征，然后对2个句子的每一个词分别计算内积，可以得到一个相似性矩阵。</p><figure><img src="https://image.yinan.fun/202309251304050.png"alt="image-20230922111952603" /><figcaption aria-hidden="true">image-20230922111952603</figcaption></figure><p>基于这个矩阵，我们可以分别对参考句和生成句做一个最大相似性得分的累加然后归一化，得到bertscore的precision，recall和F1：</p><figure><img src="https://image.yinan.fun/202309251305151.png"alt="image-20230922111853984" /><figcaption aria-hidden="true">image-20230922111853984</figcaption></figure><p>还可以考虑给不同的词以权重。作者使用idf函数，即给定M个参考句，词w的idf为：<span class="math display">\[\operatorname{idf}(w)=-\log \frac{1}{M} \sum_{i=1}^{M} \mathbb{I}\left[w\in x^{(i)}\right]\]</span> 其中<spanclass="math inline">\(\mathbb{I}()\)</span>是一个指示函数。用此式更新上述评分，例如recall：<span class="math display">\[R_{\mathrm{BERT} }=\frac{\sum_{x_{i} \in x} \text { idf}\left(x_{i}\right) \max _{\hat{x}_{j} \in \hat{x} }\mathbf{x}_{i}^{\top} \hat{\mathbf{x} }_{j} }{\sum_{x_{i} \in x} \text {idf }\left(x_{i}\right)}\]</span></p><h3 id="llm-eval">6. LLM-EVAL</h3><blockquote><p>Lin, Y.-T. and Chen, Y.-N. (2023). Llm-eval: Unified multidimensionalautomatic evaluation for open-domain conversations with large languagemodels. arXiv preprint arXiv:2305.13711.</p></blockquote><p>The single prompt is created by concatenating the dialogue context,reference (if available), and generated response, and then fed to alarge language model, which outputs scores for each dimension based onthe defined schema.xs</p><p><img src="https://image.yinan.fun/202309251304291.png" alt="image-20230922202719792" style="zoom: 50%;" /></p><ul><li><p>Unified Evaluation Schema</p><p>The evaluation schema is a natural language instruction that definesthe task and the desired evaluation criteria. The schema is provided asa format instruction, which <strong>specifies the structure and therange of the scores for each dimension</strong>. For example, theevaluation schema can be:</p><figure><img src="https://image.yinan.fun/202309251304462.png"alt="image-20230922202303631" /><figcaption aria-hidden="true">image-20230922202303631</figcaption></figure></li><li><p>Single Prompt for Evaluation</p><p>The prompt is concatenated with the dialogue context, the reference(if available), and the generated response, and then fed to the largelanguage model to output a score for each evaluation dimension, based onthe defined schema.</p><figure><img src="https://image.yinan.fun/202309251304679.png"alt="image-20230922202344802" /><figcaption aria-hidden="true">image-20230922202344802</figcaption></figure></li><li><p>Efficient Evaluation</p><p>By using a single prompt with a unified evaluation schema, LLM-EVALcan efficiently obtain multi-dimensional scores for the responseswithout the need for multiple prompts.</p><figure><img src="https://image.yinan.fun/202309251304926.png"alt="image-20230922202430502" /><figcaption aria-hidden="true">image-20230922202430502</figcaption></figure></li><li><p>Different LLMs</p><p>In conclusion, our analysis demonstrates that<strong>dialogue-optimized LLMs</strong>, such as Claude and ChatGPT,yield <strong>better performance</strong> in the LLMEVAL method foropen-domain conversation evaluation. Although smaller models likeAnthropic Claude-instant may not achieve the best performance, they canstill be considered for resourcelimited scenarios.</p><figure><img src="https://image.yinan.fun/202309251304520.png"alt="image-20230922204729102" /><figcaption aria-hidden="true">image-20230922204729102</figcaption></figure></li><li><p>Baseline Evaluation Metrics</p><figure><img src="https://image.yinan.fun/202309251304232.png"alt="image-20230924100711864" /><figcaption aria-hidden="true">image-20230924100711864</figcaption></figure></li></ul><h3 id="pandalm">7. PandaLM</h3><blockquote><p>Wang, Y., Yu, Z., Zeng, Z., Yang, L., Wang, C., Chen, H., Jiang, C.,Xie, R., Wang, J., Xie, X., et al. (2023h). Pandalm: An automaticevaluation benchmark for llm instruction tuning optimization. arXivpreprint arXiv:2306.05087.</p></blockquote><ul><li><p>开源代码/模型</p><p><ahref="https://github.com/WeOpenML/PandaLM">https://github.com/WeOpenML/PandaLM</a></p><p><ahref="https://huggingface.co/WeOpenML/PandaLM-7B-v1">https://huggingface.co/WeOpenML/PandaLM-7B-v1</a></p></li></ul><p>当前，大家评估大模型的方法主要有两个：</p><ul><li>调用OpenAI的API接口，发送数据给OpenAI可能会像三星员工泄露代码一样造成数据泄露问题。</li><li>雇佣专家进行人工标注，雇佣专家标注大量数据又十分费时费力且昂贵。</li></ul><p>PandaLM只需要在「本地部署」，且「不需要人类参与」，因此PandaLM的评估是可以保护隐私且相当廉价的。</p><p>当两个不同的大模型对同一个指令和上下文产生不同响应时，PandaLM旨在比较这两个大模型的响应质量，并输出比较结果，比较理由以及可供参考的响应。比较结果有三种：响应1更好，响应2更好，响应1与响应2质量相似。</p><figure><img src="https://image.yinan.fun/202309251305749.png" alt="img" /><figcaption aria-hidden="true">img</figcaption></figure><p>结果表明，PandaLM-7B达到了93.75%的GPT-3.5评价能力和88.28%的GPT-4评价能力。</p><figure><img src="https://image.yinan.fun/202309251305475.png"alt="image-20230924101010218" /><figcaption aria-hidden="true">image-20230924101010218</figcaption></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;大语言模型自动评价方法&quot;&gt;大语言模型自动评价方法&lt;/h1&gt;
+&lt;p&gt;LLM的自动评估是一种常见的，可能也是最受欢迎的评估方法，通常使用标准度量或指标以及评估工具来评估模型的性能，如准确性、BLEU（Papineni
+et al.，2002）、ROUGE（Lin，20</summary>
+      
+    
+    
+    
+    <category term="学习笔记" scheme="https://yinan.fun/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="机器学习" scheme="https://yinan.fun/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="语言模型" scheme="https://yinan.fun/tags/%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>神经网络训练</title>
@@ -554,40 +582,6 @@ Training of Neural Networks（DaNN）实现&lt;/h1&gt;
     <category term="JAVA" scheme="https://yinan.fun/tags/JAVA/"/>
     
     <category term="SpringBoot" scheme="https://yinan.fun/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PyInstaller python 打包工具使用</title>
-    <link href="https://yinan.fun/PyInstaller-python-%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8"/>
-    <id>https://yinan.fun/PyInstaller-python-%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8</id>
-    <published>2023-05-22T08:43:42.000Z</published>
-    <updated>2023-09-14T01:18:39.805Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="pyinstaller-python-打包工具使用">PyInstaller python打包工具使用</h1><h2 id="参数">参数</h2><table><thead><tr class="header"><th>参数名</th><th>描述</th><th>说明</th></tr></thead><tbody><tr class="odd"><td>-D</td><td>生成one-folder的程序（默认）</td><td>生成结果是一个目录，各种第三方依赖、资源和exe同时存储在该目录</td></tr><tr class="even"><td>-F</td><td>生成one-file的程序</td><td>生成结果是一个exe文件，所有的第三方依赖、资源和代码均被打包进该exe内</td></tr><tr class="odd"><td>–add-data</td><td>打包额外资源</td><td>用法：pyinstaller main.py--add-data=src;dest。windows以;分割，macOS/linux以:分割</td></tr><tr class="even"><td>-c</td><td>显示命令行窗口</td><td>与-w相反，默认含有此参数</td></tr><tr class="odd"><td>-w</td><td>不显示命令行窗口</td><td>编写GUI程序时使用此参数有用。</td></tr><tr class="even"><td>-i</td><td>为main.exe指定图标</td><td>用法：pyinstaller -i beauty.ico main.py</td></tr></tbody></table><p>具体参数看：https://blog.csdn.net/weixin_39000819/article/details/80942423</p><h2 id="打包图片等资源">打包图片等资源</h2><p>即使使用了<code>–add-data</code>参数也大概率还是会出现图片文件没有找到的情况。</p><p>因为当app运行的时候，会先<strong>把资源解压到一个系统的临时目录</strong>，包括打包进去的img文件等。但是，此时的代码并不能直接通过 “img/texture.png”这样的相对路径来得到文件,应该是因为本身程序就不在这里，所以自然引用不到。</p><p>这时需要用到 sys 的一个半私有的属性<code>sys._MEIPASS</code>，根据官方的说明，它是 pyinstaller运行时创建的<strong>临时目录的绝对路径</strong>。需要在程序运行时判断当前是不是有这个属性，如果有的话，使用生成临时目录下图片的绝对路径，如果没有的话，那就直接返回当前程序的绝对路径：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_resource_path</span>(<span class="hljs-params">relative_path</span>):<br>    <span class="hljs-comment"># 资源路径拼接当前运行时临时目录路径</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">hasattr</span>(sys, <span class="hljs-string">&#x27;_MEIPASS&#x27;</span>):<br>        <span class="hljs-keyword">return</span> os.path.join(sys._MEIPASS, relative_path)<br>    <span class="hljs-keyword">return</span> os.path.join(os.path.abspath(<span class="hljs-string">&quot;.&quot;</span>), relative_path)<br></code></pre></td></tr></table></figure><p>每次用到图片资源地址的时候都调用<code>get_resource_path</code></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">texture_filename = get_resource_path(<span class="hljs-string">&quot;img/texture.png&quot;</span>)<br>texture = cv2.imread(texture_filename)<br></code></pre></td></tr></table></figure><p>之后就可以使用下面的命令（windows要将<code>:</code>改成<code>;</code>）</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">pyinstaller --add-data img:img -wF img2sketch.py</span><br></code></pre></td></tr></table></figure><p>在<code>disk</code>目录下生成可执行文件</p><figure><img src="https://image.yinan.fun/image-20230522162328233.png"alt="image-20230522162328233" /><figcaption aria-hidden="true">image-20230522162328233</figcaption></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;pyinstaller-python-打包工具使用&quot;&gt;PyInstaller python
-打包工具使用&lt;/h1&gt;
-&lt;h2 id=&quot;参数&quot;&gt;参数&lt;/h2&gt;
-&lt;table&gt;
-
-&lt;thead&gt;
-&lt;tr class=&quot;header&quot;&gt;
-&lt;th&gt;参数名&lt;/th&gt;
-&lt;th&gt;</summary>
-      
-    
-    
-    
-    <category term="学习笔记" scheme="https://yinan.fun/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="编程" scheme="https://yinan.fun/tags/%E7%BC%96%E7%A8%8B/"/>
-    
-    <category term="Python" scheme="https://yinan.fun/tags/Python/"/>
     
   </entry>
   

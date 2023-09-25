@@ -1,0 +1,1009 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta name="baidu-site-verification" content="codeva-pajW5JmcAJ" />
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://image.yinan.fun/icon.jpg">
+  <link rel="icon" href="https://image.yinan.fun/icon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="yinan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="大语言模型自动评价方法 LLM的自动评估是一种常见的，可能也是最受欢迎的评估方法，通常使用标准度量或指标以及评估工具来评估模型的性能，如准确性、BLEU（Papineni et al.，2002）、ROUGE（Lin，2004）、BERTScore（Zhang et al.，2019）等。由于其主观性、自动计算性和简单性，大多数现有的评估工作都采用了这种评估协议。因此，大多数确定性任务，如自然语言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LLM自动评价方法">
+<meta property="og:url" content="https://yinan.fun/LLM%E8%87%AA%E5%8A%A8%E8%AF%84%E4%BB%B7%E6%96%B9%E6%B3%95">
+<meta property="og:site_name" content="yinan的博客">
+<meta property="og:description" content="大语言模型自动评价方法 LLM的自动评估是一种常见的，可能也是最受欢迎的评估方法，通常使用标准度量或指标以及评估工具来评估模型的性能，如准确性、BLEU（Papineni et al.，2002）、ROUGE（Lin，2004）、BERTScore（Zhang et al.，2019）等。由于其主观性、自动计算性和简单性，大多数现有的评估工作都采用了这种评估协议。因此，大多数确定性任务，如自然语言">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.yinan.fun/202309251305125.png">
+<meta property="og:image" content="https://image.yinan.fun/202309251306278.png">
+<meta property="og:image" content="https://image.yinan.fun/202309251304050.png">
+<meta property="og:image" content="https://image.yinan.fun/202309251305151.png">
+<meta property="og:image" content="https://image.yinan.fun/202309251304291.png">
+<meta property="og:image" content="https://image.yinan.fun/202309251304462.png">
+<meta property="og:image" content="https://image.yinan.fun/202309251304679.png">
+<meta property="og:image" content="https://image.yinan.fun/202309251304926.png">
+<meta property="og:image" content="https://image.yinan.fun/202309251304520.png">
+<meta property="og:image" content="https://image.yinan.fun/202309251304232.png">
+<meta property="og:image" content="https://image.yinan.fun/202309251305749.png">
+<meta property="og:image" content="https://image.yinan.fun/202309251305475.png">
+<meta property="article:published_time" content="2023-09-25T03:36:20.000Z">
+<meta property="article:modified_time" content="2023-09-25T05:07:19.196Z">
+<meta property="article:author" content="yinan">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="语言模型">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://image.yinan.fun/202309251305125.png">
+  
+  
+  
+  <title>LLM自动评价方法 - yinan的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/iconfont_run/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yinan.fun","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="yinan的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yinan&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://run.yinan.fun/">
+                <i class="iconfont icon-paobu"></i>
+                <span>跑步</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner_img.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="LLM自动评价方法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-25 11:36" pubdate>
+          2023年9月25日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          55 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">LLM自动评价方法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="大语言模型自动评价方法">大语言模型自动评价方法</h1>
+<p>LLM的自动评估是一种常见的，可能也是最受欢迎的评估方法，通常使用标准度量或指标以及评估工具来评估模型的性能，如准确性、BLEU（Papineni
+et al.，2002）、ROUGE（Lin，2004）、BERTScore（Zhang et
+al.，2019）等。由于其主观性、自动计算性和简单性，大多数现有的评估工作都采用了这种评估协议。因此，大多数确定性任务，如自然语言理解和数学问题，通常采用这种评估协议。</p>
+<p>与人工评估相比，自动评估不需要密集的人工参与，节省了成本和时间。最近，随着LLM的发展，一些先进的自动评估技术也被设计来帮助评估。林和陈（2023）提出了LLM-EVAL，这是一种使用LLM进行开放域对话的统一多维度自动评估方法。PandaLM（Wang
+et
+al.，2023h）可以通过训练LLM来评估不同的模型，从而实现可复现和自动化的语言模型评估。Jain（2023）等人提出了一个自监督的评估框架，通过消除对新数据的费力标注，实现了在现实世界部署环境中评估模型的更有效形式。</p>
+<h2 id="automatic-evaluation">Automatic Evaluation</h2>
+<h3 id="acuracy">1. Acuracy</h3>
+<p><span class="math display">\[
+准确率（Accuracy） = \frac{Number of correct predictions}{Total number
+pf predictions} = \frac{正确预测数}{预测总数}
+\]</span></p>
+<h3 id="bleu">2. BLEU</h3>
+<blockquote>
+<p>Papineni, K., Roukos, S., Ward, T., and Zhu, W.-J. (2002). Bleu: a
+method for automatic evaluation of machine translation. In Proceedings
+of the 40th annual meeting of the Association for Computational
+Linguistics, pages 311–318.</p>
+</blockquote>
+<p><span class="math display">\[
+B L E U=B P\times\exp\left(\sum_{n=1}^{N}W_{n}\times\log P_{n}\right)
+\]</span></p>
+<p><span class="math display">\[
+B P=\left\{ {\begin{array}{l l}{1}&amp;{}&amp;{ {}{\mathrm{~l}
+}c&gt;1r}\\ {\exp(1-l r/l c)}&amp;{}&amp;{ {}{\mathrm{~l} }c\leq l
+r}\end{array} }\right.
+\]</span></p>
+<p>神经网络生成的句子是candidate，给定的标准译文是reference。</p>
+<ul>
+<li><p>lc=candidate的长度，lr=最短的reference的长度</p></li>
+<li><p>BP 是惩罚因子，如果译文的长度小于最短的参考译文，则 BP 小于
+1。避免当机器翻译的长度比较短时，BLEU
+得分也会比较高，但是这个翻译是会损失很多信息的。</p></li>
+<li><p>BLEU 需要计算译文 1-gram，2-gram，...，N-gram 的精确率，一般 N
+设置为 4 即可，公式中的 Pn 指 n-gram
+的精确率。n-gram是连续n个词的组合。</p></li>
+<li><p>BLEU 的 1-gram 精确率表示译文忠于原文的程度，而其他 n-gram
+表示翻译的流畅程度。</p></li>
+<li><p>Wn 指 n-gram 的权重，一般设为均匀权重，即对于任意 n 都有 Wn =
+1/N。</p></li>
+</ul>
+<p><span class="math display">\[
+p_n= \frac{\sum_{c\in candidates}\sum_{n-gram\in c}Count_{clip}(n-gram)}
+{\sum_{ c^\prime \in candidates} \sum_{n-gram^\prime\in
+c^\prime}Count(n-gram^\prime)}
+\]</span></p>
+<p>Count(n-gram')表示n−gram′在candidate中的个数， <span
+class="math display">\[
+C o u n t_{c l i p}=\mathrm{min}(C o u n t,M a x_{-}R e f_{-}C o u n t)
+\]</span></p>
+<h3 id="rouge">3. ROUGE</h3>
+<blockquote>
+<p>Lin, C.-Y. (2004). Rouge: A package for automatic evaluation of
+summaries. In Text summarization branches out, pages 74–81.</p>
+</blockquote>
+<ul>
+<li>ROUGE-N: 在 N-gram 上计算召回率</li>
+<li>ROUGE-L: 考虑了机器译文和参考译文之间的最长公共子序列</li>
+<li>ROUGE-W: 改进了ROUGE-L，用加权的方法计算最长公共子序列</li>
+</ul>
+<p><strong>ROUGE-N</strong> 主要统计 N-gram 上的召回率，对于
+N-gram，可以计算得到 ROUGE-N 分数，计算公式如下：</p>
+<figure>
+<img src="https://image.yinan.fun/202309251305125.png" srcset="/img/loading.gif" lazyload alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>公式的分母是统计在reference中N-gram
+的个数，而分子是统计reference与candidate共有的 N-gram 个数。</p>
+<p>给定多个参考译文 <strong>Si</strong> <span class="math display">\[
+R O D G E-N_{multi}=\operatorname*{max}_{i}R O O G E-N(S_{i},C)
+\]</span> <strong>ROUGE-L</strong> 中的 L 指最长公共子序列 (longest
+common subsequence, LCS)，ROUGE-L
+计算的时候使用了机器译文<strong>C</strong>和参考译文<strong>S</strong>的最长公共子序列，计算公式如下：
+<span class="math display">\[
+R_{L C S}=\frac{L C S(C,S)}{l e n(S)}
+\]</span></p>
+<p><span class="math display">\[
+P_{L C S}=\frac{L C S(C,S)}{l e n(C)}
+\]</span></p>
+<p><span class="math display">\[
+F_{L C S}=\frac{(1+\beta^{2})R_{L C S}P_{L C S} }{R_{L C
+S}+\beta^{2}P_{L C S} }
+\]</span></p>
+<p>公式中的 RLCS 表示召回率，而 PLCS 表示精确率，FLCS 就是 ROUGE-L。一般
+beta 会设置为很大的数，因此 FLCS 几乎只考虑了 RLCS
+(即召回率)。<strong>注意这里 beta 大，则 F 会更加关注 R，而不是
+P，可以看下面的公式。</strong>如果 beta 很大，则 PLCS
+那一项可以忽略不计。</p>
+<p>ROUGE-W 是 ROUGE-L 的改进版，使用一种加权最长公共子序列方法
+(WLCS)，给连续翻译正确的更高的分数。</p>
+<p>ROUGE-S 也是对 N-gram 进行统计，但是其采用的 N-gram 允许"跳词
+(Skip)"，即单词不需要连续出现。</p>
+<h3 id="self-supervised-evaluation-framework">4. self-supervised
+evaluation framework</h3>
+<blockquote>
+<p>Jain, N., Saifullah, K., Wen, Y., Kirchenbauer, J., Shu, M., Saha,
+A., Goldblum, M., Geiping, J., and Goldstein, T. (2023). Bring your own
+data! self-supervised evaluation for large language models. arXiv
+preprint arXiv:2306.13651.</p>
+</blockquote>
+<p>目前的评估使用带有人工策划标签的小型领域特定数据集，这些评估集通常从狭窄而简化的分布中抽样，数据源可能会在不知不觉中泄露到培训集，这可能会导致误导性评估。</p>
+<p>We demonstrate self-supervised evaluation strategies for measuring
+closed-book knowledge, toxicity, and long-range context dependence, in
+addition to sensitivity to grammatical structure and tokenization
+errors.</p>
+<figure>
+<img src="https://image.yinan.fun/202309251306278.png" srcset="/img/loading.gif" lazyload
+alt="image-20230922214003156" />
+<figcaption aria-hidden="true">image-20230922214003156</figcaption>
+</figure>
+<p>Based on this intervention, we measure the change in the
+log-perplexity (log(ppl(x))), between the original and negated sentence.
+Formally, we define the sensitivity score as the following: <span
+class="math display">\[
+{\mathrm{SENSITIVIT} }\operatorname{SCORE}={\frac{1}{n}
+}\sum_{i}^{n}{\mathrm{log} }{\mathrm{(ppl}
+}(x_{i}^{\prime}))-{\mathrm{log} }{\mathrm{(ppl} }(x_{i})).
+\]</span></p>
+<p>接下来是第二类方法，称为“间接或分解的启发式方法（indirect or
+decomposed
+heuristics）”。在这种方法中，我们<strong>利用较小的模型（smaller
+models）来评估主模型（the main
+model）生成的答案</strong>，这些较小的模型可以是微调过的模型或原始的分解模型（raw
+decompositions）。其核心思想是选取在这些大模型擅长的任务上表现更好的小模型来进行评估。这些较小模型的输出被看作是弱得分（weak
+scores），然后将它们结合起来为生成的输出提供一个最终的标签或评价。这种间接评估方法能够<strong>更加细致地评估模型的性能</strong>，尤其在判断对散文的喜爱程度等这些任务。</p>
+<h3 id="bertscore">5. BERTScore</h3>
+<blockquote>
+<p>Zhang, T., Kishore, V., Wu, F., Weinberger, K. Q., and Artzi, Y.
+(2019). Bertscore: Evaluating text generation with bert. arXiv preprint
+arXiv:1904.09675.</p>
+</blockquote>
+<p>基于N-gram重叠的度量标准只对词汇变化敏感，不能识别句子语义或语法的变化。因此，它们被反复证明与人工评估差距较大。</p>
+<p>于是有人提出使用句子上下文表示(bert全家桶)和人工设计的计算逻辑对句子相似度进行计算。这样的评价指标鲁棒性较好，在缺乏训练数据的情况下也具有较好表现。</p>
+<p>思路是非常简单的：即对两个生成句和参考句（word
+piece进行tokenize）分别用bert提取特征，然后对2个句子的每一个词分别计算内积，可以得到一个相似性矩阵。</p>
+<figure>
+<img src="https://image.yinan.fun/202309251304050.png" srcset="/img/loading.gif" lazyload
+alt="image-20230922111952603" />
+<figcaption aria-hidden="true">image-20230922111952603</figcaption>
+</figure>
+<p>基于这个矩阵，我们可以分别对参考句和生成句做一个最大相似性得分的累加然后归一化，得到bertscore的precision，recall和F1：</p>
+<figure>
+<img src="https://image.yinan.fun/202309251305151.png" srcset="/img/loading.gif" lazyload
+alt="image-20230922111853984" />
+<figcaption aria-hidden="true">image-20230922111853984</figcaption>
+</figure>
+<p>还可以考虑给不同的词以权重。作者使用idf函数，即给定M个参考句，词w的idf为：
+<span class="math display">\[
+\operatorname{idf}(w)=-\log \frac{1}{M} \sum_{i=1}^{M} \mathbb{I}\left[w
+\in x^{(i)}\right]
+\]</span> 其中<span
+class="math inline">\(\mathbb{I}()\)</span>是一个指示函数。用此式更新上述评分，例如recall：
+<span class="math display">\[
+R_{\mathrm{BERT} }=\frac{\sum_{x_{i} \in x} \text { idf
+}\left(x_{i}\right) \max _{\hat{x}_{j} \in \hat{x} }
+\mathbf{x}_{i}^{\top} \hat{\mathbf{x} }_{j} }{\sum_{x_{i} \in x} \text {
+idf }\left(x_{i}\right)}
+\]</span></p>
+<h3 id="llm-eval">6. LLM-EVAL</h3>
+<blockquote>
+<p>Lin, Y.-T. and Chen, Y.-N. (2023). Llm-eval: Unified multidimensional
+automatic evaluation for open-domain conversations with large language
+models. arXiv preprint arXiv:2305.13711.</p>
+</blockquote>
+<p>The single prompt is created by concatenating the dialogue context,
+reference (if available), and generated response, and then fed to a
+large language model, which outputs scores for each dimension based on
+the defined schema.xs</p>
+<p><img src="https://image.yinan.fun/202309251304291.png" srcset="/img/loading.gif" lazyload alt="image-20230922202719792" style="zoom: 50%;" /></p>
+<ul>
+<li><p>Unified Evaluation Schema</p>
+<p>The evaluation schema is a natural language instruction that defines
+the task and the desired evaluation criteria. The schema is provided as
+a format instruction, which <strong>specifies the structure and the
+range of the scores for each dimension</strong>. For example, the
+evaluation schema can be:</p>
+<figure>
+<img src="https://image.yinan.fun/202309251304462.png" srcset="/img/loading.gif" lazyload
+alt="image-20230922202303631" />
+<figcaption aria-hidden="true">image-20230922202303631</figcaption>
+</figure></li>
+<li><p>Single Prompt for Evaluation</p>
+<p>The prompt is concatenated with the dialogue context, the reference
+(if available), and the generated response, and then fed to the large
+language model to output a score for each evaluation dimension, based on
+the defined schema.</p>
+<figure>
+<img src="https://image.yinan.fun/202309251304679.png" srcset="/img/loading.gif" lazyload
+alt="image-20230922202344802" />
+<figcaption aria-hidden="true">image-20230922202344802</figcaption>
+</figure></li>
+<li><p>Efficient Evaluation</p>
+<p>By using a single prompt with a unified evaluation schema, LLM-EVAL
+can efficiently obtain multi-dimensional scores for the responses
+without the need for multiple prompts.</p>
+<figure>
+<img src="https://image.yinan.fun/202309251304926.png" srcset="/img/loading.gif" lazyload
+alt="image-20230922202430502" />
+<figcaption aria-hidden="true">image-20230922202430502</figcaption>
+</figure></li>
+<li><p>Different LLMs</p>
+<p>In conclusion, our analysis demonstrates that
+<strong>dialogue-optimized LLMs</strong>, such as Claude and ChatGPT,
+yield <strong>better performance</strong> in the LLMEVAL method for
+open-domain conversation evaluation. Although smaller models like
+Anthropic Claude-instant may not achieve the best performance, they can
+still be considered for resourcelimited scenarios.</p>
+<figure>
+<img src="https://image.yinan.fun/202309251304520.png" srcset="/img/loading.gif" lazyload
+alt="image-20230922204729102" />
+<figcaption aria-hidden="true">image-20230922204729102</figcaption>
+</figure></li>
+<li><p>Baseline Evaluation Metrics</p>
+<figure>
+<img src="https://image.yinan.fun/202309251304232.png" srcset="/img/loading.gif" lazyload
+alt="image-20230924100711864" />
+<figcaption aria-hidden="true">image-20230924100711864</figcaption>
+</figure></li>
+</ul>
+<h3 id="pandalm">7. PandaLM</h3>
+<blockquote>
+<p>Wang, Y., Yu, Z., Zeng, Z., Yang, L., Wang, C., Chen, H., Jiang, C.,
+Xie, R., Wang, J., Xie, X., et al. (2023h). Pandalm: An automatic
+evaluation benchmark for llm instruction tuning optimization. arXiv
+preprint arXiv:2306.05087.</p>
+</blockquote>
+<ul>
+<li><p>开源代码/模型</p>
+<p><a
+target="_blank" rel="noopener" href="https://github.com/WeOpenML/PandaLM">https://github.com/WeOpenML/PandaLM</a></p>
+<p><a
+target="_blank" rel="noopener" href="https://huggingface.co/WeOpenML/PandaLM-7B-v1">https://huggingface.co/WeOpenML/PandaLM-7B-v1</a></p></li>
+</ul>
+<p>当前，大家评估大模型的方法主要有两个：</p>
+<ul>
+<li>调用OpenAI的API接口，发送数据给OpenAI可能会像三星员工泄露代码一样造成数据泄露问题。</li>
+<li>雇佣专家进行人工标注，雇佣专家标注大量数据又十分费时费力且昂贵。</li>
+</ul>
+<p>PandaLM只需要在「本地部署」，且「不需要人类参与」，因此PandaLM的评估是可以保护隐私且相当廉价的。</p>
+<p>当两个不同的大模型对同一个指令和上下文产生不同响应时，PandaLM旨在比较这两个大模型的响应质量，并输出比较结果，比较理由以及可供参考的响应。比较结果有三种：响应1更好，响应2更好，响应1与响应2质量相似。</p>
+<figure>
+<img src="https://image.yinan.fun/202309251305749.png" srcset="/img/loading.gif" lazyload alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>结果表明，PandaLM-7B达到了93.75%的GPT-3.5评价能力和88.28%的GPT-4评价能力。</p>
+<figure>
+<img src="https://image.yinan.fun/202309251305475.png" srcset="/img/loading.gif" lazyload
+alt="image-20230924101010218" />
+<figcaption aria-hidden="true">image-20230924101010218</figcaption>
+</figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>
+      
+        <a href="/tags/%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/">#语言模型</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>LLM自动评价方法</div>
+      <div>https://yinan.fun/LLM自动评价方法</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>yinan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%AE%AD%E7%BB%83" title="神经网络训练">
+                        <span class="hidden-mobile">神经网络训练</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'wyn04/comment-utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
