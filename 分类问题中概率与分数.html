@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://image.yinan.fun/202308201042945.png">
 <meta property="og:image" content="https://image.yinan.fun/202308201323942.png">
 <meta property="article:published_time" content="2023-08-20T05:22:52.000Z">
-<meta property="article:modified_time" content="2023-09-14T01:18:39.298Z">
+<meta property="article:modified_time" content="2023-11-13T03:01:14.788Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -260,7 +260,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          2.9k 字
         
       </span>
     
@@ -271,7 +271,7 @@
         
         
         
-          24 分钟
+          25 分钟
         
       </span>
     
@@ -322,7 +322,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="分类问题中概率与分数">分类问题中概率与分数</h1>
+                <h1>分类问题中概率与分数</h1>
 <h2 id="什么是分数">什么是分数</h2>
 <p>对于二分类器来说，将其中一个类别称为正类，<strong>更高的分数意味着模型更有信心输入（observation）属于正类。</strong></p>
 <h2 id="什么是概率">什么是概率</h2>
@@ -331,90 +331,81 @@
 <p>在实践中，我们假设概率，因为可能只有一天正好有0.2000的降雨概率。如果我们把所有预测在17.5%到22.5%之间，并把它们组合在一个桶里，我们预计实际降雨量在17.5%到22.5%之间。</p>
 <p>这种将预测概率与实际发生次数进行比较的过程称为校准（calibration）。校准曲线根据实际发生率绘制预测概率。</p>
 <h2 id="概率校准曲线">概率校准曲线</h2>
-<p>下雨预测的例子，使用<a
-target="_blank" rel="noopener" href="https://www.kaggle.com/datasets/rtatman/did-it-rain-in-seattle-19482017">Kaggle数据集</a></p>
+<p>下雨预测的例子，使用<a target="_blank" rel="noopener" href="https://www.kaggle.com/datasets/rtatman/did-it-rain-in-seattle-19482017">Kaggle数据集</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">rain = pd.read_csv(<span class="hljs-string">&#x27;seattleWeather_1948-2017.csv&#x27;</span>).dropna()<br>rain.head()<br></code></pre></td></tr></table></figure>
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: right;">DATE</th>
-<th style="text-align: right;">PRCP</th>
-<th style="text-align: right;">TMAX</th>
-<th style="text-align: right;">TMIN</th>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:right">DATE</th>
+<th style="text-align:right">PRCP</th>
+<th style="text-align:right">TMAX</th>
+<th style="text-align:right">TMIN</th>
 <th>RAIN</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">0</td>
-<td style="text-align: right;">1948-01-01</td>
-<td style="text-align: right;">0.47</td>
-<td style="text-align: right;">51</td>
-<td style="text-align: right;">42</td>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:right">1948-01-01</td>
+<td style="text-align:right">0.47</td>
+<td style="text-align:right">51</td>
+<td style="text-align:right">42</td>
 <td>True</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">1</td>
-<td style="text-align: right;">1948-01-02</td>
-<td style="text-align: right;">0.59</td>
-<td style="text-align: right;">45</td>
-<td style="text-align: right;">36</td>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:right">1948-01-02</td>
+<td style="text-align:right">0.59</td>
+<td style="text-align:right">45</td>
+<td style="text-align:right">36</td>
 <td>True</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">2</td>
-<td style="text-align: right;">1948-01-03</td>
-<td style="text-align: right;">0.42</td>
-<td style="text-align: right;">45</td>
-<td style="text-align: right;">35</td>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:right">1948-01-03</td>
+<td style="text-align:right">0.42</td>
+<td style="text-align:right">45</td>
+<td style="text-align:right">35</td>
 <td>True</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">3</td>
-<td style="text-align: right;">1948-01-04</td>
-<td style="text-align: right;">0.31</td>
-<td style="text-align: right;">45</td>
-<td style="text-align: right;">34</td>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:right">1948-01-04</td>
+<td style="text-align:right">0.31</td>
+<td style="text-align:right">45</td>
+<td style="text-align:right">34</td>
 <td>True</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">4</td>
-<td style="text-align: right;">1948-01-05</td>
-<td style="text-align: right;">0.17</td>
-<td style="text-align: right;">45</td>
-<td style="text-align: right;">32</td>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:right">1948-01-05</td>
+<td style="text-align:right">0.17</td>
+<td style="text-align:right">45</td>
+<td style="text-align:right">32</td>
 <td>True</td>
 </tr>
 </tbody>
 </table>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">from</span> sklearn.calibration <span class="hljs-keyword">import</span> calibration_curve, CalibratedClassifierCV<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><span class="hljs-keyword">from</span> sklearn.naive_bayes <span class="hljs-keyword">import</span> GaussianNB<br><br><span class="hljs-comment"># load the data into a dataframe</span><br>rain = pd.read_csv(<span class="hljs-string">&#x27;seattleWeather_1948-2017.csv&#x27;</span>).dropna()<br>rain.head()<br><br><span class="hljs-comment"># use the temperatures to predict whether or not there was rain that day</span><br>features = rain[[<span class="hljs-string">&#x27;TMIN&#x27;</span>, <span class="hljs-string">&#x27;TMAX&#x27;</span>]]<br>target = rain.RAIN.astype(<span class="hljs-built_in">bool</span>)<br>X_train, X_test, y_train, y_test = train_test_split(features, target, random_state=<span class="hljs-number">42</span>)<br><br><span class="hljs-comment"># use a Naive Bayes Classifier and make hard predictions</span><br>nb_rain = GaussianNB().fit(X_train, y_train)<br>accuracy = nb_rain.score(X_train, y_train)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;The hard predictions were right <span class="hljs-subst">&#123;<span class="hljs-number">100</span>*accuracy:<span class="hljs-number">5.2</span>f&#125;</span>% of the time&#x27;</span>)<br><br><span class="hljs-comment"># use the predict_proba method to get the probability of the positive case</span><br>predictions = nb_rain.predict_proba(X_train)[:, <span class="hljs-number">1</span>]<br><br><span class="hljs-comment"># call calibration_curve to &quot;bin&quot; similar predicted probabilities together, and calculate what percentage of the time</span><br><span class="hljs-comment"># it actually rains in that bin</span><br>binned_true_p, binned_predict_p = calibration_curve(y_train, predictions, n_bins=<span class="hljs-number">10</span>)<br></code></pre></td></tr></table></figure>
-<p>调用<a
-target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.calibration.calibration_curve.html">calibration_curve</a>将相似的预测概率分箱在一起，并计算在该绑定中实际下雨的时间百分比。</p>
-<figure>
-<img src="https://image.yinan.fun/202308201042945.png" srcset="/img/loading.gif" lazyload alt="校准曲线" />
-<figcaption aria-hidden="true">校准曲线</figcaption>
-</figure>
+<p>调用<a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.calibration.calibration_curve.html">calibration_curve</a>将相似的预测概率分箱在一起，并计算在该绑定中实际下雨的时间百分比。</p>
+<p><img src="https://image.yinan.fun/202308201042945.png" srcset="/img/loading.gif" lazyload alt="校准曲线"></p>
 <p>如果我们的分类器输出良好的概率，那么校准曲线上这些点将接近这条红线。校准曲线上的点告诉我们，当我们的分类器声称下雨的概率约为25%时，实际上有33%的时间下雨了。</p>
 <p>在这个例子中，朴素贝叶斯分类器给出了看起来像概率的分数，并且是由<code>predict_proba</code>生成的，但当我们查看校准曲线时，我们发现它们实际上只是分数。</p>
 <h2 id="重新校准和普拉特缩放">重新校准和普拉特缩放</h2>
-<p>当模型的<code>predict_proba</code>方法给出分数而不是概率时，我们可以重新校准分数，使其更接近概率。这个过程被称为普拉特缩放（Platt
-scaling），在Scikit-learn中作为<code>CalibratedClassifierCV</code>实现。</p>
-<p>Platt scaling是一个两参数(two-parameter)优化问题，而优化的目标为：
-<span class="math display">\[
-min-\sum_i{t_i{\rm log}(p_i)+(1-t_i){\rm log}(1-p_i)}
-\]</span> 其中 <span class="math display">\[
-t_i=\frac{y_i+1}{2}
-\]</span></p>
-<p><span class="math display">\[
-p_i = \frac{1}{1+e^{Af(x_i)+B}}
-\]</span></p>
-<p><span
-class="math inline">\(f\)</span>表示一个二分类模型，y的值为-1或+1，A和B就是普拉特缩放要学习的参数。</p>
+<p>当模型的<code>predict_proba</code>方法给出分数而不是概率时，我们可以重新校准分数，使其更接近概率。这个过程被称为普拉特缩放（Platt scaling），在Scikit-learn中作为<code>CalibratedClassifierCV</code>实现。</p>
+<p>Platt scaling是一个两参数(two-parameter)优化问题，而优化的目标为：</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>m</mi><mi>i</mi><mi>n</mi><mo>−</mo><munder><mo>∑</mo><mi>i</mi></munder><mrow><msub><mi>t</mi><mi>i</mi></msub><mrow><mi mathvariant="normal">l</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">g</mi></mrow><mo stretchy="false">(</mo><msub><mi>p</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>t</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mrow><mi mathvariant="normal">l</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">g</mi></mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>p</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><annotation encoding="application/x-tex">min-\sum_i{t_i{\rm log}(p_i)+(1-t_i){\rm log}(1-p_i)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7429em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">min</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.3277em;vertical-align:-1.2777em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord"><span class="mord mathrm" style="margin-right:0.01389em;">log</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord"><span class="mord"><span class="mord mathrm" style="margin-right:0.01389em;">log</span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></span></p>
+<p>其中</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>t</mi><mi>i</mi></msub><mo>=</mo><mfrac><mrow><msub><mi>y</mi><mi>i</mi></msub><mo>+</mo><mn>1</mn></mrow><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">t_i=\frac{y_i+1}{2}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7651em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>p</mi><mi>i</mi></msub><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>+</mo><msup><mi>e</mi><mrow><mi>A</mi><mi>f</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>+</mo><mi>B</mi></mrow></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">p_i = \frac{1}{1+e^{Af(x_i)+B}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1088em;vertical-align:-0.7873em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.296em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.814em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mclose mtight">)</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7873em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span>表示一个二分类模型，y的值为-1或+1，A和B就是普拉特缩放要学习的参数。</p>
 <p>在天气示例中，我们可以将普拉特缩放应用于我们的朴素贝叶斯分类器。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">calibrated_nb_rain = CalibratedClassifierCV(nb_rain, cv=<span class="hljs-number">5</span>, method=<span class="hljs-string">&#x27;isotonic&#x27;</span>)<br><span class="hljs-comment"># Note we need to refit!</span><br>calibrated_nb_rain.fit(X_train, y_train);<br><br><span class="hljs-comment"># access the probabilities after recalibration</span><br>calibrated_probs = calibrated_nb_rain.predict_proba(X_test)[:, <span class="hljs-number">1</span>]<br>binned_true_p, binned_predict_p = calibration_curve(y_test, calibrated_probs, n_bins=<span class="hljs-number">10</span>)<br></code></pre></td></tr></table></figure>
-<p><img src="https://image.yinan.fun/202308201323942.png" srcset="/img/loading.gif" lazyload
-alt="image-20230820115155793" />修正后的概率更接近红线。</p>
+<p><img src="https://image.yinan.fun/202308201323942.png" srcset="/img/loading.gif" lazyload alt="">修正后的概率更接近红线。</p>
 
                 
               </div>

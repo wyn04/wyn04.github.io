@@ -17,16 +17,16 @@
   <meta name="author" content="yinan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="PyInstaller python 打包工具使用 参数     参数名 描述 说明     -D 生成one-folder的程序（默认） 生成结果是一个目录，各种第三方依赖、资源和exe同时存储在该目录   -F 生成one-file的程序 生成结果是一个exe文件，所有的第三方依赖、资源和代码均被打包进该exe内   –add-data 打包额外资源 用法：pyinstaller main.p">
+    <meta name="description" content="PyInstaller python 打包工具使用 参数    参数名 描述 说明     -D 生成one-folder的程序（默认） 生成结果是一个目录，各种第三方依赖、资源和exe同时存储在该目录   -F 生成one-file的程序 生成结果是一个exe文件，所有的第三方依赖、资源和代码均被打包进该exe内   –add-data 打包额外资源 用法：pyinstaller main.py">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PyInstaller python 打包工具使用">
 <meta property="og:url" content="https://yinan.fun/PyInstaller-python-%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8">
 <meta property="og:site_name" content="yinan的博客">
-<meta property="og:description" content="PyInstaller python 打包工具使用 参数     参数名 描述 说明     -D 生成one-folder的程序（默认） 生成结果是一个目录，各种第三方依赖、资源和exe同时存储在该目录   -F 生成one-file的程序 生成结果是一个exe文件，所有的第三方依赖、资源和代码均被打包进该exe内   –add-data 打包额外资源 用法：pyinstaller main.p">
+<meta property="og:description" content="PyInstaller python 打包工具使用 参数    参数名 描述 说明     -D 生成one-folder的程序（默认） 生成结果是一个目录，各种第三方依赖、资源和exe同时存储在该目录   -F 生成one-file的程序 生成结果是一个exe文件，所有的第三方依赖、资源和代码均被打包进该exe内   –add-data 打包额外资源 用法：pyinstaller main.py">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://image.yinan.fun/image-20230522162328233.png">
 <meta property="article:published_time" content="2023-05-22T08:43:42.000Z">
-<meta property="article:modified_time" content="2023-09-14T01:18:39.805Z">
+<meta property="article:modified_time" content="2023-11-13T03:01:23.026Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="编程">
 <meta property="article:tag" content="Python">
@@ -322,72 +322,61 @@
             
               <div class="markdown-body">
                 
-                <h1 id="pyinstaller-python-打包工具使用">PyInstaller python
-打包工具使用</h1>
+                <h1>PyInstaller python 打包工具使用</h1>
 <h2 id="参数">参数</h2>
 <table>
-
 <thead>
-<tr class="header">
+<tr>
 <th>参数名</th>
 <th>描述</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>-D</td>
 <td>生成one-folder的程序（默认）</td>
 <td>生成结果是一个目录，各种第三方依赖、资源和exe同时存储在该目录</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-F</td>
 <td>生成one-file的程序</td>
 <td>生成结果是一个exe文件，所有的第三方依赖、资源和代码均被打包进该exe内</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>–add-data</td>
 <td>打包额外资源</td>
-<td>用法：pyinstaller main.py
---add-data=src;dest。windows以;分割，macOS/linux以:分割</td>
+<td>用法：pyinstaller <a target="_blank" rel="noopener" href="http://main.py">main.py</a> --add-data=src;dest。windows以;分割，macOS/linux以:分割</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-c</td>
 <td>显示命令行窗口</td>
 <td>与-w相反，默认含有此参数</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>-w</td>
 <td>不显示命令行窗口</td>
 <td>编写GUI程序时使用此参数有用。</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-i</td>
 <td>为main.exe指定图标</td>
-<td>用法：pyinstaller -i beauty.ico main.py</td>
+<td>用法：pyinstaller -i beauty.ico <a target="_blank" rel="noopener" href="http://main.py">main.py</a></td>
 </tr>
 </tbody>
 </table>
-<p>具体参数看：https://blog.csdn.net/weixin_39000819/article/details/80942423</p>
+<p>具体参数看：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39000819/article/details/80942423">https://blog.csdn.net/weixin_39000819/article/details/80942423</a></p>
 <h2 id="打包图片等资源">打包图片等资源</h2>
 <p>即使使用了<code>–add-data</code>参数也大概率还是会出现图片文件没有找到的情况。</p>
-<p>因为当app运行的时候，会先<strong>把资源解压到一个系统的临时目录</strong>，包括打包进去的
-img文件等。但是，此时的代码并不能直接通过 “img/texture.png”
-这样的相对路径来得到文件,应该是因为本身程序就不在这里，所以自然引用不到。</p>
-<p>这时需要用到 sys 的一个半私有的属性
-<code>sys._MEIPASS</code>，根据官方的说明，它是 pyinstaller
-运行时创建的<strong>临时目录的绝对路径</strong>。需要在程序运行时判断当前是不是有这个属性，如果有的话，使用生成临时目录下图片的绝对路径，如果没有的话，那就直接返回当前程序的绝对路径：</p>
+<p>因为当app运行的时候，会先<strong>把资源解压到一个系统的临时目录</strong>，包括打包进去的 img文件等。但是，此时的代码并不能直接通过 “img/texture.png” 这样的相对路径来得到文件,应该是因为本身程序就不在这里，所以自然引用不到。</p>
+<p>这时需要用到 sys 的一个半私有的属性 <code>sys._MEIPASS</code>，根据官方的说明，它是 pyinstaller 运行时创建的<strong>临时目录的绝对路径</strong>。需要在程序运行时判断当前是不是有这个属性，如果有的话，使用生成临时目录下图片的绝对路径，如果没有的话，那就直接返回当前程序的绝对路径：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_resource_path</span>(<span class="hljs-params">relative_path</span>):<br>    <span class="hljs-comment"># 资源路径拼接当前运行时临时目录路径</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">hasattr</span>(sys, <span class="hljs-string">&#x27;_MEIPASS&#x27;</span>):<br>        <span class="hljs-keyword">return</span> os.path.join(sys._MEIPASS, relative_path)<br>    <span class="hljs-keyword">return</span> os.path.join(os.path.abspath(<span class="hljs-string">&quot;.&quot;</span>), relative_path)<br></code></pre></td></tr></table></figure>
 <p>每次用到图片资源地址的时候都调用<code>get_resource_path</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">texture_filename = get_resource_path(<span class="hljs-string">&quot;img/texture.png&quot;</span>)<br>texture = cv2.imread(texture_filename)<br></code></pre></td></tr></table></figure>
 <p>之后就可以使用下面的命令（windows要将<code>:</code>改成<code>;</code>）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">pyinstaller --add-data img:img -wF img2sketch.py</span><br></code></pre></td></tr></table></figure>
 <p>在<code>disk</code>目录下生成可执行文件</p>
-<figure>
-<img src="https://image.yinan.fun/image-20230522162328233.png" srcset="/img/loading.gif" lazyload
-alt="image-20230522162328233" />
-<figcaption aria-hidden="true">image-20230522162328233</figcaption>
-</figure>
+<p><img src="https://image.yinan.fun/image-20230522162328233.png" srcset="/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>
