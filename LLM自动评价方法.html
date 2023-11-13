@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://image.yinan.fun/202309251305749.png">
 <meta property="og:image" content="https://image.yinan.fun/202309251305475.png">
 <meta property="article:published_time" content="2023-09-25T03:36:20.000Z">
-<meta property="article:modified_time" content="2023-09-25T05:07:19.196Z">
+<meta property="article:modified_time" content="2023-11-13T02:33:27.387Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="机器学习">
 <meta property="article:tag" content="语言模型">
@@ -275,7 +275,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.5k 字
+          6.3k 字
         
       </span>
     
@@ -286,7 +286,7 @@
         
         
         
-          55 分钟
+          53 分钟
         
       </span>
     
@@ -400,10 +400,7 @@ summaries. In Text summarization branches out, pages 74–81.</p>
 </ul>
 <p><strong>ROUGE-N</strong> 主要统计 N-gram 上的召回率，对于
 N-gram，可以计算得到 ROUGE-N 分数，计算公式如下：</p>
-<figure>
-<img src="https://image.yinan.fun/202309251305125.png" srcset="/img/loading.gif" lazyload alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
+<p><img src="https://image.yinan.fun/202309251305125.png" srcset="/img/loading.gif" lazyload /></p>
 <p>公式的分母是统计在reference中N-gram
 的个数，而分子是统计reference与candidate共有的 N-gram 个数。</p>
 <p>给定多个参考译文 <strong>Si</strong> <span class="math display">\[
@@ -473,17 +470,9 @@ arXiv:1904.09675.</p>
 <p>于是有人提出使用句子上下文表示(bert全家桶)和人工设计的计算逻辑对句子相似度进行计算。这样的评价指标鲁棒性较好，在缺乏训练数据的情况下也具有较好表现。</p>
 <p>思路是非常简单的：即对两个生成句和参考句（word
 piece进行tokenize）分别用bert提取特征，然后对2个句子的每一个词分别计算内积，可以得到一个相似性矩阵。</p>
-<figure>
-<img src="https://image.yinan.fun/202309251304050.png" srcset="/img/loading.gif" lazyload
-alt="image-20230922111952603" />
-<figcaption aria-hidden="true">image-20230922111952603</figcaption>
-</figure>
+<p><img src="https://image.yinan.fun/202309251304050.png" srcset="/img/loading.gif" lazyload /></p>
 <p>基于这个矩阵，我们可以分别对参考句和生成句做一个最大相似性得分的累加然后归一化，得到bertscore的precision，recall和F1：</p>
-<figure>
-<img src="https://image.yinan.fun/202309251305151.png" srcset="/img/loading.gif" lazyload
-alt="image-20230922111853984" />
-<figcaption aria-hidden="true">image-20230922111853984</figcaption>
-</figure>
+<p><img src="https://image.yinan.fun/202309251305151.png" srcset="/img/loading.gif" lazyload /></p>
 <p>还可以考虑给不同的词以权重。作者使用idf函数，即给定M个参考句，词w的idf为：
 <span class="math display">\[
 \operatorname{idf}(w)=-\log \frac{1}{M} \sum_{i=1}^{M} \mathbb{I}\left[w
@@ -506,7 +495,7 @@ models. arXiv preprint arXiv:2305.13711.</p>
 reference (if available), and generated response, and then fed to a
 large language model, which outputs scores for each dimension based on
 the defined schema.xs</p>
-<p><img src="https://image.yinan.fun/202309251304291.png" srcset="/img/loading.gif" lazyload alt="image-20230922202719792" style="zoom: 50%;" /></p>
+<p><img src="https://image.yinan.fun/202309251304291.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;" /></p>
 <ul>
 <li><p>Unified Evaluation Schema</p>
 <p>The evaluation schema is a natural language instruction that defines
@@ -514,30 +503,18 @@ the task and the desired evaluation criteria. The schema is provided as
 a format instruction, which <strong>specifies the structure and the
 range of the scores for each dimension</strong>. For example, the
 evaluation schema can be:</p>
-<figure>
-<img src="https://image.yinan.fun/202309251304462.png" srcset="/img/loading.gif" lazyload
-alt="image-20230922202303631" />
-<figcaption aria-hidden="true">image-20230922202303631</figcaption>
-</figure></li>
+<p><img src="https://image.yinan.fun/202309251304462.png" srcset="/img/loading.gif" lazyload /></p></li>
 <li><p>Single Prompt for Evaluation</p>
 <p>The prompt is concatenated with the dialogue context, the reference
 (if available), and the generated response, and then fed to the large
 language model to output a score for each evaluation dimension, based on
 the defined schema.</p>
-<figure>
-<img src="https://image.yinan.fun/202309251304679.png" srcset="/img/loading.gif" lazyload
-alt="image-20230922202344802" />
-<figcaption aria-hidden="true">image-20230922202344802</figcaption>
-</figure></li>
+<p><img src="https://image.yinan.fun/202309251304679.png" srcset="/img/loading.gif" lazyload /></p></li>
 <li><p>Efficient Evaluation</p>
 <p>By using a single prompt with a unified evaluation schema, LLM-EVAL
 can efficiently obtain multi-dimensional scores for the responses
 without the need for multiple prompts.</p>
-<figure>
-<img src="https://image.yinan.fun/202309251304926.png" srcset="/img/loading.gif" lazyload
-alt="image-20230922202430502" />
-<figcaption aria-hidden="true">image-20230922202430502</figcaption>
-</figure></li>
+<p><img src="https://image.yinan.fun/202309251304926.png" srcset="/img/loading.gif" lazyload /></p></li>
 <li><p>Different LLMs</p>
 <p>In conclusion, our analysis demonstrates that
 <strong>dialogue-optimized LLMs</strong>, such as Claude and ChatGPT,
@@ -545,17 +522,9 @@ yield <strong>better performance</strong> in the LLMEVAL method for
 open-domain conversation evaluation. Although smaller models like
 Anthropic Claude-instant may not achieve the best performance, they can
 still be considered for resourcelimited scenarios.</p>
-<figure>
-<img src="https://image.yinan.fun/202309251304520.png" srcset="/img/loading.gif" lazyload
-alt="image-20230922204729102" />
-<figcaption aria-hidden="true">image-20230922204729102</figcaption>
-</figure></li>
+<p><img src="https://image.yinan.fun/202309251304520.png" srcset="/img/loading.gif" lazyload /></p></li>
 <li><p>Baseline Evaluation Metrics</p>
-<figure>
-<img src="https://image.yinan.fun/202309251304232.png" srcset="/img/loading.gif" lazyload
-alt="image-20230924100711864" />
-<figcaption aria-hidden="true">image-20230924100711864</figcaption>
-</figure></li>
+<p><img src="https://image.yinan.fun/202309251304232.png" srcset="/img/loading.gif" lazyload /></p></li>
 </ul>
 <h3 id="pandalm">7. PandaLM</h3>
 <blockquote>
@@ -578,16 +547,9 @@ target="_blank" rel="noopener" href="https://huggingface.co/WeOpenML/PandaLM-7B-
 </ul>
 <p>PandaLM只需要在「本地部署」，且「不需要人类参与」，因此PandaLM的评估是可以保护隐私且相当廉价的。</p>
 <p>当两个不同的大模型对同一个指令和上下文产生不同响应时，PandaLM旨在比较这两个大模型的响应质量，并输出比较结果，比较理由以及可供参考的响应。比较结果有三种：响应1更好，响应2更好，响应1与响应2质量相似。</p>
-<figure>
-<img src="https://image.yinan.fun/202309251305749.png" srcset="/img/loading.gif" lazyload alt="img" />
-<figcaption aria-hidden="true">img</figcaption>
-</figure>
+<p><img src="https://image.yinan.fun/202309251305749.png" srcset="/img/loading.gif" lazyload /></p>
 <p>结果表明，PandaLM-7B达到了93.75%的GPT-3.5评价能力和88.28%的GPT-4评价能力。</p>
-<figure>
-<img src="https://image.yinan.fun/202309251305475.png" srcset="/img/loading.gif" lazyload
-alt="image-20230924101010218" />
-<figcaption aria-hidden="true">image-20230924101010218</figcaption>
-</figure>
+<p><img src="https://image.yinan.fun/202309251305475.png" srcset="/img/loading.gif" lazyload /></p>
 
                 
               </div>
