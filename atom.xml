@@ -6,7 +6,7 @@
   <link href="https://yinan.fun/atom.xml" rel="self"/>
   
   <link href="https://yinan.fun/"/>
-  <updated>2023-11-13T02:33:27.387Z</updated>
+  <updated>2023-11-13T02:46:00.114Z</updated>
   <id>https://yinan.fun/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>text</title>
+    <link href="https://yinan.fun/text"/>
+    <id>https://yinan.fun/text</id>
+    <published>2023-11-13T02:45:11.000Z</published>
+    <updated>2023-11-13T02:46:00.114Z</updated>
+    
+    <content type="html"><![CDATA[<h1>test</h1><p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mspace linebreak="newline"></mspace><mi>b</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">a=\frac{1}{2} \\b=2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></span></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1&gt;test&lt;/h1&gt;
+&lt;p class=&quot;katex-block &quot;&gt;&lt;span class=&quot;katex-display&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>LLM自动评价方法</title>
@@ -548,38 +569,6 @@ Training of Neural Networks（DaNN）实现&lt;/h1&gt;
     <category term="ChatGPT" scheme="https://yinan.fun/tags/ChatGPT/"/>
     
     <category term="语言模型" scheme="https://yinan.fun/tags/%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>爱楼表情包网站</title>
-    <link href="https://yinan.fun/%E7%88%B1%E6%A5%BC%E8%A1%A8%E6%83%85%E5%8C%85%E7%BD%91%E7%AB%99"/>
-    <id>https://yinan.fun/%E7%88%B1%E6%A5%BC%E8%A1%A8%E6%83%85%E5%8C%85%E7%BD%91%E7%AB%99</id>
-    <published>2023-06-03T02:21:41.000Z</published>
-    <updated>2023-09-14T01:18:41.319Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="爱楼-表情包网站">爱楼-表情包网站</h1><h2 id="页面展示">页面展示</h2><ul><li>主页</li></ul><figure><img src="https://image.yinan.fun/202308242323122.png"alt="image-20230717161539797" /><figcaption aria-hidden="true">image-20230717161539797</figcaption></figure><ul><li>管理员页面</li></ul><figure><img src="https://image.yinan.fun/image-20230717161629434.png"alt="image-20230717161629434" /><figcaption aria-hidden="true">image-20230717161629434</figcaption></figure><ul><li>后端文档</li></ul><figure><img src="https://image.yinan.fun/image-20230717161823777.png"alt="image-20230717161823777" /><figcaption aria-hidden="true">image-20230717161823777</figcaption></figure><h2 id="需求分析">需求分析</h2><ol type="1"><li>用户根据名字和标签搜索表情包</li><li>用户上传表情包</li><li>管理员管理表情包</li></ol><h2 id="技术栈">技术栈</h2><h3 id="前端">前端</h3><ul><li>框架：Vue 3</li><li>组件库：Ant Design Vue</li><li>请求：Axios</li><li>路由：Vue Router</li><li>文件下载：FileSaver</li></ul><h3 id="后端">后端</h3><ul><li>Java 8</li><li>开发框架：SpringBoot 2.x</li><li>数据访问：MyBatis + MyBatis Plus</li><li>缓存：Redis</li><li>项目管理：Maven</li><li>接口文档：Swagger + Knife4j</li></ul><h3 id="存储">存储</h3><ul><li>数据库：MySQL</li><li>对象存储：七牛云 COS</li></ul><h3 id="部署">部署</h3><ul><li>前端：Nginx + Docker</li><li>后端：Docker容器</li></ul><h2 id="特性">特性</h2><ol type="1"><li>使用 Redis缓存首页高频访问的表情包列表，将接口响应时长从120毫秒缩短至20毫秒。<br /></li><li>选用 MyBatis + MyBatis-Plus进行数据访问层开发，复用大多数通用方法，并且通过继承定制了自己的通用操作模板，大幅提升了项目开发效率。<br /></li><li>为了明确接口的返回，自定义统一的错误码，并封装了全局异常处理器，从而规范了异常返回、屏蔽了项目冗余的报错细节。<br /></li><li>自主编写 Dockerfile，并通过容器部署，提高部署上线效率。<br /></li><li>使用 Knife4j + Swagger自动生成后端接口文档，避免了人工编写维护文档的麻烦。<br /></li><li>前端使用 Vant UI 组件库，并封装了全局通用的 Layout组件，使主页、搜索页、管理页布局一致、并减少重复代码。</li></ol><h2 id="软件设计">软件设计</h2><h3 id="数据库设计">数据库设计</h3><p><strong>数据库名：</strong> ilou</p><table><thead><tr class="header"><th style="text-align: left;">表名</th><th style="text-align: left;">说明</th></tr></thead><tbody><tr class="odd"><td style="text-align: left;"><a href="#emoji">emoji</a></td><td style="text-align: left;">表情</td></tr><tr class="even"><td style="text-align: left;"><a href="#tag">tag</a></td><td style="text-align: left;">标签</td></tr></tbody></table><p><strong>表名：</strong> <a id="tag">emoji</a></p><p><strong>说明：</strong> 表情</p><p><strong>数据列：</strong></p><table><thead><tr class="header"><th style="text-align: center;">序号</th><th style="text-align: left;">名称</th><th style="text-align: center;">数据类型</th><th style="text-align: center;">长度</th><th style="text-align: center;">小数位</th><th style="text-align: center;">允许空值</th><th style="text-align: center;">主键</th><th style="text-align: center;">默认值</th><th style="text-align: center;">说明</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;">1</td><td style="text-align: left;">id</td><td style="text-align: center;">int</td><td style="text-align: center;">10</td><td style="text-align: center;">0</td><td style="text-align: center;">N</td><td style="text-align: center;">Y</td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;">2</td><td style="text-align: left;">url</td><td style="text-align: center;">varchar</td><td style="text-align: center;">4096</td><td style="text-align: center;">0</td><td style="text-align: center;">Y</td><td style="text-align: center;">N</td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;">3</td><td style="text-align: left;">name</td><td style="text-align: center;">varchar</td><td style="text-align: center;">512</td><td style="text-align: center;">0</td><td style="text-align: center;">Y</td><td style="text-align: center;">N</td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;">4</td><td style="text-align: left;">userId</td><td style="text-align: center;">int</td><td style="text-align: center;">10</td><td style="text-align: center;">0</td><td style="text-align: center;">Y</td><td style="text-align: center;">N</td><td style="text-align: center;">0</td><td style="text-align: center;">上传用户id</td></tr><tr class="odd"><td style="text-align: center;">5</td><td style="text-align: left;">tags</td><td style="text-align: center;">varchar</td><td style="text-align: center;">1024</td><td style="text-align: center;">0</td><td style="text-align: center;">Y</td><td style="text-align: center;">N</td><td style="text-align: center;"></td><td style="text-align: center;">标签数组json</td></tr><tr class="even"><td style="text-align: center;">6</td><td style="text-align: left;">reviewStatus</td><td style="text-align: center;">int</td><td style="text-align: center;">10</td><td style="text-align: center;">0</td><td style="text-align: center;">N</td><td style="text-align: center;">N</td><td style="text-align: center;">0</td><td style="text-align: center;">0-待审核,1-通过,2-拒绝</td></tr><tr class="odd"><td style="text-align: center;">7</td><td style="text-align: left;">createTime</td><td style="text-align: center;">datetime</td><td style="text-align: center;">19</td><td style="text-align: center;">0</td><td style="text-align: center;">Y</td><td style="text-align: center;">N</td><td style="text-align: center;">CURRENT_TIMESTAMP</td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;">8</td><td style="text-align: left;">isDelete</td><td style="text-align: center;">tinyint</td><td style="text-align: center;">3</td><td style="text-align: center;">0</td><td style="text-align: center;">N</td><td style="text-align: center;">N</td><td style="text-align: center;">0</td><td style="text-align: center;">是否删除0-未删除1-已删除</td></tr><tr class="odd"><td style="text-align: center;">9</td><td style="text-align: left;">updateTime</td><td style="text-align: center;">datetime</td><td style="text-align: center;">19</td><td style="text-align: center;">0</td><td style="text-align: center;">Y</td><td style="text-align: center;">N</td><td style="text-align: center;">CURRENT_TIMESTAMP</td><td style="text-align: center;"></td></tr></tbody></table><p><strong>表名：</strong> <a id="tag">tag</a></p><p><strong>说明：</strong> 标签</p><p><strong>数据列：</strong></p><table style="width:100%;"><thead><tr class="header"><th style="text-align: center;">序号</th><th style="text-align: left;">名称</th><th style="text-align: center;">数据类型</th><th style="text-align: center;">长度</th><th style="text-align: center;">小数位</th><th style="text-align: center;">允许空值</th><th style="text-align: center;">主键</th><th style="text-align: center;">默认值</th><th style="text-align: center;">说明</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;">1</td><td style="text-align: left;">id</td><td style="text-align: center;">int</td><td style="text-align: center;">10</td><td style="text-align: center;">0</td><td style="text-align: center;">N</td><td style="text-align: center;">Y</td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;">2</td><td style="text-align: left;">name</td><td style="text-align: center;">varchar</td><td style="text-align: center;">512</td><td style="text-align: center;">0</td><td style="text-align: center;">N</td><td style="text-align: center;">N</td><td style="text-align: center;"></td><td style="text-align: center;">标签名</td></tr><tr class="odd"><td style="text-align: center;">3</td><td style="text-align: left;">createTime</td><td style="text-align: center;">datetime</td><td style="text-align: center;">19</td><td style="text-align: center;">0</td><td style="text-align: center;">Y</td><td style="text-align: center;">N</td><td style="text-align: center;">CURRENT_TIMESTAMP</td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;">4</td><td style="text-align: left;">isDelete</td><td style="text-align: center;">tinyint</td><td style="text-align: center;">3</td><td style="text-align: center;">0</td><td style="text-align: center;">N</td><td style="text-align: center;">N</td><td style="text-align: center;">0</td><td style="text-align: center;">是否删除0-未删除1-已删除</td></tr><tr class="odd"><td style="text-align: center;">5</td><td style="text-align: left;">updateTime</td><td style="text-align: center;">datetime</td><td style="text-align: center;">19</td><td style="text-align: center;">0</td><td style="text-align: center;">Y</td><td style="text-align: center;">N</td><td style="text-align: center;">CURRENT_TIMESTAMP</td><td style="text-align: center;"></td></tr></tbody></table><h3 id="后端接口设计">后端接口设计</h3><p><ahref="ilou-api.yinan.fun/api/doc.html">ilou-api.yinan.fun/api/doc.html</a></p><h3 id="通用返回对象">通用返回对象</h3><p>给对象补充一些信息，告诉前端这个请求在业务层面上是成功还是失败</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java">SUCCESS(<span class="hljs-number">0</span>, <span class="hljs-string">&quot;ok&quot;</span>),<br>PARAMS_ERROR(<span class="hljs-number">40000</span>, <span class="hljs-string">&quot;请求参数错误&quot;</span>),<br>NOT_LOGIN_ERROR(<span class="hljs-number">40100</span>, <span class="hljs-string">&quot;未登录&quot;</span>),<br>NO_AUTH_ERROR(<span class="hljs-number">40101</span>, <span class="hljs-string">&quot;无权限&quot;</span>),<br>NOT_FOUND_ERROR(<span class="hljs-number">40400</span>, <span class="hljs-string">&quot;请求数据不存在&quot;</span>),<br>FORBIDDEN_ERROR(<span class="hljs-number">40300</span>, <span class="hljs-string">&quot;禁止访问&quot;</span>),<br>SYSTEM_ERROR(<span class="hljs-number">50000</span>, <span class="hljs-string">&quot;系统内部异常&quot;</span>),<br>OPERATION_ERROR(<span class="hljs-number">50001</span>, <span class="hljs-string">&quot;操作失败&quot;</span>),<br>FILE_UPLOAD_ERROR(<span class="hljs-number">50010</span>, <span class="hljs-string">&quot;文件上传错误&quot;</span>);<br></code></pre></td></tr></table></figure><h3 id="全局异常处理器">全局异常处理器</h3><ol type="1"><li><p>定义业务异常类</p><ol type="1"><li>相对于 java 的异常类，支持更多字段</li><li>自定义构造函数，更灵活 / 快捷的设置字段</li></ol></li><li><p>编写全局异常处理器（利用 SpringAOP，在调用方法前后进行额外的处理）</p></li></ol><h3 id="源码">源码</h3><p><ahref="https://github.com/wyn04/ilou">https://github.com/wyn04/ilou</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;爱楼-表情包网站&quot;&gt;爱楼-表情包网站&lt;/h1&gt;
-&lt;h2 id=&quot;页面展示&quot;&gt;页面展示&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;主页&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure&gt;
-&lt;img src=&quot;https://image.yinan.fun/202308242323122.pn</summary>
-      
-    
-    
-    
-    <category term="项目" scheme="https://yinan.fun/categories/%E9%A1%B9%E7%9B%AE/"/>
-    
-    
-    <category term="JAVA" scheme="https://yinan.fun/tags/JAVA/"/>
-    
-    <category term="SpringBoot" scheme="https://yinan.fun/tags/SpringBoot/"/>
     
   </entry>
   
