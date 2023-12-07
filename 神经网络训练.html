@@ -949,6 +949,37 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
   
   
   
+  
+    <link rel="stylesheet" href="/css/APlayer.min.css">
+    <!-- // 这里div的样式是笔者自己修改过的，你可以直接使用APlayer官方的原配置：<div id="aplayer"></div> -->
+    <div id="aplayer"></div>
+    <script src="/js/APlayer.min.js"></script>
+    <script src="/js/color-thief.js"></script>
+    <script>
+      const ap = new APlayer({
+        container: document.getElementById('aplayer'),
+        autoplay: true, //自动播放
+        listFolded: true, //播放列表默认折叠
+        listMaxHeight: 90, //播放列表最大高度
+        order: 'list', //音频循环顺序, 可选值: 'list', 'random'
+        loop: 'all', //音频循环播放, 可选值: 'all', 'one', 'none'
+        theme: '#e9e9e9', //切换音频时的主题色，优先级低于audio.theme
+        preload: 'none', //音频预加载，可选值: 'none', 'metadata', 'auto'
+        mutex: true, //互斥，阻止多个播放器同时播放，当前播放器播放时暂停其他播放器
+        lrcType: 3, //歌词格式，可选值：3（LRC文件歌词格式），1（JS字符串歌词格式）
+        volume: 0.3, //默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
+        fixed: true, //吸底模式（fixed:true），迷你模式（mini:true），普通模式（注释此行或者设置fixed:false）
+        audio: [{
+            name: 'さくら ~あなたに出会えてよかった~（樱花樱花想见你）（Cover RSP）',
+            artist: '君と一緒にいればいい&佐天Tamako',
+            lrc: '/music/さくら ~あなたに出会えてよかった~（樱花樱花想见你）（Cover RSP）/さくら ~あなたに出会えてよかった~（樱花樱花想见你）（Cover RSP）.txt',
+            cover: '/music/さくら ~あなたに出会えてよかった~（樱花樱花想见你）（Cover RSP）/さくら ~あなたに出会えてよかった~（樱花樱花想见你）（Cover RSP）.jpg',
+            url: '/music/さくら ~あなたに出会えてよかった~（樱花樱花想见你）（Cover RSP）/さくら ~あなたに出会えてよかった~（樱花樱花想见你）（Cover RSP）.mp3'
+          },
+        ]
+      });
+    </script>
+    
 </div>
 
   </footer>
@@ -1114,5 +1145,5 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","hOffset":0,"vOffset":-150,"width":300,"height":600},"mobile":{"show":false},"rect":"opacity:0.7","log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","hOffset":0,"vOffset":-100,"width":250,"height":500},"mobile":{"show":false},"rect":"opacity:0.7","log":false});</script></body>
 </html>
