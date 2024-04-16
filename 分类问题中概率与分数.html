@@ -8,8 +8,8 @@
 <head>
   <meta name="baidu-site-verification" content="codeva-pajW5JmcAJ" />
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://image.yinan.fun/icon.jpg">
-  <link rel="icon" href="https://image.yinan.fun/icon.jpg">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://image.wangyinan.cn/icon.jpg">
+  <link rel="icon" href="https://image.wangyinan.cn/icon.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -20,18 +20,18 @@
     <meta name="description" content="分类问题中概率与分数 什么是分数 对于二分类器来说，将其中一个类别称为正类，更高的分数意味着模型更有信心输入（observation）属于正类。 什么是概率 概率可能很难定义。例如，如果我们做一个降雨预测器，它告诉我们今天下雨的几率为20%，我们如何判断它是否正确？在检查预测时，要么会下雨（要么不会下雨）。标准的方法是，如果我们采取看起来与今天相似的日子，那么其中20%的日子应该会下雨，但随后我们">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分类问题中概率与分数">
-<meta property="og:url" content="https://yinan.fun/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E4%B8%AD%E6%A6%82%E7%8E%87%E4%B8%8E%E5%88%86%E6%95%B0">
+<meta property="og:url" content="https://wangyinan.cn/%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E4%B8%AD%E6%A6%82%E7%8E%87%E4%B8%8E%E5%88%86%E6%95%B0">
 <meta property="og:site_name" content="yinan的博客">
 <meta property="og:description" content="分类问题中概率与分数 什么是分数 对于二分类器来说，将其中一个类别称为正类，更高的分数意味着模型更有信心输入（observation）属于正类。 什么是概率 概率可能很难定义。例如，如果我们做一个降雨预测器，它告诉我们今天下雨的几率为20%，我们如何判断它是否正确？在检查预测时，要么会下雨（要么不会下雨）。标准的方法是，如果我们采取看起来与今天相似的日子，那么其中20%的日子应该会下雨，但随后我们">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://image.yinan.fun/202308201042945.png">
-<meta property="og:image" content="https://image.yinan.fun/202308201323942.png">
+<meta property="og:image" content="https://image.wangyinan.cn/202308201042945.png">
+<meta property="og:image" content="https://image.wangyinan.cn/202308201323942.png">
 <meta property="article:published_time" content="2023-08-20T05:22:52.000Z">
-<meta property="article:modified_time" content="2023-11-13T03:01:14.788Z">
+<meta property="article:modified_time" content="2024-04-16T15:08:25.758Z">
 <meta property="article:author" content="yinan">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://image.yinan.fun/202308201042945.png">
+<meta name="twitter:image" content="https://image.wangyinan.cn/202308201042945.png">
   
   
   
@@ -80,7 +80,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"yinan.fun","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"uDJt8JM9Bc1AIwauBTrah37E-gzGzoHsz","app_key":"ZJPxwrgWF2jIuszaUSCFW164","server_url":"https://udjt8jm9.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"wangyinan.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"uDJt8JM9Bc1AIwauBTrah37E-gzGzoHsz","app_key":"ZJPxwrgWF2jIuszaUSCFW164","server_url":"https://udjt8jm9.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -202,7 +202,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" target="_blank" rel="noopener" href="https://run.yinan.fun/">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://run.wangyinan.cn/">
                 <i class="iconfont icon-paobu"></i>
                 <span>跑步</span>
               </a>
@@ -402,7 +402,7 @@
 </table>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">from</span> sklearn.calibration <span class="hljs-keyword">import</span> calibration_curve, CalibratedClassifierCV<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><span class="hljs-keyword">from</span> sklearn.naive_bayes <span class="hljs-keyword">import</span> GaussianNB<br><br><span class="hljs-comment"># load the data into a dataframe</span><br>rain = pd.read_csv(<span class="hljs-string">&#x27;seattleWeather_1948-2017.csv&#x27;</span>).dropna()<br>rain.head()<br><br><span class="hljs-comment"># use the temperatures to predict whether or not there was rain that day</span><br>features = rain[[<span class="hljs-string">&#x27;TMIN&#x27;</span>, <span class="hljs-string">&#x27;TMAX&#x27;</span>]]<br>target = rain.RAIN.astype(<span class="hljs-built_in">bool</span>)<br>X_train, X_test, y_train, y_test = train_test_split(features, target, random_state=<span class="hljs-number">42</span>)<br><br><span class="hljs-comment"># use a Naive Bayes Classifier and make hard predictions</span><br>nb_rain = GaussianNB().fit(X_train, y_train)<br>accuracy = nb_rain.score(X_train, y_train)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;The hard predictions were right <span class="hljs-subst">&#123;<span class="hljs-number">100</span>*accuracy:<span class="hljs-number">5.2</span>f&#125;</span>% of the time&#x27;</span>)<br><br><span class="hljs-comment"># use the predict_proba method to get the probability of the positive case</span><br>predictions = nb_rain.predict_proba(X_train)[:, <span class="hljs-number">1</span>]<br><br><span class="hljs-comment"># call calibration_curve to &quot;bin&quot; similar predicted probabilities together, and calculate what percentage of the time</span><br><span class="hljs-comment"># it actually rains in that bin</span><br>binned_true_p, binned_predict_p = calibration_curve(y_train, predictions, n_bins=<span class="hljs-number">10</span>)<br></code></pre></td></tr></table></figure>
 <p>调用<a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.calibration.calibration_curve.html">calibration_curve</a>将相似的预测概率分箱在一起，并计算在该绑定中实际下雨的时间百分比。</p>
-<p><img src="https://image.yinan.fun/202308201042945.png" srcset="/img/loading.gif" lazyload alt="校准曲线"></p>
+<p><img src="https://image.wangyinan.cn/202308201042945.png" srcset="/img/loading.gif" lazyload alt="校准曲线"></p>
 <p>如果我们的分类器输出良好的概率，那么校准曲线上这些点将接近这条红线。校准曲线上的点告诉我们，当我们的分类器声称下雨的概率约为25%时，实际上有33%的时间下雨了。</p>
 <p>在这个例子中，朴素贝叶斯分类器给出了看起来像概率的分数，并且是由<code>predict_proba</code>生成的，但当我们查看校准曲线时，我们发现它们实际上只是分数。</p>
 <h2 id="重新校准和普拉特缩放">重新校准和普拉特缩放</h2>
@@ -418,7 +418,7 @@
 <p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span>表示一个二分类模型，y的值为-1或+1，A和B就是普拉特缩放要学习的参数。</p>
 <p>在天气示例中，我们可以将普拉特缩放应用于我们的朴素贝叶斯分类器。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">calibrated_nb_rain = CalibratedClassifierCV(nb_rain, cv=<span class="hljs-number">5</span>, method=<span class="hljs-string">&#x27;isotonic&#x27;</span>)<br><span class="hljs-comment"># Note we need to refit!</span><br>calibrated_nb_rain.fit(X_train, y_train);<br><br><span class="hljs-comment"># access the probabilities after recalibration</span><br>calibrated_probs = calibrated_nb_rain.predict_proba(X_test)[:, <span class="hljs-number">1</span>]<br>binned_true_p, binned_predict_p = calibration_curve(y_test, calibrated_probs, n_bins=<span class="hljs-number">10</span>)<br></code></pre></td></tr></table></figure>
-<p><img src="https://image.yinan.fun/202308201323942.png" srcset="/img/loading.gif" lazyload alt="">修正后的概率更接近红线。</p>
+<p><img src="https://image.wangyinan.cn/202308201323942.png" srcset="/img/loading.gif" lazyload alt="">修正后的概率更接近红线。</p>
 
                 
               </div>
@@ -465,7 +465,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>分类问题中概率与分数</div>
-      <div>https://yinan.fun/分类问题中概率与分数</div>
+      <div>https://wangyinan.cn/分类问题中概率与分数</div>
     </div>
     <div class="license-meta">
       
